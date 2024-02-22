@@ -6,7 +6,6 @@ import React, {
 	useState,
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { useTheme } from 'app/providers/ThemeProvider';
 import { Portal } from '../Portal/Portal';
 import styles from './Modal.module.scss';
 
@@ -22,12 +21,10 @@ const ANIMATION_DELAY = 300;
 export const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
 	const [isClosing, setIsClosing] = useState(false);
 	const timerRef = useRef<ReturnType<typeof setTimeout>>();
-	const { theme } = useTheme();
 
 	const mods: Record<string, boolean> = {
 		[styles.opened]: isOpen,
 		[styles.isClosing]: isClosing,
-		[styles[theme]]: true,
 	};
 
 	const onContentClick = (e: React.MouseEvent) => {
