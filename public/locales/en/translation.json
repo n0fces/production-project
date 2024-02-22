@@ -12,5 +12,7 @@
   "О сайте": "About us",
   "Переключить": "Switch",
   "Короткий язык": "En",
-  "Войти": "Enter"
+  "Войти": "Enter",
+  "Введите имя": "Enter the username",
+  "Введите пароль": "Enter the password"
 }
