@@ -47,7 +47,7 @@ module.exports = {
 			'error',
 			{
 				markupOnly: true,
-				ignoreAttribute: ['data-testid', 'to'],
+				ignoreAttribute: ['data-testid', 'to', 'name'],
 			},
 		],
 		'max-len': ['error', { ignoreComments: true, code: 100 }],
@@ -59,6 +59,7 @@ module.exports = {
 		'react-hooks/exhaustive-deps': 'error',
 		'implicit-arrow-linebreak': 'off',
 		'no-param-reassign': 'off',
+		'operator-linebreak': 'off',
 	},
 	globals: {
 		__IS_DEV__: true,
