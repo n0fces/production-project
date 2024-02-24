@@ -1,4 +1,4 @@
-import webpack, { RuleSetRule } from 'webpack';
+import webpack, { DefinePlugin, RuleSetRule } from 'webpack';
 import path from 'path';
 import { buildCssLoader } from '../build/loaders/buildCssLoader';
 import { BuildPaths } from '../build/types/config';
@@ -30,6 +30,13 @@ export default ({ config }: { config: webpack.Configuration }) => {
 	});
 	// сторибук у нас будет использоваться только на этапе разработки, поэтому передаем true
 	config.module?.rules?.push(buildCssLoader(true));
+
+	// чтобы мы могли использовать глобальные переменные проекта в сторибуке
+	config.plugins?.push(
+		new DefinePlugin({
+			__IS_DEV__: true,
+		})
+	);
 
 	return config;
 };

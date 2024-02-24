@@ -30,6 +30,7 @@ export const Button: FC<ButtonProps> = (props) => {
 		theme,
 		square,
 		size = ButtonSize.M,
+		disabled,
 		...otherProps
 	} = props;
 
@@ -38,12 +39,14 @@ export const Button: FC<ButtonProps> = (props) => {
 		[cls.square]: square,
 		// Такие классы, у которых значение равно true, лучше добавлять в additional категорию
 		[cls[size]]: true,
+		[cls.disabled]: disabled,
 	};
 
 	return (
 		<button
 			type='button'
 			className={classNames(cls.Button, mods, [className])}
+			disabled={disabled}
 			{...otherProps}
 		>
 			{children}
