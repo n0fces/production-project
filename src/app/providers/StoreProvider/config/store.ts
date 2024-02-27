@@ -39,3 +39,7 @@ export function createReduxStore(
 
 	return store;
 }
+
+// получаем тип того, что должна вернуть данная функция (эта функция у нас как раз и конфигурирует стор)
+// также мы можем достать тип конкретно диспатча
+export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];

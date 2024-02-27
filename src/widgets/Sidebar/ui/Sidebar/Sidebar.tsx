@@ -1,22 +1,20 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
 import { LangSwitcher } from 'shared/ui/LangSwitcher/LangSwitcher';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
-import { useTranslation } from 'react-i18next';
-import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import AboutIcon from 'shared/assets/icons/about.svg';
-import MainIcon from 'shared/assets/icons/main.svg';
 import cls from './Sidebar.module.scss';
+import { SidebarItemList } from '../../model/items';
+import { SidebarItem } from '../SidebarItem/SidebarItem';
 
 interface SidebarProps {
 	className?: string;
 }
 
-export const Sidebar = ({ className }: SidebarProps) => {
-	const { t } = useTranslation();
+export const Sidebar = memo(({ className }: SidebarProps) => {
 	const [collapsed, setCollapsed] = useState(false);
+
+	// * Мне кажется, что Тимур слишком перебарщивает с использованием мемоизации. У нас и так все вроде декомпозировано таким образом, что лишних ререндоров не возникает. В большинстве случаем мы просто по приколу используем мемоизацию, хотя и так не возникает ререндеров. Вроде было только пару кейсов, где использование мемоизации реально имело эффект
 
 	const onToggle = () => {
 		setCollapsed((prev) => !prev);
@@ -40,22 +38,13 @@ export const Sidebar = ({ className }: SidebarProps) => {
 				{collapsed ? '>' : '<'}
 			</Button>
 			<div className={cls.items}>
-				<AppLink
-					theme={AppLinkTheme.SECONDARY}
-					to={RoutePath.main}
-					className={cls.item}
-				>
-					<MainIcon className={cls.icon} />
-					<span className={cls.link}>{t('Главная')}</span>
-				</AppLink>
-				<AppLink
-					className={cls.item}
-					theme={AppLinkTheme.SECONDARY}
-					to={RoutePath.about}
-				>
-					<AboutIcon className={cls.icon} />
-					<span className={cls.link}>{t('О сайте')}</span>
-				</AppLink>
+				{SidebarItemList.map((item) => (
+					<SidebarItem
+						key={item.path}
+						item={item}
+						collapsed={collapsed}
+					/>
+				))}
 			</div>
 			<div className={cls.switchers}>
 				<ThemeSwitcher />
@@ -63,4 +52,4 @@ export const Sidebar = ({ className }: SidebarProps) => {
 			</div>
 		</div>
 	);
-};
+});

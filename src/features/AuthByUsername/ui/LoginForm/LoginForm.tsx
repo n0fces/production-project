@@ -2,7 +2,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { memo, useCallback } from 'react';
 import { loginActions } from 'features/AuthByUsername/model/slice/loginSlice';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
@@ -10,6 +10,7 @@ import {
 	DynamicModuleLoader,
 	ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
 import styles from './LoginForm.module.scss';
 import { loginReducer } from '../../model/slice/loginSlice';
@@ -20,6 +21,7 @@ import { getLoginError } from '../../model/selectors/getLoginError/getLoginError
 
 export interface LoginFormProps {
 	className?: string;
+	onSuccess: () => void;
 }
 
 // мы вытащили этот объект с начальными редьюсерами для того, чтобы на каждый рендер компонента не создавалась новая ссылка на объект
@@ -27,9 +29,9 @@ const initialReducers: ReducersList = {
 	loginForm: loginReducer,
 };
 
-const LoginForm = memo(({ className }: LoginFormProps) => {
+const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
 	const { t } = useTranslation();
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	// * Вообще запомни, что при использовании редакса нужно стараться писать селекторы, как можно более точно. Нам не нужно писать широкие селекоры, потому что при изменении используемой части стора у нас будет происходить ререндер компонента
 	// мы написали несколько селекторов, чтобы не здавать какой-то стейт по умолчанию (у нас асинхронно подгружается этот редьюсер), а сразу написать для каждого селектор, где будет значение по умолчанию
 	const username = useSelector(getLoginUsername);
@@ -50,9 +52,13 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
 		},
 		[dispatch]
 	);
-	const onLoginClick = useCallback(() => {
-		dispatch(loginByUsername({ username, password }));
-	}, [dispatch, username, password]);
+	const onLoginClick = useCallback(async () => {
+		const result = await dispatch(loginByUsername({ username, password }));
+		// за счет того, что мы используем типзированный useDispatch, ts подсказывает нам, что мы можем достать из этого result
+		if (result.meta.requestStatus === 'fulfilled') {
+			onSuccess();
+		}
+	}, [dispatch, username, password, onSuccess]);
 
 	return (
 		<DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
