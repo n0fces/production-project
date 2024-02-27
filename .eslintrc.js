@@ -60,6 +60,7 @@ module.exports = {
 		'implicit-arrow-linebreak': 'off',
 		'no-param-reassign': 'off',
 		'operator-linebreak': 'off',
+		'lines-between-class-members': 'off',
 	},
 	globals: {
 		__IS_DEV__: true,
