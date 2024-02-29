@@ -7,6 +7,7 @@ import { BuildOptions } from './types/config';
 export function buildPlugins({
 	paths,
 	isDev,
+	apiUrl,
 }: BuildOptions): webpack.WebpackPluginInstance[] {
 	const plugins = [
 		// чтобы использовать index.html из public в качестве шаблона при сборке, используем настройку template
@@ -25,6 +26,7 @@ export function buildPlugins({
 		new webpack.DefinePlugin({
 			// необязательно оформлять названия именно так, но это позволяет отделить глобальные переменные вебпака от других глобальных переменных
 			__IS_DEV__: JSON.stringify(isDev),
+			__API__: JSON.stringify(apiUrl),
 		}),
 	];
 
@@ -38,7 +40,7 @@ export function buildPlugins({
 			new BundleAnalyzerPlugin({
 				// теперь бандл аналайзер не будет сразу открываться, а будет только ссылка на него, если мы хотим посмотреть этот отчет
 				openAnalyzer: false,
-			}),
+			})
 		);
 	}
 

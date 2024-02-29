@@ -50,7 +50,7 @@ module.exports = {
 				ignoreAttribute: ['data-testid', 'to', 'name'],
 			},
 		],
-		'max-len': ['error', { ignoreComments: true, code: 100 }],
+		'max-len': ['error', { ignoreComments: true, code: 120 }],
 		'object-curly-newline': 'off',
 		'comma-dangle': 'off',
 		'jsx-a11y/no-static-element-interactions': 'off',
@@ -61,9 +61,11 @@ module.exports = {
 		'no-param-reassign': 'off',
 		'operator-linebreak': 'off',
 		'lines-between-class-members': 'off',
+		'no-undef': 'off',
 	},
 	globals: {
 		__IS_DEV__: true,
+		__API__: true,
 	},
 	overrides: [
 		{

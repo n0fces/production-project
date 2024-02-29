@@ -5,10 +5,12 @@ import {
 	Reducer,
 	ReducersMapObject,
 } from '@reduxjs/toolkit';
+import { AxiosInstance } from 'axios';
 import { CounterScheme } from 'entities/Counter';
 import { ProfileScheme } from 'entities/Profile';
 import { UserScheme } from 'entities/User';
 import { LoginScheme } from 'features/AuthByUsername';
+import { NavigateOptions, To } from 'react-router-dom';
 
 // Здесь будет задавать тип для стейта, чтобы мы всегда понимали, с чем имеем делать
 export interface StateScheme {
@@ -36,4 +38,15 @@ export interface ReducerManager {
 // расширяем интерфейс дефолтного стора нашим менеджером
 export interface ReduxStoreWithManager extends EnhancedStore<StateScheme> {
 	reducerManager: ReducerManager;
+}
+
+export interface ThunkExtraArg {
+	api: AxiosInstance;
+	navigate?: (to: To, options?: NavigateOptions) => void;
+}
+
+// здесь дженериком будет тип ошибки
+export interface ThunkConfig<T> {
+	rejectValue: T;
+	extra: ThunkExtraArg;
 }

@@ -9,9 +9,6 @@ export type ReducersList = {
 	[name in StateSchemeKey]?: Reducer;
 };
 
-// в объектах ключ всегда стринговый, поэтому мы задаем тип кортежа
-type ReducersListEntry = [StateSchemeKey, Reducer];
-
 interface DynamicModuleLoaderProps {
 	children: ReactNode;
 	reducers: ReducersList;
@@ -26,24 +23,20 @@ export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
 	const store = useStore() as ReduxStoreWithManager;
 	// в момент монтирования компонента нам с помощью редьюсер менеджера нужно добавить редьюсер
 	useEffect(() => {
-		Object.entries(reducers).forEach(
-			([name, reducer]: ReducersListEntry) => {
-				store.reducerManager.add(name, reducer);
-				// добавили эти штуки только для отслеживания
-				dispatch({ type: `@INIT ${name} reducer` });
-			}
-		);
+		Object.entries(reducers).forEach(([name, reducer]) => {
+			store.reducerManager.add(name as StateSchemeKey, reducer);
+			// добавили эти штуки только для отслеживания
+			dispatch({ type: `@INIT ${name} reducer` });
+		});
 
 		// при размонтировании компонента мы удалим этот редьюсер
 		return () => {
 			if (removeAfterUnmount) {
-				Object.entries(reducers).forEach(
-					([name]: ReducersListEntry) => {
-						store.reducerManager.remove(name);
-						// добавили эти штуки только для отслеживания
-						dispatch({ type: `@DESTROY ${name} reducer` });
-					}
-				);
+				Object.entries(reducers).forEach(([name]) => {
+					store.reducerManager.remove(name as StateSchemeKey);
+					// добавили эти штуки только для отслеживания
+					dispatch({ type: `@DESTROY ${name} reducer` });
+				});
 			}
 		};
 		// eslint-disable-next-line
