@@ -49,4 +49,6 @@ export interface ThunkExtraArg {
 export interface ThunkConfig<T> {
 	rejectValue: T;
 	extra: ThunkExtraArg;
+	// при задании этого типа у нас getState будет показывать, что возвращает наш стейт
+	state: StateScheme;
 }

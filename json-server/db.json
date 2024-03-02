@@ -1,38 +1,38 @@
 {
-	"posts": [
-		{
-			"id": "1",
-			"title": "json-server",
-			"userId": "1"
-		},
-		{
-			"id": "2",
-			"title": "json-server",
-			"userId": "2"
-		}
-	],
-	"comments": [
-		{
-			"id": "1",
-			"body": "some comment",
-			"postId": "1"
-		}
-	],
-	"users": [
-		{
-			"id": "1",
-			"username": "admin",
-			"password": "123"
-		}
-	],
-	"profile": { 
-		"first": "Ilya",
-		"lastname": "Abzalov",
-		"age": 21,
-		"currency": "RUB",
-		"country": "Russia",
-		"city": "Saint-Petersburg",
-		"username": "admin",
-		"avatar": "https://image.spreadshirtmedia.net/image-server/v1/compositions/T6A1PA5835PT17X67Y83D175825012W17698H15087/views/1,width=550,height=550,appearanceId=1,backgroundColor=FFFFFF,noPt=true/wednesday-frog-mens-t-shirt.jpg"
-	 }
+  "posts": [
+    {
+      "id": "1",
+      "title": "json-server",
+      "userId": "1"
+    },
+    {
+      "id": "2",
+      "title": "json-server",
+      "userId": "2"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "body": "some comment",
+      "postId": "1"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "123"
+    }
+  ],
+  "profile": {
+    "first": "Ilya",
+    "lastname": "Abzalov",
+    "age": 21,
+    "currency": "USD",
+    "country": "Russia",
+    "city": "Saint-Petersburg",
+    "username": "admin",
+    "avatar": "https://image.spreadshirtmedia.net/image-server/v1/compositions/T6A1PA5835PT17X67Y83D175825012W17698H15087/views/1,width=550,height=550,appearanceId=1,backgroundColor=FFFFFF,noPt=true/wednesday-frog-mens-t-shirt.jpg"
+  }
 }

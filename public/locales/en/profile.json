@@ -2,5 +2,15 @@
 	"Профиль": "Profile",
 	"Редактировать": "Edit",
 	"Ваше имя": "Your name",
-	"Ваша фамилия": "Your last name"
+	"Ваша фамилия": "Your last name",
+	"Произошла ошибка при загрузке пользователя": "An error occurred while uploading the user",
+	"Попробуйте обновить страницу": "Try refreshing the page",
+	"Отменить": "Cancel",
+	"Сохранить": "Save",
+	"Ваш возраст": "Your age",
+	"Ваш город": "Your city",
+	"Ваш пользовательское имя": "Your username",
+	"Ваш аватар": "Your avatar",
+	"Укажите валюту": "Choose currency",
+	"Укажите страну": "Choose  country"
 }
