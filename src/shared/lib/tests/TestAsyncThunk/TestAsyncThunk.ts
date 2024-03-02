@@ -1,4 +1,4 @@
-import { AsyncThunkAction } from '@reduxjs/toolkit';
+import { AsyncThunkAction, DeepPartial } from '@reduxjs/toolkit';
 import { StateScheme } from 'app/providers/StoreProvider';
 import axios, { AxiosStatic } from 'axios';
 
@@ -22,10 +22,14 @@ export class TestAsyncThunk<Return, Arg, RejectedValue> {
 	navigate: jest.MockedFn<any>;
 
 	// В качестве аргумента принимаем сам AsyncThunkAction
-	constructor(actionCreator: ActionCreatorType<Return, Arg, RejectedValue>) {
+	// для отдельных тестовых сценариев мы хотим задавать какое-то дефолтное значение стейта, поэтому 3 параметром идет стейт
+	constructor(
+		actionCreator: ActionCreatorType<Return, Arg, RejectedValue>,
+		state?: DeepPartial<StateScheme>
+	) {
 		this.actionCreator = actionCreator;
 		this.dispatch = jest.fn();
-		this.getState = jest.fn();
+		this.getState = jest.fn(() => state as StateScheme);
 
 		this.api = mockedAxios;
 		this.navigate = jest.fn();
