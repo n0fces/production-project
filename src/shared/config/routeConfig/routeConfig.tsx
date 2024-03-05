@@ -5,7 +5,7 @@ import { NotFoundPage } from 'pages/NotFoundPage';
 import { ProfilePage } from 'pages/ProfilePage';
 
 // расширяем пропсы, которые предоставляет нам сама библиотека
-type AppRoutesProps = RouteProps & {
+export type AppRoutesProps = RouteProps & {
 	authOnly?: boolean;
 };
 
