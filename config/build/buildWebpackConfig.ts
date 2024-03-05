@@ -6,7 +6,9 @@ import { buildResolvers } from './buildResolvers';
 import { buildDevServer } from './buildDevServer';
 
 // здесь будет собираться весь конфиг
-export function buildWebpackConfig(options: BuildOptions): webpack.Configuration {
+export function buildWebpackConfig(
+	options: BuildOptions
+): webpack.Configuration {
 	const { paths, mode, isDev } = options;
 
 	return {
@@ -27,6 +29,8 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
 			path: paths.build,
 			// при каждой сборке генерируется большое количество файлов. эта настройка помогает убрать все лишнее
 			clean: true,
+			// на каждый файл, помещенный в ваш output.path каталог, будет ссылка из этого output.publicPath местоположения
+			publicPath: '/',
 		},
 		plugins: buildPlugins(options),
 		module: {

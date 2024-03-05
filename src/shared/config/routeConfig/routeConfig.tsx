@@ -3,6 +3,8 @@ import { MainPage } from 'pages/MainPage';
 import { AboutPage } from 'pages/AboutPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { ProfilePage } from 'pages/ProfilePage';
+import { ArticlesPage } from 'pages/ArticlesPage';
+import { ArticlesDetailsPage } from 'pages/ArticlesDetailsPage';
 
 // расширяем пропсы, которые предоставляет нам сама библиотека
 export type AppRoutesProps = RouteProps & {
@@ -13,6 +15,8 @@ export enum AppRoutes {
 	MAIN = 'main',
 	ABOUT = 'about',
 	PROFILE = 'profile',
+	ARTICLES = 'articles',
+	ARTICLES_DETAILS = 'articles_details',
 	// last
 	NOT_FOUND = 'not_found',
 }
@@ -21,6 +25,8 @@ export const RoutePath: Record<AppRoutes, string> = {
 	[AppRoutes.MAIN]: '/',
 	[AppRoutes.ABOUT]: '/about',
 	[AppRoutes.PROFILE]: '/profile',
+	[AppRoutes.ARTICLES]: '/articles',
+	[AppRoutes.ARTICLES_DETAILS]: '/articles/', // + id
 	// последний
 	[AppRoutes.NOT_FOUND]: '*',
 };
@@ -38,6 +44,19 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 		path: RoutePath.profile,
 		element: <ProfilePage />,
 		// если данное поле равно true, то данный маршрут будет доступен только авторизованным пользователям
+		authOnly: true,
+	},
+	[AppRoutes.ARTICLES]: {
+		path: RoutePath.articles,
+		element: <ArticlesPage />,
+		// доступ к статьям сделаем только для авторизованных пользователей
+		authOnly: true,
+	},
+	[AppRoutes.ARTICLES_DETAILS]: {
+		// здесь задаем переменную для id, которая показывает, что данный путь является динамическим
+		path: `${RoutePath.articles_details}:id`,
+		element: <ArticlesDetailsPage />,
+		// доступ к статьям сделаем только для авторизованных пользователей
 		authOnly: true,
 	},
 	[AppRoutes.NOT_FOUND]: {
