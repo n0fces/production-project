@@ -2,6 +2,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { BuildOptions } from './types/config';
 
 export function buildPlugins({
@@ -35,6 +36,8 @@ export function buildPlugins({
 	// Данные плагины нам нужны только в режиме разработки
 	if (isDev) {
 		plugins.push(
+			// чтобы у нас не происходило полной перезагрузки после, например, внесения изменений в верстку
+			new ReactRefreshWebpackPlugin(),
 			// чтобы при изменению каких-нибудь стилей у нас происходили изменения, но страница не перезагружалась
 			// добавление плагина делает этот процесс лучше
 			new webpack.HotModuleReplacementPlugin(),
