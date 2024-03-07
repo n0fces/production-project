@@ -1,7 +1,8 @@
-/build
+build
 node_modules
-/storybook-static
+storybook-static
 .vscode
 .fttemplates
-.loki
+.loki/report.html
+.loki/report.json
 .husky
