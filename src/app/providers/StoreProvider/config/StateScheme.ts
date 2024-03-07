@@ -6,6 +6,7 @@ import {
 	ReducersMapObject,
 } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
+import { ArticleDetailsScheme } from 'entities/Article';
 import { CounterScheme } from 'entities/Counter';
 import { ProfileScheme } from 'entities/Profile';
 import { UserScheme } from 'entities/User';
@@ -20,6 +21,7 @@ export interface StateScheme {
 	// Асинхронные редьюсеры
 	loginForm?: LoginScheme;
 	profile?: ProfileScheme;
+	articleDetails?: ArticleDetailsScheme;
 }
 
 // получаем тип с ключами нашего стейта
