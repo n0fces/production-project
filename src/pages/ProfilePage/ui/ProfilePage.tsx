@@ -8,6 +8,8 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { useParams } from 'react-router-dom';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import {
 	ProfileCard,
 	ValidateProfileError,
@@ -35,6 +37,7 @@ interface ProfilePageProps {
 const ProfilePage = ({ className }: ProfilePageProps) => {
 	const { t } = useTranslation('profile');
 	const dispatch = useAppDispatch();
+	const { id } = useParams<{ id: string }>();
 
 	const formData = useSelector(getProfileForm);
 	const isLoading = useSelector(getProfileIsLoading);
@@ -55,12 +58,9 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
 		[ValidateProfileError.INCORRECT_AGE]: t('Некорректный возраст'),
 	};
 
-	useEffect(() => {
-		// говорим, что запрос нужно делать только для фронтенд и тестовой среды. Для сторибуков это не нужно
-		if (__PROJECT__ !== 'storybook') {
-			dispatch(fetchProfileData());
-		}
-	}, [dispatch]);
+	useInitialEffect(() => {
+		if (id) dispatch(fetchProfileData(id));
+	});
 
 	// эти функции очень похожи, но на реальных проектах часто бывают различные дополнительны проверки. Поэтому то, что у нас получается так много функций и так много пропсов ничего страшнного
 	const onChangeFirstname = useCallback(

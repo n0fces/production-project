@@ -10,6 +10,7 @@ import { ArticleDetailsScheme } from 'entities/Article';
 import { CounterScheme } from 'entities/Counter';
 import { ProfileScheme } from 'entities/Profile';
 import { UserScheme } from 'entities/User';
+import { AddCommentFormScheme } from 'features/AddCommentForm';
 import { LoginScheme } from 'features/AuthByUsername';
 import { ArticleDetailsCommentScheme } from 'pages/ArticlesDetailsPage';
 import { NavigateOptions, To } from 'react-router-dom';
@@ -24,6 +25,7 @@ export interface StateScheme {
 	profile?: ProfileScheme;
 	articleDetails?: ArticleDetailsScheme;
 	articleDetailsComments?: ArticleDetailsCommentScheme;
+	addCommentForm?: AddCommentFormScheme;
 }
 
 // получаем тип с ключами нашего стейта

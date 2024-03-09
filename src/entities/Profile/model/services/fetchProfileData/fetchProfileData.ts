@@ -4,13 +4,14 @@ import { Profile } from '../../types/profile';
 
 export const fetchProfileData = createAsyncThunk<
 	Profile,
-	void,
+	string,
 	ThunkConfig<string>
 >(
 	'profile/fetchProfileData',
-	async (_, { rejectWithValue, extra: { api, navigate } }) => {
+	async (profileId, { rejectWithValue, extra: { api, navigate } }) => {
 		try {
-			const response = await api.get<Profile>('/profile');
+			// запрашивам конкретного пользователя
+			const response = await api.get<Profile>(`/profile/${profileId}`);
 			// предполагаем, что бэкенд точно должен вернуть какие-то данные
 			if (!response.data) throw new Error();
 			return response.data;

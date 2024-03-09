@@ -2,13 +2,17 @@ import { Story } from '@storybook/react';
 import { StateScheme, StoreProvider } from 'app/providers/StoreProvider';
 import { articleDetailsReducer } from 'entities/Article/model/slice/articleDetailsSlice';
 import { profileReducer } from 'entities/Profile';
+import { addCommentFormReducer } from 'features/AddCommentForm/model/slice/addCommentForm';
 import { loginReducer } from 'features/AuthByUsername/model/slice/loginSlice';
+import { articleDetailsCommentsReducer } from 'pages/ArticlesDetailsPage/model/slice/articleDetailsCommentsSlice';
 import { ReducersList } from 'shared/lib/components/DynamicModuleLoader';
 
 const defaultAsyncReducers: ReducersList = {
 	loginForm: loginReducer,
 	profile: profileReducer,
-	articleDetails: articleDetailsReducer
+	articleDetails: articleDetailsReducer,
+	addCommentForm: addCommentFormReducer,
+	articleDetailsComments: articleDetailsCommentsReducer
 };
 
 // не знаю, почему мы сделали так, что можем дополнительно пробрасывать еще асинхронных редьюсер, ведь сверху мы сделали объект, который по сути является костылем для всего этого. То есть мы передаем объект с асинхронными редьюсерами, чтобы у нас в сторибуках работало отображение нормально. Мы можем просто туда закидывать эти асинхроонные редьюсеры. Но нет, мы еще сделали возможность добавлять дополнительно асинхронный редьюсер. Короче странно решение для меня

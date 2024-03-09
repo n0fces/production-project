@@ -18,13 +18,15 @@ export const updateProfileData = createAsyncThunk<
 			return rejectWithValue(errors);
 		}
 		try {
-			// отправляем запрос на обновление данных
-			const response = await api.put<Profile>('/profile', formData);
+			// отправляем запрос на обновление данных для конкретного пользователя
+			const response = await api.put<Profile>(
+				`/profile/${formData?.id}`,
+				formData
+			);
 			// предполагаем, что сервер точно должен нам вернуть какие-то данные
 			if (!response.data) throw new Error();
 			return response.data;
 		} catch (error) {
-			console.log(error);
 			return rejectWithValue([ValidateProfileError.SERVER_ERROR]);
 		}
 	}
