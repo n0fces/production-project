@@ -11,6 +11,7 @@ import { CounterScheme } from 'entities/Counter';
 import { ProfileScheme } from 'entities/Profile';
 import { UserScheme } from 'entities/User';
 import { LoginScheme } from 'features/AuthByUsername';
+import { ArticleDetailsCommentScheme } from 'pages/ArticlesDetailsPage';
 import { NavigateOptions, To } from 'react-router-dom';
 
 // Здесь будет задавать тип для стейта, чтобы мы всегда понимали, с чем имеем делать
@@ -22,6 +23,7 @@ export interface StateScheme {
 	loginForm?: LoginScheme;
 	profile?: ProfileScheme;
 	articleDetails?: ArticleDetailsScheme;
+	articleDetailsComments?: ArticleDetailsCommentScheme;
 }
 
 // получаем тип с ключами нашего стейта

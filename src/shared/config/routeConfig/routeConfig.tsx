@@ -4,7 +4,7 @@ import { AboutPage } from 'pages/AboutPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { ProfilePage } from 'pages/ProfilePage';
 import { ArticlesPage } from 'pages/ArticlesPage';
-import { ArticlesDetailsPage } from 'pages/ArticlesDetailsPage';
+import { ArticleDetailsPage } from 'pages/ArticlesDetailsPage';
 
 // расширяем пропсы, которые предоставляет нам сама библиотека
 export type AppRoutesProps = RouteProps & {
@@ -55,7 +55,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 	[AppRoutes.ARTICLES_DETAILS]: {
 		// здесь задаем переменную для id, которая показывает, что данный путь является динамическим
 		path: `${RoutePath.articles_details}:id`,
-		element: <ArticlesDetailsPage />,
+		element: <ArticleDetailsPage />,
 		// доступ к статьям сделаем только для авторизованных пользователей
 		authOnly: true,
 	},
