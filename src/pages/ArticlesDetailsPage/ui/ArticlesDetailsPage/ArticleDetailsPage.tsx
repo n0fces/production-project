@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Text } from 'shared/ui/Text/Text';
 import {
@@ -9,6 +9,8 @@ import {
 	ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { ArticleDetails } from 'entities/Article';
 import { CommentList } from 'entities/Comment';
@@ -37,6 +39,11 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 	const comments = useSelector(getArticleComments.selectAll);
 	const dispatch = useAppDispatch();
 	const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
+	const navigate = useNavigate();
+
+	const onBackToList = useCallback(() => {
+		navigate(RoutePath.articles);
+	}, [navigate]);
 
 	const onSendComment = useCallback(
 		(text: string) => {
@@ -67,6 +74,9 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 					className,
 				])}
 			>
+				<Button theme={ButtonTheme.OUTLINE} onClick={onBackToList}>
+					{t('Назад к списку')}
+				</Button>
 				<ArticleDetails id={id} />
 				<Text
 					className={styles.commentTitle}

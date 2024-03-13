@@ -28,7 +28,7 @@ module.exports = {
 			2,
 			{ extensions: ['.js', '.jsx', '.tsx'] },
 		],
-		quotes: ['error', 'single'],
+		quotes: 'off',
 		'jsx-quotes': ['error', 'prefer-single'],
 		semi: ['error', 'always'],
 		'no-mixed-spaces-and-tabs': ['error', 'smart-tabs'],
@@ -62,6 +62,7 @@ module.exports = {
 		'operator-linebreak': 'off',
 		'lines-between-class-members': 'off',
 		'no-undef': 'off',
+		'react/no-array-index-key': 'off',
 	},
 	globals: {
 		__IS_DEV__: true,

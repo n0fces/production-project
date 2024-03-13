@@ -3,5 +3,6 @@
 	"Произошла ошибка при загрузке статьи": "An error occurred while uploading the article",
 	"Комментарии": "Comments",
 	"Введите текст комментария": "Enter the comment text",
-	"Отправить": "Send"
+	"Отправить": "Send",
+	"Назад к списку": "Back to articles list"
 }
