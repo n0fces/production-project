@@ -1,11 +1,12 @@
-import { classNames } from 'shared/lib/classNames/classNames';
+import { useSelector } from 'react-redux';
 import { memo, useState } from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
 import { LangSwitcher } from 'shared/ui/LangSwitcher/LangSwitcher';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
 import cls from './Sidebar.module.scss';
-import { SidebarItemList } from '../../model/items';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
+import { getSidebarItems } from '../../model/selectors/getSidebarItems';
 
 interface SidebarProps {
 	className?: string;
@@ -13,6 +14,7 @@ interface SidebarProps {
 
 export const Sidebar = memo(({ className }: SidebarProps) => {
 	const [collapsed, setCollapsed] = useState(false);
+	const sidebarItemsList = useSelector(getSidebarItems);
 
 	// * Мне кажется, что Тимур слишком перебарщивает с использованием мемоизации. У нас и так все вроде декомпозировано таким образом, что лишних ререндоров не возникает. В большинстве случаем мы просто по приколу используем мемоизацию, хотя и так не возникает ререндеров. Вроде было только пару кейсов, где использование мемоизации реально имело эффект
 
@@ -38,7 +40,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
 				{collapsed ? '>' : '<'}
 			</Button>
 			<div className={cls.items}>
-				{SidebarItemList.map((item) => (
+				{sidebarItemsList.map((item) => (
 					<SidebarItem
 						key={item.path}
 						item={item}

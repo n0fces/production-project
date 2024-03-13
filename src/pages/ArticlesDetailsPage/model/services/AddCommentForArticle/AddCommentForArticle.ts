@@ -40,3 +40,5 @@ export const AddCommentForArticle = createAsyncThunk<
 		}
 	}
 );
+
+// НАПИШИ ТЕСТЫ НА НОВЫЕ СЕЛЕКТОРЫ, СЛАЙСЫ И АСИНХРОННЫЕ ФАНКИ

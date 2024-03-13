@@ -5,7 +5,7 @@ import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { getUserAuthData } from 'entities/User';
 import styles from './SidebarItem.module.scss';
-import { SidebarItemType } from '../../model/items';
+import { SidebarItemType } from 'widgets/Sidebar/model/types/sidebar';
 
 interface SidebarItemProps {
 	item: SidebarItemType;
