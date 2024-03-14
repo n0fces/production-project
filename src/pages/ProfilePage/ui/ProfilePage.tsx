@@ -8,6 +8,7 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { Page } from 'shared/ui/Page/Page';
 import { useParams } from 'react-router-dom';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import {
@@ -119,7 +120,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
 	return (
 		// * На этом моменте даже приятно удивился, насколько легко мы подключили логику асинхронного подключения редьюсеров) Просто использовали уже созданные вещи. Тогда долго сидели, чтобы сейчас просто использовать
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-			<div className={classNames('', {}, [className])}>
+			<Page className={classNames('', {}, [className])}>
 				<ProfilePageHeader />
 				{validateErrors?.map((err) => (
 					<Text
@@ -143,7 +144,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
 					onChangeCurrency={onChangeCurrency}
 					onChangeCountry={onChangeCountry}
 				/>
-			</div>
+			</Page>
 		</DynamicModuleLoader>
 	);
 };

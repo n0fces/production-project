@@ -29,19 +29,6 @@ export const ArticleList = ({
 		<ArticleListItem article={article} view={view} key={article.id} />
 	);
 
-	if (isLoading) {
-		return (
-			<div
-				className={classNames(styles.ArticleList, {}, [
-					className,
-					styles[view],
-				])}
-			>
-				{getSkeletons(view)}
-			</div>
-		);
-	}
-
 	return (
 		<div
 			className={classNames(styles.ArticleList, {}, [
@@ -50,6 +37,8 @@ export const ArticleList = ({
 			])}
 		>
 			{articles.length > 0 ? articles.map(renderArticle) : null}
+			{/* то есть у нас под уже существующими статьями будет появляться скелетон */}
+			{isLoading && getSkeletons(view)}
 		</div>
 	);
 };

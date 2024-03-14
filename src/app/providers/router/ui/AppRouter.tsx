@@ -12,7 +12,7 @@ const AppRouter = () => {
 		({ path, element, authOnly }: AppRoutesProps) => {
 			const suspenseElement = (
 				<Suspense fallback={<PageLoader />}>
-					<div className='page-wrapper'>{element}</div>
+					{element}
 				</Suspense>
 			);
 			return (

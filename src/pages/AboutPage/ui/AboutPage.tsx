@@ -1,14 +1,11 @@
 import { useTranslation } from 'react-i18next';
+import { Page } from 'shared/ui/Page/Page';
 
 const AboutPage = () => {
 	// по умолчанию namespace называется translation
 	// мы указываем конкретный namespace, чтобы разбить на чанки перевод. мы не хотим, чтобы для пользователя подгружался перевод страниц, на которые он может даже не планировал заходить
 	const { t } = useTranslation('about');
-	return (
-		<div>
-			{t('О сайте')}
-		</div>
-	);
+	return <Page>{t('О сайте')}</Page>;
 };
 
 export default AboutPage;

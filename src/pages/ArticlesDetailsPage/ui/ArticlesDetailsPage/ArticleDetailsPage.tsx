@@ -12,6 +12,7 @@ import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEf
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Page } from 'shared/ui/Page/Page';
 import { ArticleDetails } from 'entities/Article';
 import { CommentList } from 'entities/Comment';
 import { AddCommentForm } from 'features/AddCommentForm';
@@ -56,20 +57,20 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 
 	if (!id) {
 		return (
-			<div
+			<Page
 				className={classNames(styles.ArticleDetailsPage, {}, [
 					className,
 				])}
 			>
 				{t('Статья не найдена')}
-			</div>
+			</Page>
 		);
 	}
 
 	return (
 		// Здесь DynamicModuleLoader нужен для работы с асинхронным экшеном под комментарии конкретной статьи (articleDetailsCommentsReducer)
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-			<div
+			<Page
 				className={classNames(styles.ArticleDetailsPage, {}, [
 					className,
 				])}
@@ -87,7 +88,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 					isLoading={commentsIsLoading}
 					comments={comments}
 				/>
-			</div>
+			</Page>
 		</DynamicModuleLoader>
 	);
 };
