@@ -12,6 +12,7 @@ import { ProfileScheme } from 'entities/Profile';
 import { UserScheme } from 'entities/User';
 import { AddCommentFormScheme } from 'features/AddCommentForm';
 import { LoginScheme } from 'features/AuthByUsername';
+import { ScrollSaveScheme } from 'features/ScrollSave';
 import { ArticleDetailsCommentScheme } from 'pages/ArticlesDetailsPage';
 import { ArticlesPageScheme } from 'pages/ArticlesPage';
 
@@ -19,6 +20,7 @@ import { ArticlesPageScheme } from 'pages/ArticlesPage';
 export interface StateScheme {
 	counter: CounterScheme;
 	user: UserScheme;
+	saveScroll: ScrollSaveScheme;
 
 	// Асинхронные редьюсеры
 	loginForm?: LoginScheme;

@@ -13,20 +13,6 @@ export const addCommentFormSlice = createSlice({
 			state.text = action.payload;
 		},
 	},
-	// extraReducers: (builder) => {
-	// 	builder
-	// 		.addCase(EXAMPLE.pending, (state) => {
-	// 			state.isLoading = true;
-	// 			state.error = undefined;
-	// 		})
-	// 		.addCase(EXAMPLE.fulfilled, (state) => {
-	// 			state.isLoading = false;
-	// 		})
-	// 		.addCase(EXAMPLE.rejected, (state, action) => {
-	// 			state.isLoading = false;
-	// 			state.error = action.payload;
-	// 		});
-	// },
 });
 
 export const { actions: addCommentFormActions } = addCommentFormSlice;

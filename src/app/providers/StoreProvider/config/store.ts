@@ -1,8 +1,13 @@
-import { CombinedState, Reducer, ReducersMapObject, configureStore } from '@reduxjs/toolkit';
-import { NavigateOptions, To } from 'react-router-dom';
+import {
+	CombinedState,
+	Reducer,
+	ReducersMapObject,
+	configureStore,
+} from '@reduxjs/toolkit';
 import { $api } from 'shared/api/api';
 import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
+import { scrollSaveReducer } from 'features/ScrollSave';
 import { StateScheme, ThunkExtraArg } from './StateScheme';
 import { createReducerManager } from './reducerManager';
 
@@ -13,13 +18,14 @@ import { createReducerManager } from './reducerManager';
 // * + надо будет сделать типизированные хуки useSelector и useDispatch. Типизированный useSelector позволит каждый раз не указывать тип стейта. Типизированный useDispatch будет знать про наши события и не позволит пердеать какую-то дичь
 export function createReduxStore(
 	initialState?: StateScheme,
-	asyncReducers?: ReducersMapObject<StateScheme>,
+	asyncReducers?: ReducersMapObject<StateScheme>
 ) {
 	// в корневом редьюсере оставляем только те редьюсеры, которые являются обязательными
 	const rootReducers: ReducersMapObject<StateScheme> = {
 		...asyncReducers,
 		counter: counterReducer,
 		user: userReducer,
+		saveScroll: scrollSaveReducer,
 	};
 
 	const reducerManager = createReducerManager(rootReducers);
