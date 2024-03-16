@@ -15,7 +15,6 @@ import {
 	ArticleViewSelector,
 } from 'entities/Article';
 import { Text } from 'shared/ui/Text/Text';
-import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
 import {
 	articlesPageActions,
 	articlesPageReducer,
@@ -28,6 +27,7 @@ import {
 	getArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors';
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
+import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 
 interface ArticlesPageProps {
 	className?: string;
@@ -57,18 +57,13 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
 		dispatch(fetchNextArticlesPage());
 	}, [dispatch]);
 
+	// для этого компонента мы не будем удалять редьюсер, а заново при его появлении не хотим делать повторный запрос
 	useInitialEffect(() => {
-		// сначала инициализируем нужное значение лимит и отображение списка статей, а потом делаем запрос на сервер за нужным количеством статей
-		dispatch(articlesPageActions.initState());
-		dispatch(
-			fetchArticlesList({
-				page: 1,
-			})
-		);
+		dispatch(initArticlesPage());
 	});
 
 	return (
-		<DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+		<DynamicModuleLoader reducers={reducers}>
 			<Page
 				onlScrollEnd={onLoadNextPart}
 				className={classNames(styles.ArticlesPage, {}, [className])}

@@ -4,7 +4,7 @@ import { $api } from 'shared/api/api';
 import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
 import { StateScheme, ThunkExtraArg } from './StateScheme';
-import { createReducerManager } from './reduceManager';
+import { createReducerManager } from './reducerManager';
 
 // делаем создание стора внутри этой функции
 // мы сможем переиспользовать, чтобы для тестов и сторибука переиспользовать создание стора
@@ -14,7 +14,6 @@ import { createReducerManager } from './reduceManager';
 export function createReduxStore(
 	initialState?: StateScheme,
 	asyncReducers?: ReducersMapObject<StateScheme>,
-	navigate?: (to: To, options?: NavigateOptions) => void
 ) {
 	// в корневом редьюсере оставляем только те редьюсеры, которые являются обязательными
 	const rootReducers: ReducersMapObject<StateScheme> = {
@@ -27,7 +26,6 @@ export function createReduxStore(
 
 	const extraArg: ThunkExtraArg = {
 		api: $api,
-		navigate,
 	};
 
 	const store = configureStore({

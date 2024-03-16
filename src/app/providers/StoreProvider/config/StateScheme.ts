@@ -14,7 +14,6 @@ import { AddCommentFormScheme } from 'features/AddCommentForm';
 import { LoginScheme } from 'features/AuthByUsername';
 import { ArticleDetailsCommentScheme } from 'pages/ArticlesDetailsPage';
 import { ArticlesPageScheme } from 'pages/ArticlesPage';
-import { NavigateOptions, To } from 'react-router-dom';
 
 // Здесь будет задавать тип для стейта, чтобы мы всегда понимали, с чем имеем делать
 export interface StateScheme {
@@ -33,6 +32,8 @@ export interface StateScheme {
 // получаем тип с ключами нашего стейта
 export type StateSchemeKey = keyof StateScheme;
 
+export type MountedReducers = OptionalRecord<StateSchemeKey, boolean>;
+
 export interface ReducerManager {
 	getReducerMap: () => ReducersMapObject<StateScheme>;
 	reduce: (
@@ -41,6 +42,9 @@ export interface ReducerManager {
 	) => CombinedState<StateScheme>;
 	add: (key: StateSchemeKey, reducer: Reducer) => void;
 	remove: (key: StateSchemeKey) => void;
+	// true - вмонтирован, false - демонтирован или не
+	// не все редьюсеры у нас являются обязательными, поэтому мы сделали свой тип для рекорда, где некоторые поля могут быть необязательными
+	getMountedReducers: () => MountedReducers;
 }
 
 // расширяем интерфейс дефолтного стора нашим менеджером
@@ -50,7 +54,6 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateScheme> {
 
 export interface ThunkExtraArg {
 	api: AxiosInstance;
-	navigate?: (to: To, options?: NavigateOptions) => void;
 }
 
 // здесь дженериком будет тип ошибки

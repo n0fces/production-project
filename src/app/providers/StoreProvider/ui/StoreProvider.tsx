@@ -17,11 +17,12 @@ export const StoreProvider = ({
 	initialState,
 	asyncReducers,
 }: StoreProviderProps) => {
-	const navigate = useNavigate();
+	// если бы вот так оставили, то у нас постоянно бы вызывался хук useNavigate, а значит постоянно пересоздавался стор
+	// const navigate = useNavigate();
 	const store = createReduxStore(
 		initialState as StateScheme,
 		asyncReducers as ReducersMapObject<StateScheme>,
-		navigate
+		// navigate
 	);
 
 	return <Provider store={store}>{children}</Provider>;

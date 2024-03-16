@@ -23,10 +23,17 @@ export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
 	const store = useStore() as ReduxStoreWithManager;
 	// в момент монтирования компонента нам с помощью редьюсер менеджера нужно добавить редьюсер
 	useEffect(() => {
+		// получаем объект с вмонтированными редьюсерами
+		const mountedReducers = store.reducerManager.getMountedReducers();
 		Object.entries(reducers).forEach(([name, reducer]) => {
-			store.reducerManager.add(name as StateSchemeKey, reducer);
-			// добавили эти штуки только для отслеживания
-			dispatch({ type: `@INIT ${name} reducer` });
+			// по ключу достаем нужный нам редьюсер
+			const mounted = mountedReducers[name as StateSchemeKey];
+			// проверяем, вмонтирован ли этот редьюсер или нет (false или true там в качестве значения для соответствующего ключа)
+			if (!mounted) {
+				store.reducerManager.add(name as StateSchemeKey, reducer);
+				// добавили эти штуки только для отслеживания
+				dispatch({ type: `@INIT ${name} reducer` });
+			}
 		});
 
 		// при размонтировании компонента мы удалим этот редьюсер
