@@ -17,5 +17,5 @@ export const useThrottle = (
 				throttleRef.current = false;
 			}, delay);
 		}
-	}, []);
+	}, [callback, delay]);
 };
