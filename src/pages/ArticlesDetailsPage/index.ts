@@ -1,2 +1,5 @@
 export { ArticleDetailsPageAsync as ArticleDetailsPage } from './ui/ArticlesDetailsPage/ArticleDetailsPage.async';
-export { ArticleDetailsCommentScheme } from './model/types/ArticleDetailsCommentScheme';
+export { ArticleDetailsPageScheme } from './model/types';
+export { articleDetailsCommentsReducer } from './model/slice/articleDetailsCommentsSlice';
+export { articleDetailsPageRecommendationsReducer } from './model/slice/articleDetailsPageRecommendationsSlice';
+export { articleDetailsPageReducer } from './model/slice';

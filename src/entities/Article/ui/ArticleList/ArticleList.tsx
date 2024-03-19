@@ -1,3 +1,4 @@
+import { HTMLAttributeAnchorTarget } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Text, TextSize } from 'shared/ui/Text/Text';
@@ -14,6 +15,7 @@ interface ArticleListProps {
 	isLoading?: boolean;
 	// тема отображения списка статей
 	view?: ArticleView;
+	target?: HTMLAttributeAnchorTarget;
 }
 
 const getSkeletons = (view: ArticleView) =>
@@ -26,10 +28,16 @@ export const ArticleList = ({
 	articles,
 	isLoading,
 	view = ArticleView.SMALL,
+	target,
 }: ArticleListProps) => {
 	const { t } = useTranslation('article');
 	const renderArticle = (article: Article) => (
-		<ArticleListItem article={article} view={view} key={article.id} />
+		<ArticleListItem
+			article={article}
+			view={view}
+			key={article.id}
+			target={target}
+		/>
 	);
 
 	if (!isLoading && !articles.length) {

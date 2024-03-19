@@ -47,10 +47,10 @@ module.exports = {
 			'error',
 			{
 				markupOnly: true,
-				ignoreAttribute: ['data-testid', 'to', 'name'],
+				ignoreAttribute: ['data-testid', 'to', 'name', 'target'],
 			},
 		],
-		'max-len': ['error', { ignoreComments: true, code: 120 }],
+		'max-len': ['error', { ignoreComments: true, code: 125 }],
 		'object-curly-newline': 'off',
 		'comma-dangle': 'off',
 		'jsx-a11y/no-static-element-interactions': 'off',

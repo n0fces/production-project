@@ -13,7 +13,9 @@ import { UserScheme } from 'entities/User';
 import { AddCommentFormScheme } from 'features/AddCommentForm';
 import { LoginScheme } from 'features/AuthByUsername';
 import { ScrollSaveScheme } from 'features/ScrollSave';
-import { ArticleDetailsCommentScheme } from 'pages/ArticlesDetailsPage';
+import {
+	ArticleDetailsPageScheme
+} from 'pages/ArticlesDetailsPage';
 import { ArticlesPageScheme } from 'pages/ArticlesPage';
 
 // Здесь будет задавать тип для стейта, чтобы мы всегда понимали, с чем имеем делать
@@ -26,9 +28,9 @@ export interface StateScheme {
 	loginForm?: LoginScheme;
 	profile?: ProfileScheme;
 	articleDetails?: ArticleDetailsScheme;
-	articleDetailsComments?: ArticleDetailsCommentScheme;
 	addCommentForm?: AddCommentFormScheme;
 	articlesPage?: ArticlesPageScheme;
+	articleDetailsPage?: ArticleDetailsPageScheme;
 }
 
 // получаем тип с ключами нашего стейта
