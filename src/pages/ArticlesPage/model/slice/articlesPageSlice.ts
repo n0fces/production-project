@@ -4,8 +4,14 @@ import {
 	createSlice,
 } from '@reduxjs/toolkit';
 import { StateScheme } from 'app/providers/StoreProvider';
+import { SortOrder } from 'shared/types';
 import { ARTICLE_VIEW_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
-import { Article, ArticleView } from 'entities/Article';
+import {
+	Article,
+	ArticleSortField,
+	ArticleType,
+	ArticleView,
+} from 'entities/Article';
 import { ArticlesPageScheme } from '../types/articlesPageScheme';
 import { fetchArticlesList } from '../services/fetchArticlesList/fetchArticlesList';
 
@@ -28,6 +34,12 @@ export const articlesPageSlice = createSlice({
 		page: 1,
 		hasMore: true,
 		_inited: false,
+		limit: 9,
+		// сортировка по умолчанию будет по дате создания
+		sort: ArticleSortField.CREATED,
+		order: 'asc',
+		search: '',
+		type: ArticleType.ALL,
 	}),
 	reducers: {
 		setView: (state, action: PayloadAction<ArticleView>) => {
@@ -36,6 +48,18 @@ export const articlesPageSlice = createSlice({
 		},
 		setPage: (state, action: PayloadAction<number>) => {
 			state.page = action.payload;
+		},
+		setOrder: (state, action: PayloadAction<SortOrder>) => {
+			state.order = action.payload;
+		},
+		setSort: (state, action: PayloadAction<ArticleSortField>) => {
+			state.sort = action.payload;
+		},
+		setSearch: (state, action: PayloadAction<string>) => {
+			state.search = action.payload;
+		},
+		setType: (state, action: PayloadAction<ArticleType>) => {
+			state.type = action.payload;
 		},
 		initState: (state) => {
 			const view = localStorage.getItem(
@@ -48,20 +72,27 @@ export const articlesPageSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
-			.addCase(fetchArticlesList.pending, (state) => {
+			.addCase(fetchArticlesList.pending, (state, action) => {
 				state.isLoading = true;
 				state.error = undefined;
+
+				if (action.meta.arg.replace) {
+					// когда мы хотим полностью перезагрузить данные, то можем при инициализации загрузки просто очистить существующий стейт
+					articlesAdapter.removeAll(state);
+				}
 			})
-			.addCase(
-				fetchArticlesList.fulfilled,
-				(state, action: PayloadAction<Article[]>) => {
-					state.isLoading = false;
+			.addCase(fetchArticlesList.fulfilled, (state, action) => {
+				state.isLoading = false;
+				// будет запрашивать данные при достижении определенной позиции скролла до тех пор, пока с сервера прилетает больше либо равно лимита. Когда мы получили массив данных, длина которого меньше лимита, то это знак, что данных больше нет
+				state.hasMore = action.payload.length >= state.limit;
+
+				if (action.meta.arg.replace) {
+					articlesAdapter.setAll(state, action.payload);
+				} else {
 					// нам нужно не полностью данные перезатирать, добавлять данные по мере скролла и подгрузки данные. Поэтому используем addMany, а не setAll, так как setAll будет перезатирать
 					articlesAdapter.addMany(state, action.payload);
-					// если при загрузке данных пришел массив, у которого ненулевая длина, то мы оставляем hasMore true
-					state.hasMore = action.payload.length > 0;
 				}
-			)
+			})
 			.addCase(fetchArticlesList.rejected, (state, action) => {
 				state.isLoading = false;
 				state.error = action.payload;

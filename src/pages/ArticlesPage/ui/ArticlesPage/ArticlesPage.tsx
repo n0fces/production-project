@@ -1,3 +1,4 @@
+import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
@@ -9,14 +10,9 @@ import {
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Page } from 'widgets/Page/Page';
-import {
-	ArticleList,
-	ArticleView,
-	ArticleViewSelector,
-} from 'entities/Article';
+import { ArticleList } from 'entities/Article';
 import { Text } from 'shared/ui/Text/Text';
 import {
-	articlesPageActions,
 	articlesPageReducer,
 	getArticles,
 } from '../../model/slice/articlesPageSlice';
@@ -28,6 +24,7 @@ import {
 } from '../../model/selectors/articlesPageSelectors';
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
+import { ArticlesPageFilters } from '../ArticlesPageFilters/ArticlesPageFilters';
 
 interface ArticlesPageProps {
 	className?: string;
@@ -44,13 +41,8 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
 	const isLoading = useSelector(getArticlesPageIsLoading);
 	const error = useSelector(getArticlesPageError);
 	const view = useSelector(getArticlesPageView);
-
-	const onChangeView = useCallback(
-		(view: ArticleView) => {
-			dispatch(articlesPageActions.setView(view));
-		},
-		[dispatch]
-	);
+	// получаем гет-параметры из текущей строки
+	const [searchParams] = useSearchParams();
 
 	const onLoadNextPart = useCallback(() => {
 		// делаем запрос за данными только тогда, когда понимаем, что на сервере есть еще данные
@@ -59,7 +51,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
 
 	// для этого компонента мы не будем удалять редьюсер, а заново при его появлении не хотим делать повторный запрос
 	useInitialEffect(() => {
-		dispatch(initArticlesPage());
+		dispatch(initArticlesPage(searchParams));
 	});
 
 	return (
@@ -72,14 +64,12 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
 					<Text text={t('Что-то пошло не так')} />
 				) : (
 					<>
-						<ArticleViewSelector
-							view={view}
-							onViewClick={onChangeView}
-						/>
+						<ArticlesPageFilters />
 						<ArticleList
 							view={view}
 							articles={articles}
 							isLoading={isLoading}
+							className={styles.list}
 						/>
 					</>
 				)}

@@ -57,7 +57,9 @@ export const Page = ({ className, children, onlScrollEnd }: PageProps) => {
 		>
 			{children}
 			{/* это будет триггерный элемент, за которым будем следить */}
-			<div ref={triggerRef} />
+			{onlScrollEnd ? (
+				<div className={styles.trigger} ref={triggerRef} />
+			) : null}
 		</section>
 	);
 };

@@ -1,4 +1,17 @@
 {
 	"Читать далее": "Read more",
-	"Что-то пошло не так": "Something went wrong"
+	"Что-то пошло не так": "Something went wrong",
+	"Сортировать по": "Sort by",
+	"Поиск": "Search",
+	"по": "by",
+	"возрастанию": "ascending",
+	"убыванию": "descending",
+	"дате создания": "creating date",
+	"названию": "name",
+	"просмотрам": "views",
+	"Все": "All",
+	"Айти": "IT",
+	"Экономика": "Economics",
+	"Наука": "Science",
+	"Статьи не найдены": "Articles wasn't found"
 }

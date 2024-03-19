@@ -1,21 +1,42 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { addQueryParams } from 'shared/lib/url/addQueryParams/addQueryParams';
+import { Article, ArticleType } from 'entities/Article';
 import { ThunkConfig } from 'app/providers/StoreProvider';
-import { Article } from 'entities/Article';
-import { getArticlesPageLimit } from '../../selectors/articlesPageSelectors';
+import {
+	getArticlesPageLimit,
+	getArticlesPageNum,
+	getArticlesPageOrder,
+	getArticlesPageSearch,
+	getArticlesPageSort,
+	getArticlesPageType,
+} from '../../selectors/articlesPageSelectors';
 
-interface FetchArticlesListProps {
-	page?: number;
+interface fetchArticlesListProps {
+	replace?: boolean;
 }
 
 export const fetchArticlesList = createAsyncThunk<
 	Article[],
-	FetchArticlesListProps,
+	fetchArticlesListProps,
 	ThunkConfig<string>
 >(
 	'articlesPage/fetchArticlesList',
-	async ({ page = 1 }, { rejectWithValue, getState, extra: { api } }) => {
+	async (_, { rejectWithValue, getState, extra: { api } }) => {
 		const limit = getArticlesPageLimit(getState());
+		const sort = getArticlesPageSort(getState());
+		const order = getArticlesPageOrder(getState());
+		const search = getArticlesPageSearch(getState());
+		const page = getArticlesPageNum(getState());
+		const type = getArticlesPageType(getState());
+
 		try {
+			// мне не нравится, что у нас разу по умолчанию в адресной строке будет большое количество параметром, которые пользователь даже еще не формировал. Это выглядит не очень что ли
+			addQueryParams({
+				sort,
+				order,
+				search,
+				type
+			});
 			const response = await api.get<Article[]>('/articles', {
 				params: {
 					// нужно, чтобы отрисовывать аватарку пользователя, который написал статью при формате отображения статей BIG
@@ -23,6 +44,10 @@ export const fetchArticlesList = createAsyncThunk<
 					// согласно документации json-server пагинация реализуется таким обарзом
 					_limit: limit,
 					_page: page,
+					_sort: sort,
+					_order: order,
+					q: search,
+					type: type === ArticleType.ALL ? undefined : type,
 				},
 			});
 			if (!response.data) {
