@@ -3,8 +3,4 @@ import { lazy } from 'react';
 // мы уменьшаем размер нашего основного бандла
 // нужно учесть, что использовать необходимо экспорты по дефолты (в AboutPage)
 // стоит заметить, что при последующих переходах на уже загруженные страницы не будет происходить повторная загрузка чанков
-export const AboutPageAsync = lazy(() => new Promise((resolve) => {
-	// @ts-ignore
-	// ТАК В РЕАЛЬНЫХ ПРОЕКТАХ НЕ ДЕЛАТЬ!!!!! ДЕЛАЕМ ДЛЯ КУРСА!
-	setTimeout(() => resolve(import('./AboutPage')), 1500);
-}));
+export const AboutPageAsync = lazy(() => import('./AboutPage'));

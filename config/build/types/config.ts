@@ -7,6 +7,10 @@ export interface BuildPaths {
 	build: string;
 	html: string;
 	src: string;
+	// здесь будем указывать путь до папки с переводами
+	locales: string;
+	// куда нам эти переводы необходимо перемещать
+	buildLocales: string;
 }
 
 export interface BuildEnv {
