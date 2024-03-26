@@ -20,5 +20,7 @@
   "Форма авторизации": "Authorization form",
   "Вы ввели неверный логин или пароль": "You entered an incorrect username or password",
   "Выйти": "Exit",
-  "Комментарии отсутствуют": "There are no comments"
+  "Комментарии отсутствуют": "There are no comments",
+  "Приложение статей": "Articles app",
+  "Создать статью": "Create article"
 }

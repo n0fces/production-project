@@ -4,8 +4,7 @@ import { AddCommentForm } from 'features/AddCommentForm';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { useParams } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
 import {
 	DynamicModuleLoader,
@@ -13,7 +12,6 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import { Page } from 'widgets/Page/Page';
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
@@ -24,6 +22,7 @@ import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByAr
 import { articleDetailsPageReducer } from '../../model/slice';
 import { getArticleComments } from '../../model/slice/articleDetailsCommentsSlice';
 import { getArticleRecommendations } from '../../model/slice/articleDetailsPageRecommendationsSlice';
+import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 import styles from './ArticleDetailsPage.module.scss';
 
 interface ArticleDetailsPageProps {
@@ -46,11 +45,6 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 	const recommendationsIsLoading = useSelector(
 		getArticleRecommendationsIsLoading
 	);
-	const navigate = useNavigate();
-
-	const onBackToList = useCallback(() => {
-		navigate(RoutePath.articles);
-	}, [navigate]);
 
 	const onSendComment = useCallback(
 		(text: string) => {
@@ -84,9 +78,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 					className,
 				])}
 			>
-				<Button theme={ButtonTheme.OUTLINE} onClick={onBackToList}>
-					{t('Назад к списку')}
-				</Button>
+				<ArticleDetailsPageHeader />
 				<ArticleDetails id={id} />
 				<Text
 					size={TextSize.L}
