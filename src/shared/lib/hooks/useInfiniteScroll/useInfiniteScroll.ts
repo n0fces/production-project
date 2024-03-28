@@ -28,7 +28,10 @@ export const useInfiniteScroll = ({
 
 			observer.current = new IntersectionObserver(([entry]) => {
 				if (entry.isIntersecting) {
-					callback();
+					// нужно потому, что иначе в сторибуке будет ломаться страница со статьями
+					if (__PROJECT__ !== 'storybook') {
+						callback();
+					}
 				}
 			}, options);
 
