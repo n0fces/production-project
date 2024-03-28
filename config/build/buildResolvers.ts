@@ -1,4 +1,5 @@
 import { ResolveOptions } from 'webpack';
+import path from 'path';
 import { BuildOptions } from './types/config';
 
 export function buildResolvers(options: BuildOptions): ResolveOptions {
@@ -12,6 +13,8 @@ export function buildResolvers(options: BuildOptions): ResolveOptions {
 		// для каждого модуля главным файлом будет являться индекс
 		mainFiles: ['index'],
 		// если оставить данный объект пустым, то никаких алиасов не будет (доступ будет напрямую)
-		// alias: {},
+		alias: {
+			src: path.resolve(__dirname, 'src'),
+		},
 	};
 }
