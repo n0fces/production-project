@@ -16,7 +16,6 @@ import { Text, TextSize } from 'shared/ui/Text/Text';
 import { Page } from 'widgets/Page/Page';
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
 import { getArticleRecommendationsIsLoading } from '../../model/selectors/recommendations';
-import { AddCommentForArticle } from '../../model/services/addCommentForArticle/AddCommentForArticle';
 import { fetchArticleRecommendations } from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { articleDetailsPageReducer } from '../../model/slice';
@@ -24,6 +23,7 @@ import { getArticleComments } from '../../model/slice/articleDetailsCommentsSlic
 import { getArticleRecommendations } from '../../model/slice/articleDetailsPageRecommendationsSlice';
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 import styles from './ArticleDetailsPage.module.scss';
+import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle';
 
 interface ArticleDetailsPageProps {
 	className?: string;
@@ -48,7 +48,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 
 	const onSendComment = useCallback(
 		(text: string) => {
-			dispatch(AddCommentForArticle(text));
+			dispatch(addCommentForArticle(text));
 		},
 		[dispatch]
 	);

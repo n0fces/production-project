@@ -43,7 +43,6 @@
 	"include": [
 		"./config/jest/setupTests.ts",
 		"./src/**/*.ts",
-		"./src/**/*.tsx",
-		// "src/entities/Article/model/services/fetchArticleById"
+		"./src/**/*.tsx"
 	]
 }
