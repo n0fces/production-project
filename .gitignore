@@ -4,5 +4,4 @@ storybook-static
 .vscode
 .fttemplates
 /.loki
-/.github
 /.husky
