@@ -13,9 +13,7 @@ import { UserScheme } from 'entities/User';
 import { AddCommentFormScheme } from 'features/AddCommentForm';
 import { LoginScheme } from 'features/AuthByUsername';
 import { ScrollSaveScheme } from 'features/ScrollSave';
-import {
-	ArticleDetailsPageScheme
-} from 'pages/ArticlesDetailsPage';
+import { ArticleDetailsPageScheme } from 'pages/ArticleDetailsPage';
 import { ArticlesPageScheme } from 'pages/ArticlesPage';
 
 // Здесь будет задавать тип для стейта, чтобы мы всегда понимали, с чем имеем делать
