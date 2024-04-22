@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Page } from 'widgets/Page/Page';
-import styles from './ArticleEditPage.module.scss';
 
 interface ArticleEditPageProps {
 	className?: string;
@@ -16,7 +15,7 @@ const ArticleEditPage = ({ className }: ArticleEditPageProps) => {
 	// логику по редактированию и созданию статей нужно будет сделать самим по окончании курса. сейчас нет смысла, потому что на данный момент по ходу курса мы сделали ряд архитектурных ошибок, которые далее будем исправлять
 
 	return (
-		<Page className={classNames(styles.ArticleEditPage, {}, [className])}>
+		<Page className={classNames('', {}, [className])}>
 			{isEdit
 				? `Редактирование статьи с ID = ${id}`
 				: 'Создание новой статьи'}

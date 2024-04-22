@@ -3,6 +3,6 @@ node_modules
 storybook-static
 .vscode
 .fttemplates
-.loki/report.html
-.loki/report.json
-.husky
+/.loki
+/.github
+/.husky
