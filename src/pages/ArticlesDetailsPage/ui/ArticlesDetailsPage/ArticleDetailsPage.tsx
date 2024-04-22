@@ -14,7 +14,6 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import { Page } from 'widgets/Page/Page';
-import { addCommentForArticle } from 'pages/ArticlesDetailsPage/model/services/addCommentForArticle/addCommentForArticle';
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
 import { getArticleRecommendationsIsLoading } from '../../model/selectors/recommendations';
 import { fetchArticleRecommendations } from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
@@ -23,6 +22,7 @@ import { articleDetailsPageReducer } from '../../model/slice';
 import { getArticleComments } from '../../model/slice/articleDetailsCommentsSlice';
 import { getArticleRecommendations } from '../../model/slice/articleDetailsPageRecommendationsSlice';
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
+// import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle';
 import styles from './ArticleDetailsPage.module.scss';
 
 interface ArticleDetailsPageProps {
@@ -46,12 +46,12 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 		getArticleRecommendationsIsLoading
 	);
 
-	const onSendComment = useCallback(
-		(text: string) => {
-			dispatch(addCommentForArticle(text));
-		},
-		[dispatch]
-	);
+	// const onSendComment = useCallback(
+	// 	(text: string) => {
+	// 		dispatch(addCommentForArticle(text));
+	// 	},
+	// 	[dispatch]
+	// );
 
 	useInitialEffect(() => {
 		dispatch(fetchCommentsByArticleId(id));
@@ -96,7 +96,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 					className={styles.commentTitle}
 					title={t('Комментарии')}
 				/>
-				<AddCommentForm onSendComment={onSendComment} />
+				{/* <AddCommentForm onSendComment={onSendComment} /> */}
 				<CommentList
 					isLoading={commentsIsLoading}
 					comments={comments}
