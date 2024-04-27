@@ -17,6 +17,8 @@ interface PageProps {
 	onlScrollEnd?: () => void;
 }
 
+export const PAGE_ID = 'PAGE_ID';
+
 export const Page = ({ className, children, onlScrollEnd }: PageProps) => {
 	const wrapperRef = useRef() as MutableRefObject<HTMLElement>;
 	const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
@@ -54,6 +56,7 @@ export const Page = ({ className, children, onlScrollEnd }: PageProps) => {
 			ref={wrapperRef}
 			className={classNames(styles.Page, {}, [className])}
 			onScroll={onScroll}
+			id={PAGE_ID}
 		>
 			{children}
 			{/* это будет триггерный элемент, за которым будем следить */}

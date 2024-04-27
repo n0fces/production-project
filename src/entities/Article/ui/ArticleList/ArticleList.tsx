@@ -1,11 +1,13 @@
 import { HTMLAttributeAnchorTarget } from 'react';
 import { useTranslation } from 'react-i18next';
+import { List, ListRowProps, WindowScroller } from 'react-virtualized';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Text, TextSize } from 'shared/ui/Text/Text';
-import styles from './ArticleList.module.scss';
+import { PAGE_ID } from 'widgets/Page/Page';
 import { Article, ArticleView } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
+import styles from './ArticleList.module.scss';
 
 // в этих компонентах мы также не будем подвязываться на определенный стейт, а будем принимать статьи извне
 // данный компонент списка статей мы можем использовать на других страницах, например, рекомендаций
@@ -31,14 +33,36 @@ export const ArticleList = ({
 	target,
 }: ArticleListProps) => {
 	const { t } = useTranslation('article');
-	const renderArticle = (article: Article) => (
-		<ArticleListItem
-			article={article}
-			view={view}
-			key={article.id}
-			target={target}
-		/>
-	);
+
+	const isBig = view === ArticleView.BIG;
+
+	const itemsPerRow = isBig ? 1 : 3;
+	const rowCount = isBig
+		? articles.length
+		: Math.ceil(articles.length / itemsPerRow);
+
+	const rowRender = ({ index, key, style }: ListRowProps) => {
+		const items = [];
+		// нужно посчитать, от какого и до какого индексов мы будем рендерить элементы
+		const fromIndex = index * itemsPerRow;
+		const toIndex = Math.min(fromIndex + itemsPerRow, articles.length);
+		for (let i = fromIndex; i < toIndex; i += 1) {
+			items.push(
+				<ArticleListItem
+					article={articles[index]}
+					view={view}
+					key={articles[index].id}
+					target={target}
+					className={styles.card}
+				/>
+			);
+		}
+		return (
+			<div key={key} style={style} className={styles.row}>
+				{items}
+			</div>
+		);
+	};
 
 	if (!isLoading && !articles.length) {
 		return (
@@ -54,15 +78,39 @@ export const ArticleList = ({
 	}
 
 	return (
-		<div
-			className={classNames(styles.ArticleList, {}, [
-				className,
-				styles[view],
-			])}
+		<WindowScroller
+			onScroll={() => console.log('scroll')}
+			scrollElement={document.getElementById(PAGE_ID)!}
 		>
-			{articles.length > 0 ? articles.map(renderArticle) : null}
-			{/* то есть у нас под уже существующими статьями будет появляться скелетон */}
-			{isLoading && getSkeletons(view)}
-		</div>
+			{({
+				width,
+				height,
+				registerChild,
+				scrollTop,
+				onChildScroll,
+				isScrolling,
+			}) => (
+				<div
+					ref={registerChild}
+					className={classNames(styles.ArticleList, {}, [
+						className,
+						styles[view],
+					])}
+				>
+					<List
+						autoHeight
+						height={height ?? 700}
+						rowCount={rowCount}
+						rowHeight={isBig ? 700 : 330}
+						rowRenderer={rowRender}
+						width={width ? width - 80 : 700}
+						onScroll={onChildScroll}
+						isScrolling={isScrolling}
+						scrollTop={scrollTop}
+					/>
+					{isLoading && getSkeletons(view)}
+				</div>
+			)}
+		</WindowScroller>
 	);
 };
