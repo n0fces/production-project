@@ -15,6 +15,7 @@ export enum TextAlign {
 }
 
 export enum TextSize {
+	S = 'size_s',
 	M = 'size_m',
 	L = 'size_l',
 }
@@ -28,6 +29,14 @@ export interface TextProps {
 	size?: TextSize;
 }
 
+type HeaderTagType = 'h1' | 'h2' | 'h3';
+
+const mapSizeToHeader: Record<TextSize, HeaderTagType> = {
+	[TextSize.S]: 'h3',
+	[TextSize.M]: 'h2',
+	[TextSize.L]: 'h1',
+};
+
 export const Text = memo(
 	({
 		className,
@@ -37,6 +46,9 @@ export const Text = memo(
 		align = TextAlign.LEFT,
 		size = TextSize.M,
 	}: TextProps) => {
+		// В зависимости от размера будет задавать заголовок нужного уровня, который будет вытаскиваться из нашего маппера
+		const HeaderTag = mapSizeToHeader[size];
+
 		return (
 			<div
 				className={classNames(styles.Text, {}, [
@@ -46,7 +58,9 @@ export const Text = memo(
 					styles[size],
 				])}
 			>
-				{title && <p className={styles.title}>{title}</p>}
+				{title && (
+					<HeaderTag className={styles.title}>{title}</HeaderTag>
+				)}
 				{text && <p className={styles.text}>{text}</p>}
 			</div>
 		);
