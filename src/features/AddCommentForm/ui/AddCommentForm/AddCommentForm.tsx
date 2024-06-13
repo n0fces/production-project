@@ -5,6 +5,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Input } from 'shared/ui/Input/Input';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { HStack } from 'shared/ui/Stack';
 import {
 	DynamicModuleLoader,
 	ReducersList,
@@ -49,7 +50,11 @@ const AddCommentForm = ({ className, onSendComment }: AddCommentFormProps) => {
 
 	return (
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-			<div className={classNames(styles.AddCommentForm, {}, [className])}>
+			<HStack
+				justify='between'
+				max
+				className={classNames(styles.AddCommentForm, {}, [className])}
+			>
 				<Input
 					className={styles.input}
 					placeholder={t('Введите текст комментария')}
@@ -59,7 +64,7 @@ const AddCommentForm = ({ className, onSendComment }: AddCommentFormProps) => {
 				<Button theme={ButtonTheme.OUTLINE} onClick={onSendHandler}>
 					{t('Отправить')}
 				</Button>
-			</div>
+			</HStack>
 		</DynamicModuleLoader>
 	);
 };

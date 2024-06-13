@@ -12,7 +12,7 @@ import {
 import { useCallback } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getUserAuthData } from 'entities/User';
-import styles from './ProfilePageHeader.module.scss';
+import { HStack } from 'shared/ui/Stack';
 
 interface ProfilePageHeaderProps {
 	className?: string;
@@ -40,38 +40,25 @@ export const ProfilePageHeader = ({ className }: ProfilePageHeaderProps) => {
 	}, [dispatch]);
 
 	return (
-		<div className={classNames(styles.ProfilePageHeader, {}, [className])}>
+		<HStack max justify='between' className={classNames('', {}, [className])}>
 			<Text title={t('Профиль')} />
-			{canEdit && (
-				<div className={styles.btnsWrapper}>
-					{readonly ? (
-						<Button
-							theme={ButtonTheme.OUTLINE}
-							className={styles.editBtn}
-							onClick={onEdit}
-						>
-							{t('Редактировать')}
-						</Button>
-					) : (
-						<>
-							<Button
-								theme={ButtonTheme.OUTLINE_RED}
-								className={styles.editBtn}
-								onClick={onCancelEdit}
-							>
-								{t('Отменить')}
-							</Button>
-							<Button
-								theme={ButtonTheme.OUTLINE}
-								className={styles.saveBtn}
-								onClick={onSave}
-							>
-								{t('Сохранить')}
-							</Button>
-						</>
-					)}
-				</div>
+			{canEdit && readonly ? (
+				<Button theme={ButtonTheme.OUTLINE} onClick={onEdit}>
+					{t('Редактировать')}
+				</Button>
+			) : (
+				<HStack gap='8'>
+					<Button
+						theme={ButtonTheme.OUTLINE_RED}
+						onClick={onCancelEdit}
+					>
+						{t('Отменить')}
+					</Button>
+					<Button theme={ButtonTheme.OUTLINE} onClick={onSave}>
+						{t('Сохранить')}
+					</Button>
+				</HStack>
 			)}
-		</div>
+		</HStack>
 	);
 };

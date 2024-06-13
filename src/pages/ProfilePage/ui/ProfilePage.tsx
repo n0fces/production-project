@@ -1,16 +1,5 @@
-import { useCallback, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useSelector } from 'react-redux';
-import {
-	DynamicModuleLoader,
-	ReducersList,
-} from 'shared/lib/components/DynamicModuleLoader';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Text, TextTheme } from 'shared/ui/Text/Text';
-import { Page } from 'widgets/Page/Page';
-import { useParams } from 'react-router-dom';
-import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { Country } from 'entities/Country';
+import { Currency } from 'entities/Currency';
 import {
 	ProfileCard,
 	ValidateProfileError,
@@ -23,8 +12,20 @@ import {
 	profileActions,
 	profileReducer,
 } from 'entities/Profile';
-import { Currency } from 'entities/Currency';
-import { Country } from 'entities/Country';
+import { useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { classNames } from 'shared/lib/classNames/classNames';
+import {
+	DynamicModuleLoader,
+	ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { VStack } from 'shared/ui/Stack';
+import { Page } from 'widgets/Page/Page';
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 
 const reducers: ReducersList = {
@@ -121,29 +122,31 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
 		// * На этом моменте даже приятно удивился, насколько легко мы подключили логику асинхронного подключения редьюсеров) Просто использовали уже созданные вещи. Тогда долго сидели, чтобы сейчас просто использовать
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount>
 			<Page className={classNames('', {}, [className])}>
-				<ProfilePageHeader />
-				{validateErrors?.map((err) => (
-					<Text
-						key={err}
-						theme={TextTheme.ERROR}
-						text={validateErrorTranslates[err]}
+				<VStack gap='16' max>
+					<ProfilePageHeader />
+					{validateErrors?.map((err) => (
+						<Text
+							key={err}
+							theme={TextTheme.ERROR}
+							text={validateErrorTranslates[err]}
+						/>
+					))}
+					{/* при такой реализации мы можем делать целую ленту карточек пользователей, а в качестве данных пробрасывать соответствующие значения, а не хардкодить, как это у нас было до этого. Сейчас мы можем получать данные с сервера, а потом их пробрасывать в нашу карточку и все будет работать */}
+					<ProfileCard
+						data={formData}
+						isLoading={isLoading}
+						error={error}
+						readonly={readonly}
+						onChangeFirstname={onChangeFirstname}
+						onChangeLastname={onChangeLastname}
+						onChangeAge={onChangeAge}
+						onChangeCity={onChangeCity}
+						onChangeUsername={onChangeUsername}
+						onChangeAvatar={onChangeAvatar}
+						onChangeCurrency={onChangeCurrency}
+						onChangeCountry={onChangeCountry}
 					/>
-				))}
-				{/* при такой реализации мы можем делать целую ленту карточек пользователей, а в качестве данных пробрасывать соответствующие значения, а не хардкодить, как это у нас было до этого. Сейчас мы можем получать данные с сервера, а потом их пробрасывать в нашу карточку и все будет работать */}
-				<ProfileCard
-					data={formData}
-					isLoading={isLoading}
-					error={error}
-					readonly={readonly}
-					onChangeFirstname={onChangeFirstname}
-					onChangeLastname={onChangeLastname}
-					onChangeAge={onChangeAge}
-					onChangeCity={onChangeCity}
-					onChangeUsername={onChangeUsername}
-					onChangeAvatar={onChangeAvatar}
-					onChangeCurrency={onChangeCurrency}
-					onChangeCountry={onChangeCountry}
-				/>
+				</VStack>
 			</Page>
 		</DynamicModuleLoader>
 	);

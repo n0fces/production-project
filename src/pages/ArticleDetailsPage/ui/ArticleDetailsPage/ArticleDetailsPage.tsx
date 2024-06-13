@@ -13,6 +13,7 @@ import {
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { Text, TextSize } from 'shared/ui/Text/Text';
+import { VStack } from 'shared/ui/Stack';
 import { Page } from 'widgets/Page/Page';
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
 import { getArticleRecommendationsIsLoading } from '../../model/selectors/recommendations';
@@ -78,29 +79,31 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 					className,
 				])}
 			>
-				<ArticleDetailsPageHeader />
-				<ArticleDetails id={id} />
-				<Text
-					size={TextSize.L}
-					className={styles.commentTitle}
-					title={t('Рекомендуем')}
-				/>
-				<ArticleList
-					articles={recommendations}
-					isLoading={recommendationsIsLoading}
-					className={styles.recommendations}
-					target='_blank'
-				/>
-				<Text
-					size={TextSize.L}
-					className={styles.commentTitle}
-					title={t('Комментарии')}
-				/>
-				<AddCommentForm onSendComment={onSendComment} />
-				<CommentList
-					isLoading={commentsIsLoading}
-					comments={comments}
-				/>
+				<VStack gap='16' max>
+					<ArticleDetailsPageHeader />
+					<ArticleDetails id={id} />
+					<Text
+						size={TextSize.L}
+						className={styles.commentTitle}
+						title={t('Рекомендуем')}
+					/>
+					<ArticleList
+						articles={recommendations}
+						isLoading={recommendationsIsLoading}
+						className={styles.recommendations}
+						target='_blank'
+					/>
+					<Text
+						size={TextSize.L}
+						className={styles.commentTitle}
+						title={t('Комментарии')}
+					/>
+					<AddCommentForm onSendComment={onSendComment} />
+					<CommentList
+						isLoading={commentsIsLoading}
+						comments={comments}
+					/>
+				</VStack>
 			</Page>
 		</DynamicModuleLoader>
 	);
