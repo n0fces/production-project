@@ -1,6 +1,7 @@
 import { Fragment, ReactNode } from 'react';
 import { Listbox as HListBox } from '@headlessui/react';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { DropdownDirection } from 'shared/types/ui';
 import styles from './ListBox.module.scss';
 import { Button } from '../Button/Button';
 import { HStack } from '../Stack';
@@ -10,8 +11,6 @@ export interface ListBoxItem {
 	content: ReactNode;
 	disabled?: boolean;
 }
-
-type DropdownDirection = 'top' | 'bottom';
 
 interface ListBoxProps {
 	className?: string;
@@ -32,16 +31,14 @@ export const ListBox = ({
 	defaultValue,
 	onChange,
 	readOnly,
-	direction = 'bottom',
+	direction = 'bottomRight',
 	label,
 }: ListBoxProps) => {
 	// потом, если будет время, можно перейти на более свежую версию данной библиотеки
 	return (
 		<HStack gap='4'>
 			{label && (
-				<span
-					className={readOnly ? styles.disabled : undefined}
-				>
+				<span className={readOnly ? styles.disabled : undefined}>
 					{`${label}>`}
 				</span>
 			)}
