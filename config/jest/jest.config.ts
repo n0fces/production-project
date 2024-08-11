@@ -31,6 +31,19 @@ export default {
 		__API__: '',
 		__PROJECT__: 'jest',
 	},
+	// * Чтобы показывался наглядный html-отчет о проведенных юнит-тестах
+	reporters: [
+		'default',
+		[
+			'jest-html-reporters',
+			{
+				publicPath: '<rootDir>/reports/unit',
+				filename: 'report.html',
+				openReport: true,
+				inlineSource: true,
+			},
+		],
+	],
 	// Indicates whether the coverage information should be collected while executing the test
 	// collectCoverage: false,
 

@@ -1,5 +1,3 @@
-import { ArticleDetails } from 'entities/Article';
-import { ArticleRecommendationsList } from 'features/ArticleRecommendationsList';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
@@ -12,7 +10,6 @@ import { VStack } from 'shared/ui/Stack';
 import { Page } from 'widgets/Page/Page';
 import { articleDetailsPageReducer } from '../../model/slice';
 import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments';
-import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 import styles from './ArticleDetailsPage.module.scss';
 
 interface ArticleDetailsPageProps {
@@ -50,9 +47,9 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 				])}
 			>
 				<VStack gap='16' max>
-					<ArticleDetailsPageHeader />
+					{/* <ArticleDetailsPageHeader />
 					<ArticleDetails id={id} />
-					<ArticleRecommendationsList />
+					<ArticleRecommendationsList /> */}
 					<ArticleDetailsComments id={id} />
 				</VStack>
 			</Page>

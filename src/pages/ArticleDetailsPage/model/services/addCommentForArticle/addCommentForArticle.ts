@@ -9,7 +9,7 @@ export const addCommentForArticle = createAsyncThunk<
 	string,
 	ThunkConfig<string>
 >(
-	'articleDetails/addCommentForArticle',
+	'articleDetailsPage/addCommentForArticle',
 	async (text, { rejectWithValue, getState, dispatch, extra: { api } }) => {
 		// инфо о пользователе, который оставляет комментарий
 		const userData = getUserAuthData(getState());
