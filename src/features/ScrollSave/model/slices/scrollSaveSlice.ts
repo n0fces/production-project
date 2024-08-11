@@ -16,20 +16,6 @@ export const scrollSaveSlice = createSlice({
 			state.scroll[payload.path] = payload.position;
 		},
 	},
-	// extraReducers: (builder) => {
-	// 	builder
-	// 		.addCase(EXAMPLE.pending, (state) => {
-	// 			state.isLoading = true;
-	// 			state.error = undefined;
-	// 		})
-	// 		.addCase(EXAMPLE.fulfilled, (state) => {
-	// 			state.isLoading = false;
-	// 		})
-	// 		.addCase(EXAMPLE.rejected, (state, action) => {
-	// 			state.isLoading = false;
-	// 			state.error = action.payload;
-	// 		});
-	// },
 });
 
 export const { actions: scrollSaveActions, reducer: scrollSaveReducer } =

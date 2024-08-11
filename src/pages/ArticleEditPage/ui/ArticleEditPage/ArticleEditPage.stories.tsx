@@ -3,7 +3,7 @@ import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDeco
 import ArticleEditPage from './ArticleEditPage';
 
 export default {
-	title: 'enitites/ArticleEditPage',
+	title: 'pages/ArticleEditPage',
 	component: ArticleEditPage,
 	argTypes: {
 		backgroundColor: { control: 'color' },

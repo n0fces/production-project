@@ -8,19 +8,21 @@ import {
 import { AxiosInstance } from 'axios';
 import { ArticleDetailsScheme } from 'entities/Article';
 import { CounterScheme } from 'entities/Counter';
-import { ProfileScheme } from 'entities/Profile';
 import { UserScheme } from 'entities/User';
 import { AddCommentFormScheme } from 'features/AddCommentForm';
 import { LoginScheme } from 'features/AuthByUsername';
+import { ProfileScheme } from 'features/EditableProfileCard';
 import { ScrollSaveScheme } from 'features/ScrollSave';
 import { ArticleDetailsPageScheme } from 'pages/ArticleDetailsPage';
 import { ArticlesPageScheme } from 'pages/ArticlesPage';
+import { rtkApi } from 'shared/api/rtkApi';
 
 // Здесь будет задавать тип для стейта, чтобы мы всегда понимали, с чем имеем делать
 export interface StateScheme {
 	counter: CounterScheme;
 	user: UserScheme;
 	saveScroll: ScrollSaveScheme;
+	[rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
 	// Асинхронные редьюсеры
 	loginForm?: LoginScheme;
