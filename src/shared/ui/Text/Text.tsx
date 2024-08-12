@@ -27,6 +27,7 @@ export interface TextProps {
 	theme?: TextTheme;
 	align?: TextAlign;
 	size?: TextSize;
+	'data-testid'?: string;
 }
 
 type HeaderTagType = 'h1' | 'h2' | 'h3';
@@ -45,6 +46,7 @@ export const Text = memo(
 		theme = TextTheme.PRIMARY,
 		align = TextAlign.LEFT,
 		size = TextSize.M,
+		'data-testid': dataTestId = 'Text',
 	}: TextProps) => {
 		// В зависимости от размера будет задавать заголовок нужного уровня, который будет вытаскиваться из нашего маппера
 		const HeaderTag = mapSizeToHeader[size];
@@ -59,9 +61,21 @@ export const Text = memo(
 				])}
 			>
 				{title && (
-					<HeaderTag className={styles.title}>{title}</HeaderTag>
+					<HeaderTag
+						className={styles.title}
+						data-testid={`${dataTestId}.Header`}
+					>
+						{title}
+					</HeaderTag>
 				)}
-				{text && <p className={styles.text}>{text}</p>}
+				{text && (
+					<p
+						className={styles.text}
+						data-testid={`${dataTestId}.Paragraph`}
+					>
+						{text}
+					</p>
+				)}
 			</div>
 		);
 	}

@@ -83,6 +83,7 @@ export const ProfileCard = ({
 		[styles.editing]: !readonly,
 	};
 
+	// * Потом надо будет сделать тестирование всех инпутов
 	return (
 		<VStack
 			gap='8'
@@ -100,6 +101,7 @@ export const ProfileCard = ({
 				className={styles.input}
 				onChange={onChangeFirstname}
 				readOnly={readonly}
+				data-testid='ProfileCard.firstname'
 			/>
 			<Input
 				value={data?.lastname}
@@ -107,6 +109,7 @@ export const ProfileCard = ({
 				className={styles.input}
 				onChange={onChangeLastname}
 				readOnly={readonly}
+				data-testid='ProfileCard.lastname'
 			/>
 			<Input
 				value={data?.age}

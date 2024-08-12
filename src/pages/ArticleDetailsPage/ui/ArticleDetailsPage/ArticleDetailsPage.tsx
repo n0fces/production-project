@@ -7,10 +7,13 @@ import {
 	ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader';
 import { VStack } from 'shared/ui/Stack';
+import { ArticleDetails } from 'entities/Article';
+import { ArticleRecommendationsList } from 'features/ArticleRecommendationsList';
 import { Page } from 'widgets/Page/Page';
 import { articleDetailsPageReducer } from '../../model/slice';
 import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments';
 import styles from './ArticleDetailsPage.module.scss';
+import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 
 interface ArticleDetailsPageProps {
 	className?: string;
@@ -47,9 +50,9 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 				])}
 			>
 				<VStack gap='16' max>
-					{/* <ArticleDetailsPageHeader />
+					<ArticleDetailsPageHeader />
 					<ArticleDetails id={id} />
-					<ArticleRecommendationsList /> */}
+					<ArticleRecommendationsList />
 					<ArticleDetailsComments id={id} />
 				</VStack>
 			</Page>

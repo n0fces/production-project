@@ -18,6 +18,7 @@ interface ArticleListProps {
 	// тема отображения списка статей
 	view?: ArticleView;
 	target?: HTMLAttributeAnchorTarget;
+	virtualized?: boolean;
 }
 
 const getSkeletons = (view: ArticleView) =>
@@ -31,6 +32,7 @@ export const ArticleList = ({
 	isLoading,
 	view = ArticleView.SMALL,
 	target,
+	virtualized = true,
 }: ArticleListProps) => {
 	const { t } = useTranslation('article');
 
@@ -78,10 +80,7 @@ export const ArticleList = ({
 	}
 
 	return (
-		<WindowScroller
-			onScroll={() => console.log('scroll')}
-			scrollElement={document.getElementById(PAGE_ID)!}
-		>
+		<WindowScroller scrollElement={document.getElementById(PAGE_ID)!}>
 			{({
 				width,
 				height,
@@ -97,17 +96,31 @@ export const ArticleList = ({
 						styles[view],
 					])}
 				>
-					<List
-						autoHeight
-						height={height ?? 700}
-						rowCount={rowCount}
-						rowHeight={isBig ? 700 : 330}
-						rowRenderer={rowRender}
-						width={width ? width - 80 : 700}
-						onScroll={onChildScroll}
-						isScrolling={isScrolling}
-						scrollTop={scrollTop}
-					/>
+					{/* Делаем виртуализацию по условию, так как не всегда нужен виртуальный список */}
+					{virtualized ? (
+						<List
+							autoHeight
+							height={height ?? 700}
+							rowCount={rowCount}
+							rowHeight={isBig ? 700 : 330}
+							rowRenderer={rowRender}
+							width={width ? width - 80 : 700}
+							onScroll={onChildScroll}
+							isScrolling={isScrolling}
+							scrollTop={scrollTop}
+						/>
+					) : (
+						articles.map((article) => (
+							<ArticleListItem
+								article={article}
+								view={view}
+								key={article.id}
+								target={target}
+								className={styles.card}
+							/>
+						))
+					)}
+
 					{isLoading && getSkeletons(view)}
 				</div>
 			)}

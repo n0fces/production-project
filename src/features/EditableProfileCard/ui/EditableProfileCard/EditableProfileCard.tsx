@@ -123,6 +123,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 						key={err}
 						theme={TextTheme.ERROR}
 						text={validateErrorTranslates[err]}
+						data-testid='EditableProfileCard.Error'
 					/>
 				))}
 				{/* при такой реализации мы можем делать целую ленту карточек пользователей, а в качестве данных пробрасывать соответствующие значения, а не хардкодить, как это у нас было до этого. Сейчас мы можем получать данные с сервера, а потом их пробрасывать в нашу карточку и все будет работать */}
