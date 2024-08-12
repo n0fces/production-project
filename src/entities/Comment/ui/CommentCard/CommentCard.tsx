@@ -21,7 +21,9 @@ export const CommentCard = ({
 }: CommentCardProps) => {
 	if (isLoading) {
 		return (
-			<div
+			<VStack
+				gap='8'
+				max
 				className={classNames(styles.CommentCard, {}, [
 					className,
 					styles.loading,
@@ -36,7 +38,7 @@ export const CommentCard = ({
 					/>
 				</div>
 				<Skeleton className={styles.text} height={50} width='100%' />
-			</div>
+			</VStack>
 		);
 	}
 
