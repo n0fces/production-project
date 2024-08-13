@@ -38,7 +38,7 @@ export default ({ config }: { config: webpack.Configuration }) => {
 		new DefinePlugin({
 			__IS_DEV__: JSON.stringify(true),
 			// нам для сторибуков не надо передавать никакие запросы, поэтому поставили пустую строку
-			__API__: JSON.stringify(''),
+			__API__: JSON.stringify('https://testapi.ru'),
 			// у нас есть 3 среды, которые мы можем отличать по глобальной переменной __PROJECT__
 			__PROJECT__: JSON.stringify('storybook'),
 		})

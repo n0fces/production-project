@@ -1,5 +1,6 @@
+import { ArticleDetails } from 'entities/Article';
+import { ArticleRecommendationsList } from 'features/ArticleRecommendationsList';
 import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
 import {
@@ -7,13 +8,11 @@ import {
 	ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader';
 import { VStack } from 'shared/ui/Stack';
-import { ArticleDetails } from 'entities/Article';
-import { ArticleRecommendationsList } from 'features/ArticleRecommendationsList';
 import { Page } from 'widgets/Page/Page';
 import { articleDetailsPageReducer } from '../../model/slice';
 import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments';
-import styles from './ArticleDetailsPage.module.scss';
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
+import styles from './ArticleDetailsPage.module.scss';
 
 interface ArticleDetailsPageProps {
 	className?: string;
@@ -25,21 +24,8 @@ const reducers: ReducersList = {
 };
 
 const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
-	const { t } = useTranslation('article-details');
 	const { id } = useParams<{ id: string }>();
 	// данная тулкитовая абстрация позволяет нам даже не писать свои собственные селекторы во многих случаях, так как базовые и наиболее часто используемые кейсы уже имплементированы
-
-	if (!id) {
-		return (
-			<Page
-				className={classNames(styles.ArticleDetailsPage, {}, [
-					className,
-				])}
-			>
-				{t('Статья не найдена')}
-			</Page>
-		);
-	}
 
 	return (
 		// Здесь DynamicModuleLoader нужен для работы с асинхронным экшеном под комментарии конкретной статьи (articleDetailsCommentsReducer)

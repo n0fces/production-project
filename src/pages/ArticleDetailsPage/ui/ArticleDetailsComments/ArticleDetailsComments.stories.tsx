@@ -16,33 +16,7 @@ const Template: ComponentStory<typeof ArticleDetailsComments> = (args) => (
 );
 
 export const Normal = Template.bind({});
-Normal.args = {};
-Normal.decorators = [
-	StoreDecorator({
-		articleDetailsPage: {
-			comments: {
-				ids: ['1', '2'],
-				entities: {
-					1: {
-						id: '1',
-						text: 'some comment',
-						user: {
-							id: '1',
-							username: 'admin',
-						},
-					},
-					2: {
-						id: '2',
-						text: 'some comment 2',
-						user: {
-							id: '2',
-							username: 'ulbi tv',
-						},
-					},
-				},
-				isLoading: false,
-				error: undefined,
-			},
-		},
-	}),
-];
+Normal.args = {
+	id: '1',
+};
+Normal.decorators = [StoreDecorator({})];

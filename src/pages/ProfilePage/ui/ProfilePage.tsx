@@ -12,11 +12,7 @@ interface ProfilePageProps {
 
 const ProfilePage = ({ className }: ProfilePageProps) => {
 	const { id } = useParams<{ id: string }>();
-	const { t } = useTranslation('profile');
 
-	if (!id) {
-		return <Text text={t('Профиль не найден')} />;
-	}
 	return (
 		// * На этом моменте даже приятно удивился, насколько легко мы подключили логику асинхронного подключения редьюсеров) Просто использовали уже созданные вещи. Тогда долго сидели, чтобы сейчас просто использовать
 		<Page className={classNames('', {}, [className])}>

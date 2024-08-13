@@ -5,6 +5,7 @@ import {
 	ArticleType,
 } from 'entities/Article/model/types/article';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
+import withMock from 'storybook-addon-mock';
 import ArticleDetailsPage from './ArticleDetailsPage';
 
 export default {
@@ -13,6 +14,7 @@ export default {
 	argTypes: {
 		backgroundColor: { control: 'color' },
 	},
+	decorators: [withMock],
 } as ComponentMeta<typeof ArticleDetailsPage>;
 
 const Template: ComponentStory<typeof ArticleDetailsPage> = (args) => (
@@ -103,3 +105,15 @@ Normal.decorators = [
 		},
 	}),
 ];
+Normal.parameters = {
+	mockData: [
+		{
+			url: `${__API__}/articles?_limit=3`,
+			method: 'GET',
+			status: 200,
+			response: [
+				{ ...article, id: '1' },
+			],
+		},
+	],
+};

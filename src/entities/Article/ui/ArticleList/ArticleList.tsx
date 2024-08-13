@@ -80,6 +80,7 @@ export const ArticleList = ({
 	}
 
 	return (
+		// @ts-ignore
 		<WindowScroller scrollElement={document.getElementById(PAGE_ID)!}>
 			{({
 				width,
@@ -90,6 +91,7 @@ export const ArticleList = ({
 				isScrolling,
 			}) => (
 				<div
+					// @ts-ignore
 					ref={registerChild}
 					className={classNames(styles.ArticleList, {}, [
 						className,
@@ -98,6 +100,7 @@ export const ArticleList = ({
 				>
 					{/* Делаем виртуализацию по условию, так как не всегда нужен виртуальный список */}
 					{virtualized ? (
+						// @ts-ignore
 						<List
 							autoHeight
 							height={height ?? 700}
