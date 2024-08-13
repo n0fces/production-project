@@ -28,7 +28,8 @@ const data = {
 
 describe('fetchArticleById.test', () => {
 	test('success', async () => {
-		const thunk = new TestAsyncThunk(fetchArticleById, {
+		// * здесь пришлось вот так заколхозить. Интересно, есть ли более красивое решение
+		const thunk = new TestAsyncThunk(() => fetchArticleById('1'), {
 			articleDetails: {
 				isLoading: false,
 				data,
