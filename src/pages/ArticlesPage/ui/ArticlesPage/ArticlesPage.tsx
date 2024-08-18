@@ -1,16 +1,20 @@
 import { memo, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
 import {
 	DynamicModuleLoader,
 	ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { Page } from 'widgets/Page/Page';
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
+import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 import { articlesPageReducer } from '../../model/slice/articlesPageSlice';
+import { ArticleInfiniteList } from '../ArticleInfiniteList/ArticleInfiniteList';
 import { ArticlesPageFilters } from '../ArticlesPageFilters/ArticlesPageFilters';
 import styles from './ArticlesPage.module.scss';
-import { ArticleInfiniteList } from '../ArticleInfiniteList/ArticleInfiniteList';
 
 interface ArticlesPageProps {
 	className?: string;
@@ -20,18 +24,24 @@ const reducers: ReducersList = {
 	articlesPage: articlesPageReducer,
 };
 
-const ArticlesPage = ({ className }: ArticlesPageProps) => {
+const ArticlesPage = (props: ArticlesPageProps) => {
+	const { className } = props;
+	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
+	const [searchParams] = useSearchParams();
 
 	const onLoadNextPart = useCallback(() => {
-		// делаем запрос за данными только тогда, когда понимаем, что на сервере есть еще данные
 		dispatch(fetchNextArticlesPage());
 	}, [dispatch]);
 
+	useInitialEffect(() => {
+		dispatch(initArticlesPage(searchParams));
+	});
+
 	return (
-		<DynamicModuleLoader reducers={reducers}>
+		<DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
 			<Page
-				onlScrollEnd={onLoadNextPart}
+				onScrollEnd={onLoadNextPart}
 				className={classNames(styles.ArticlesPage, {}, [className])}
 			>
 				<ArticlesPageFilters />

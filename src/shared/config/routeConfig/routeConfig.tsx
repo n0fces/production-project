@@ -1,14 +1,14 @@
-import { RouteProps } from 'react-router-dom';
 import { UserRole } from 'entities/User';
-import { MainPage } from 'pages/MainPage';
 import { AboutPage } from 'pages/AboutPage';
-import { NotFoundPage } from 'pages/NotFoundPage';
-import { ProfilePage } from 'pages/ProfilePage';
-import { ArticlesPage } from 'pages/ArticlesPage';
+import { AdminPanelPage } from 'pages/AdminPanelPage';
 import { ArticleDetailsPage } from 'pages/ArticleDetailsPage';
 import { ArticleEditPage } from 'pages/ArticleEditPage';
-import { AdminPanelPage } from 'pages/AdminPanelPage';
+import { ArticlesPage } from 'pages/ArticlesPage';
 import { ForbiddenPage } from 'pages/ForbiddenPage';
+import { MainPage } from 'pages/MainPage';
+import { NotFoundPage } from 'pages/NotFoundPage';
+import { ProfilePage } from 'pages/ProfilePage';
+import { RouteProps } from 'react-router-dom';
 
 // расширяем пропсы, которые предоставляет нам сама библиотека
 export type AppRoutesProps = RouteProps & {

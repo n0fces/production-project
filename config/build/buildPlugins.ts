@@ -1,9 +1,10 @@
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import webpack from 'webpack';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import CircularDependencyPlugin from 'circular-dependency-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import webpack from 'webpack';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { BuildOptions } from './types/config';
 
 export function buildPlugins({
@@ -35,6 +36,11 @@ export function buildPlugins({
 		// благодаря этому плагину мы сможем при сборке добавлять переводы
 		new CopyPlugin({
 			patterns: [{ from: paths.locales, to: paths.buildLocales }],
+		}),
+		// плагин, который будет отслеживать кольцевые зависимости и пробрасывать ошибки об этом
+		new CircularDependencyPlugin({
+			exclude: /node_modules/,
+			failOnError: true,
 		}),
 	];
 

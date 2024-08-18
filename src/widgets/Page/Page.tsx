@@ -14,12 +14,12 @@ interface PageProps {
 	className?: string;
 	children?: ReactNode;
 	// для разных страниц нам понадобится своя логика при работе с интерсекши обсервер
-	onlScrollEnd?: () => void;
+	onScrollEnd?: () => void;
 }
 
 export const PAGE_ID = 'PAGE_ID';
 
-export const Page = ({ className, children, onlScrollEnd }: PageProps) => {
+export const Page = ({ className, children, onScrollEnd }: PageProps) => {
 	const wrapperRef = useRef() as MutableRefObject<HTMLElement>;
 	const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
 	const dispatch = useAppDispatch();
@@ -31,7 +31,7 @@ export const Page = ({ className, children, onlScrollEnd }: PageProps) => {
 	useInfiniteScroll({
 		wrapperRef,
 		triggerRef,
-		callback: onlScrollEnd,
+		callback: onScrollEnd,
 	});
 
 	// так будем инициализировать скролл у страницы
@@ -60,7 +60,7 @@ export const Page = ({ className, children, onlScrollEnd }: PageProps) => {
 		>
 			{children}
 			{/* это будет триггерный элемент, за которым будем следить */}
-			{onlScrollEnd ? (
+			{onScrollEnd ? (
 				<div className={styles.trigger} ref={triggerRef} />
 			) : null}
 		</main>
