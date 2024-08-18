@@ -1,6 +1,7 @@
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import CircularDependencyPlugin from 'circular-dependency-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import webpack from 'webpack';
@@ -41,6 +42,20 @@ export function buildPlugins({
 		new CircularDependencyPlugin({
 			exclude: /node_modules/,
 			failOnError: true,
+		}),
+		// добавляем чекер типов ts, который работает в отдельном потоке
+		// сборка нашего основного проекта не занимается проверкой типов
+		// это происходит в отдельном потоке, отчего сборка проходит заметно быстрее
+		// без этого плагина мало того что при сборке в основном потоке проходила проверка типов при использовании ts-loader,
+		// так и после отказа от ts-loader у нас в принципе пропала проверка типов, так что теперь вот так ее добавляем
+		new ForkTsCheckerWebpackPlugin({
+			typescript: {
+				diagnosticOptions: {
+					semantic: true,
+					syntactic: true,
+				},
+				mode: 'write-references',
+			},
 		}),
 	];
 
