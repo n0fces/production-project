@@ -1,9 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import {
-	Article,
-	ArticleBlockType,
-	ArticleType,
-} from 'entities/Article/model/types/article';
+import { ArticleBlockType, ArticleType } from 'entities/Article';
+import { Article } from 'entities/Article/model/types/article';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import withMock from 'storybook-addon-mock';
 import ArticleDetailsPage from './ArticleDetailsPage';
@@ -111,9 +108,7 @@ Normal.parameters = {
 			url: `${__API__}/articles?_limit=3`,
 			method: 'GET',
 			status: 200,
-			response: [
-				{ ...article, id: '1' },
-			],
+			response: [{ ...article, id: '1' }],
 		},
 	],
 };

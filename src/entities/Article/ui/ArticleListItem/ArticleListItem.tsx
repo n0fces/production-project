@@ -1,23 +1,18 @@
-import { HTMLAttributeAnchorTarget, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { HTMLAttributeAnchorTarget } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Text } from 'shared/ui/Text/Text';
-import { Icon } from 'shared/ui/Icon/Icon';
 import EyeIcon from 'shared/assets/icons/eye.svg';
-import { Card } from 'shared/ui/Card/Card';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { AppLink } from 'shared/ui/AppLink/AppLink';
-import styles from './ArticleListItem.module.scss';
-import {
-	Article,
-	ArticleBlockType,
-	ArticleTextBlock,
-	ArticleView,
-} from '../../model/types/article';
+import { Card } from 'shared/ui/Card/Card';
+import { Icon } from 'shared/ui/Icon/Icon';
+import { Text } from 'shared/ui/Text/Text';
+import { ArticleBlockType, ArticleView } from '../../model/consts/consts';
+import { Article, ArticleTextBlock } from '../../model/types/article';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
+import styles from './ArticleListItem.module.scss';
 
 interface ArticleListItemProps {
 	className?: string;
@@ -30,7 +25,7 @@ export const ArticleListItem = ({
 	className,
 	article,
 	view,
-	target
+	target,
 }: ArticleListItemProps) => {
 	const { t } = useTranslation();
 

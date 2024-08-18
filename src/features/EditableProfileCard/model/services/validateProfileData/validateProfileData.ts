@@ -1,5 +1,5 @@
 import { Profile } from 'entities/Profile';
-import { ValidateProfileError } from '../../types/EditableProfileCardSchema';
+import { ValidateProfileError } from '../../consts/consts';
 
 // * сделали такую несложную валидацию некоторых полей формы. Можно эту реализацию дополнить так, чтобы происходила валидация по всем полям
 export const validateProfileData = (profile?: Profile) => {

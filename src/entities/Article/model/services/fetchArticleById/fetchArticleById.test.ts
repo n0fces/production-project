@@ -1,6 +1,7 @@
 import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
+import { ArticleBlockType, ArticleType } from '../../consts/consts';
+import { Article } from '../../types/article';
 import { fetchArticleById } from './fetchArticleById';
-import { Article, ArticleBlockType, ArticleType } from '../../types/article';
 
 // * короче он здесь намудрил с типами. у меня постоянно жалобы в тестах
 // * мне пришлось явно говорить, что это артикл
