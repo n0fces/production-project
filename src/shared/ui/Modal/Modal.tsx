@@ -1,3 +1,4 @@
+import { useTheme } from 'app/providers/ThemeProvider';
 import React, {
 	MutableRefObject,
 	ReactNode,
@@ -9,6 +10,7 @@ import React, {
 import { Mods, classNames } from 'shared/lib/classNames/classNames';
 import { Portal } from '../Portal/Portal';
 import styles from './Modal.module.scss';
+import { Overlay } from '../Overlay/Overlay';
 
 interface ModalProps {
 	className?: string;
@@ -29,6 +31,7 @@ export const Modal = ({
 }: ModalProps) => {
 	const [isClosing, setIsClosing] = useState(false);
 	const [isMounted, setIsMounted] = useState(false);
+	const { theme } = useTheme();
 	const timerRef = useRef() as MutableRefObject<
 		ReturnType<typeof setTimeout>
 	>;
@@ -42,10 +45,6 @@ export const Modal = ({
 	const mods: Mods = {
 		[styles.opened]: isOpen,
 		[styles.isClosing]: isClosing,
-	};
-
-	const onContentClick = (e: React.MouseEvent) => {
-		e.stopPropagation();
 	};
 
 	const closeHandler = useCallback(() => {
@@ -82,11 +81,16 @@ export const Modal = ({
 
 	return (
 		<Portal>
-			<div className={classNames(styles.Modal, mods, [className])}>
-				<div className={styles.overlay} onClick={closeHandler}>
-					<div className={styles.content} onClick={onContentClick}>
-						{children}
-					</div>
+			<div
+				className={classNames(styles.Modal, mods, [
+					className,
+					theme,
+					'app_modal',
+				])}
+			>
+				<Overlay onClick={closeHandler} />
+				<div className={styles.content}>
+					{children}
 				</div>
 			</div>
 		</Portal>
