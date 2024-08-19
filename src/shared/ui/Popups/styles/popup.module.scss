@@ -1,26 +1,16 @@
-.ListBox {
+.popup {
 	position: relative;
 }
 
+// пишем обнуляющие стили для кнопки, потому что внутри нее мы будем использовать какой-то динамический контент
 .trigger {
+	display: flex;
 	background: none;
-	border: none;
 	outline: none;
-	padding: 0;
 	margin: 0;
-}
-
-.options {
-	background-color: var(--listbox-bg);
-	position: absolute;
-	z-index: 10000;
-	border-radius: 12px;
-	box-shadow: 4px 4px 8px var(--listbox-bg);
-	overflow: hidden;
-}
-
-.item {
-	padding: 10px 20px;
+	padding: 0;
+	border: none;
+	cursor: pointer;
 }
 
 .active {

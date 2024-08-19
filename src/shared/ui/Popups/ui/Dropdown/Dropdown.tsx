@@ -1,9 +1,10 @@
-import { ElementType, ReactNode } from 'react';
 import { Menu } from '@headlessui/react';
+import { ElementType, ReactNode } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { DropdownDirection } from 'shared/types/ui';
+import { AppLink } from '../../../AppLink/AppLink';
+import stylesPopup from '../../styles/popup.module.scss';
 import styles from './Dropdown.module.scss';
-import { AppLink } from '../AppLink/AppLink';
 
 export interface DropdownItem {
 	disabled?: boolean;
@@ -27,11 +28,19 @@ export const Dropdown = ({
 	direction = 'bottomRight',
 }: DropdownProps) => {
 	return (
-		<Menu as='div' className={classNames(styles.Dropdown, {}, [className])}>
-			<Menu.Button className={styles.btn}>{trigger}</Menu.Button>
+		<Menu
+			as='div'
+			className={classNames(styles.Dropdown, {}, [
+				className,
+				stylesPopup.popup,
+			])}
+		>
+			<Menu.Button className={stylesPopup.trigger}>{trigger}</Menu.Button>
 			<Menu.Items
 				as='ul'
-				className={classNames(styles.menu, {}, [styles[direction]])}
+				className={classNames(styles.menu, {}, [
+					stylesPopup[direction],
+				])}
 			>
 				{items.map(
 					({
@@ -49,7 +58,7 @@ export const Dropdown = ({
 									to={ItemType === AppLink ? href : undefined}
 									className={classNames(
 										styles.item,
-										{ [styles.active]: active },
+										{ [stylesPopup.active]: active },
 										[]
 									)}
 								>

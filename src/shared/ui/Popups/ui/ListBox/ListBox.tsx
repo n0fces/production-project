@@ -1,10 +1,11 @@
-import { Fragment, ReactNode } from 'react';
 import { Listbox as HListBox } from '@headlessui/react';
+import { Fragment, ReactNode } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { DropdownDirection } from 'shared/types/ui';
+import { Button } from '../../../Button/Button';
+import { HStack } from '../../../Stack';
+import stylesPopup from '../../styles/popup.module.scss';
 import styles from './ListBox.module.scss';
-import { Button } from '../Button/Button';
-import { HStack } from '../Stack';
 
 export interface ListBoxItem {
 	value: string;
@@ -38,23 +39,27 @@ export const ListBox = ({
 	return (
 		<HStack gap='4'>
 			{label && (
-				<span className={readOnly ? styles.disabled : undefined}>
+				<span className={readOnly ? stylesPopup.disabled : undefined}>
 					{`${label}>`}
 				</span>
 			)}
 			<HListBox
 				as='div'
 				disabled={readOnly}
-				className={classNames(styles.ListBox, {}, [className])}
+				className={classNames(styles.ListBox, {}, [
+					className,
+					stylesPopup.popup,
+				])}
 				value={value}
 				onChange={onChange}
 			>
-				<HListBox.Button className={styles.trigger}>
+				{/* Здесь кнопка в кнопке, что обязательно нужно исправить */}
+				<HListBox.Button className={stylesPopup.trigger}>
 					<Button disabled={readOnly}>{value ?? defaultValue}</Button>
 				</HListBox.Button>
 				<HListBox.Options
 					className={classNames(styles.options, {}, [
-						styles[direction],
+						stylesPopup[direction],
 					])}
 				>
 					{items?.map((item) => (
@@ -69,8 +74,8 @@ export const ListBox = ({
 									className={classNames(
 										styles.item,
 										{
-											[styles.active]: active,
-											[styles.disabled]: item.disabled,
+											[stylesPopup.active]: active,
+											[stylesPopup.disabled]: item.disabled,
 										},
 										[]
 									)}
