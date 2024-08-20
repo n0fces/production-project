@@ -1,7 +1,10 @@
 import { memo, ReactNode, useCallback, useEffect } from 'react';
 import { useTheme } from '@/app/providers/ThemeProvider';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { useAnimationLibs } from '@/shared/lib/components/AnimationProvider';
+import {
+	AnimationProvider,
+	useAnimationLibs,
+} from '@/shared/lib/components/AnimationProvider';
 import { Overlay } from '../Overlay/Overlay';
 import { Portal } from '../Portal/Portal';
 import cls from './Drawer.module.scss';
@@ -105,16 +108,24 @@ export const DrawerContent = memo((props: DrawerProps) => {
 	);
 });
 
-export const Drawer = memo((props: DrawerProps) => {
+const DrawerAsync = (props: DrawerProps) => {
 	const { isLoaded } = useAnimationLibs();
 
 	// здесь как раз обрабатываем состояние загрузки
 	// при нашей реализации сейчас это важно
-	// вообще данную обертку можно было бы использовать и для предоставления провайдера, а не лепить это в момент использования самого компонента
-	// надо потом это поправить
 	if (!isLoaded) {
 		return null;
 	}
 
 	return <DrawerContent {...props} />;
+};
+
+// Опять же не уверен, что нужно создавать отдельно DrawerAsync
+// все это можно перенести в DrawerContent
+export const Drawer = memo((props: DrawerProps) => {
+	return (
+		<AnimationProvider>
+			<DrawerAsync {...props} />
+		</AnimationProvider>
+	);
 });
