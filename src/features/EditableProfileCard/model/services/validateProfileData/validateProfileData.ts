@@ -1,4 +1,4 @@
-import { Profile } from 'entities/Profile';
+import { Profile } from '@/entities/Profile';
 import { ValidateProfileError } from '../../consts/consts';
 
 // * сделали такую несложную валидацию некоторых полей формы. Можно эту реализацию дополнить так, чтобы происходила валидация по всем полям

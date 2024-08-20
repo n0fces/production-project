@@ -1,6 +1,6 @@
 import { AsyncThunkAction } from '@reduxjs/toolkit';
-import { StateScheme } from 'app/providers/StoreProvider';
 import axios, { AxiosStatic } from 'axios';
+import { StateScheme } from '@/app/providers/StoreProvider';
 
 // Здесь мы сконструировали тот самый тип, который возвращается после работы createAsyncThunk. Чтобы это достать, пришлось глубоко залезть в типы тулкита)
 type ActionCreatorType<Return, Arg, RejectedValue> = (
