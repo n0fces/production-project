@@ -3,6 +3,7 @@ import { useCallback, useState } from 'react';
 import { BrowserView, MobileView } from 'react-device-detect';
 import NotificationIcon from 'shared/assets/icons/notification.svg';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { AnimationProvider } from 'shared/lib/components/AnimationProvider';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Drawer } from 'shared/ui/Drawer/Drawer';
 import { Icon } from 'shared/ui/Icon/Icon';
@@ -43,9 +44,13 @@ export const NotificationButton = ({ className }: NotificationButtonProps) => {
 			</BrowserView>
 			<MobileView>
 				{trigger}
-				<Drawer isOpen={isOpen} onClose={onCloseDrawer}>
-					<NotificationList />
-				</Drawer>
+				{/* уже писал, что этим провайдер мы можем оборачивать исходный компонент */}
+				{/* на уровне той обертки, которую создавали в Drawer (там есть Drawer и DrawerContent) */}
+				<AnimationProvider>
+					<Drawer isOpen={isOpen} onClose={onCloseDrawer}>
+						<NotificationList />
+					</Drawer>
+				</AnimationProvider>
 			</MobileView>
 		</div>
 	);
