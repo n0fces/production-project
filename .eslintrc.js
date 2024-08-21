@@ -22,7 +22,7 @@ module.exports = {
 		'@typescript-eslint',
 		'i18next',
 		'react-hooks',
-		'trainee-path-checker',
+		'path-checker-fsd-trainee',
 	],
 	rules: {
 		indent: ['error', 'tab', { SwitchCase: 1 }],
@@ -82,7 +82,7 @@ module.exports = {
 		'no-undef': 'off',
 		'react/no-array-index-key': 'off',
 		'function-paren-newline': 'off',
-		'trainee-path-checker/path-checker': 'error',
+		'path-checker-fsd-trainee/path-checker': ['error', { alias: '@' }],
 	},
 	globals: {
 		__IS_DEV__: true,
