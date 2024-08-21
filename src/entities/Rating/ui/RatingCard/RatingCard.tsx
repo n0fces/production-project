@@ -1,16 +1,14 @@
 import { useCallback, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { BrowserView, MobileView } from 'react-device-detect';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { useTranslation } from 'react-i18next';
+import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/Button/Button';
 import { Card } from '@/shared/ui/Card/Card';
+import { Drawer } from '@/shared/ui/Drawer/Drawer';
 import { Input } from '@/shared/ui/Input/Input';
 import { Modal } from '@/shared/ui/Modal/Modal';
 import { HStack, VStack } from '@/shared/ui/Stack';
 import { StarRating } from '@/shared/ui/StarRating/StarRating';
 import { Text } from '@/shared/ui/Text/Text';
-import styles from './RatingCard.module.scss';
-import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/Button/Button';
-import { Drawer } from '@/shared/ui/Drawer/Drawer';
 
 interface RatingCardProps {
 	className?: string;
@@ -19,9 +17,10 @@ interface RatingCardProps {
 	// иногда нужен только рейтинг, иногда нужен и рейтинг, и отзыв пользователя
 	hasFeedback?: boolean;
 	// отменить отзыв
-	onCancel?: (startsCount: number) => void;
+	onCancel?: (starsCount: number) => void;
 	// отправить отзыв
-	onAccept?: (startsCount: number, feedback?: string) => void;
+	onAccept?: (starsCount: number, feedback?: string) => void;
+	rate?: number;
 }
 
 // это просто карточка рейтинга, которая не привязана к какой-то бизнес логике,
@@ -38,13 +37,14 @@ export const RatingCard = ({
 	onAccept,
 	onCancel,
 	title,
+	rate = 0,
 }: RatingCardProps) => {
 	const { t } = useTranslation('');
 	// весь стейт здесь у нас получается локальный, он не привязывается к какой-либо реализации
 	// взаимодействие с внешним миром будет посредством колбэком onAccept, onCancel
 	// с помощью этих колбэков мы будем передавать данные дальше, чтобы там уже сверху реализовывалась какая-то бизнес-логика
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [starsCount, setStarsCount] = useState(0);
+	const [starsCount, setStarsCount] = useState(rate);
 	const [feedback, setFeedback] = useState('');
 
 	// пользователь оставил какой-то письменный feedback
@@ -84,10 +84,14 @@ export const RatingCard = ({
 	);
 
 	return (
-		<Card className={classNames(styles.RatingCard, {}, [className])}>
-			<VStack align='center' gap='8'>
-				<Text title={title} />
-				<StarRating size={40} onSelect={onSelectStars} />
+		<Card className={className} max>
+			<VStack align='center' gap='8' max>
+				<Text title={starsCount ? t('Спасибо за оценку!') : title} />
+				<StarRating
+					selectedStars={starsCount}
+					size={40}
+					onSelect={onSelectStars}
+				/>
 			</VStack>
 			<BrowserView>
 				<Modal isOpen={isModalOpen} onClose={cancelHandle} lazy>

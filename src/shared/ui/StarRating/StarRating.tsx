@@ -20,7 +20,7 @@ export const StarRating = ({
 	size = 30,
 }: StarRatingProps) => {
 	// нужно понимать, на какую звезду в текущий момент пользователь навел курсор, чтобы подсвечивались нужные звезды
-	const [currentStarsCount, setCurrentStarsCount] = useState(0);
+	const [currentStarsCount, setCurrentStarsCount] = useState(selectedStars);
 	// на случай, если пользователь уже выбрал количество звезд (пришло с сервера значение)
 	const [isSelected, setIsSelected] = useState(Boolean(selectedStars));
 
