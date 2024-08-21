@@ -43,14 +43,15 @@ export const Dropdown = ({
 				])}
 			>
 				{items.map(
-					({
-						content,
-						ItemType = 'div',
-						disabled,
-						href,
-						onClick,
-					}) => (
-						<Menu.Item as='li' disabled={disabled}>
+					(
+						{ content, ItemType = 'div', disabled, href, onClick },
+						index
+					) => (
+						<Menu.Item
+							as='li'
+							disabled={disabled}
+							key={`dropdown-key-${index}`}
+						>
 							{({ active }) => (
 								<ItemType
 									onClick={onClick}

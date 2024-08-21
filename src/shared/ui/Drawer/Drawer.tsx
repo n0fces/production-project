@@ -14,6 +14,7 @@ interface DrawerProps {
 	children: ReactNode;
 	isOpen?: boolean;
 	onClose?: () => void;
+	// вообще этот lazy не используем
 	lazy?: boolean;
 }
 

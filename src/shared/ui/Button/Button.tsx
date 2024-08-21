@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, ReactNode, memo } from 'react';
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
-import cls from './Button.module.scss';
+import styles from './Button.module.scss';
 
 export enum ButtonTheme {
 	CLEAR = 'clear',
@@ -23,6 +23,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	square?: boolean;
 	size?: ButtonSize;
 	children?: ReactNode;
+	fullWidth?: boolean;
 }
 
 export const Button = memo((props: ButtonProps) => {
@@ -33,21 +34,23 @@ export const Button = memo((props: ButtonProps) => {
 		square,
 		size = ButtonSize.M,
 		disabled,
+		fullWidth,
 		...otherProps
 	} = props;
 
 	const mods: Mods = {
-		[cls[theme]]: true,
-		[cls.square]: square,
+		[styles[theme]]: true,
+		[styles.square]: square,
 		// Такие классы, у которых значение равно true, лучше добавлять в additional категорию
-		[cls[size]]: true,
-		[cls.disabled]: disabled,
+		[styles[size]]: true,
+		[styles.disabled]: disabled,
+		[styles.fullWidth]: fullWidth,
 	};
 
 	return (
 		<button
 			type='button'
-			className={classNames(cls.Button, mods, [className])}
+			className={classNames(styles.Button, mods, [className])}
 			disabled={disabled}
 			{...otherProps}
 		>
