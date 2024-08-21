@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ArticleTypeTabs } from './ArticleTypeTabs';
 
 export default {
-	title: 'enitites/Article/ArticleTypeTabs',
+	title: 'entities/Article/ArticleTypeTabs',
 	component: ArticleTypeTabs,
 	argTypes: {
 		backgroundColor: { control: 'color' },

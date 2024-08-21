@@ -15,6 +15,12 @@ export default ({ config }: { config: webpack.Configuration }) => {
 	};
 	config.resolve?.modules?.push(paths.src);
 	config.resolve?.extensions?.push('.ts', '.tsx');
+	// после добавления алиасов в наш проект необходимо также добавить наши новые алиасы в сторибук
+	config.resolve!.alias = {
+		// необходимо развернуть старые алиасы, чтобы, возможно, не забыть встроенные алиасы в конфигурации вебпака сторибука
+		...config.resolve?.alias,
+		'@': paths.src,
+	};
 
 	// здесь мы убираем дефолтный лоадер для свг от сторибука, а потом добавляем свой
 	// @ts-ignore

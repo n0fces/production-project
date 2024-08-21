@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Overlay } from './Overlay';
 
 export default {
-	title: 'enitites/Overlay',
+	title: 'entities/Overlay',
 	component: Overlay,
 	argTypes: {
 		backgroundColor: { control: 'color' },

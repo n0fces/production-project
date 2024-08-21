@@ -1,9 +1,8 @@
-import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import { Text, TextSize } from '@/shared/ui/Text/Text';
+import { useTranslation } from 'react-i18next';
 import { ArticleList } from '@/entities/Article';
 import { VStack } from '@/shared/ui/Stack';
+import { Text, TextSize } from '@/shared/ui/Text/Text';
 import { useGetArticleRecommendationsListQuery } from '../../api/articleRecommendationsApi';
 
 // ! Мне очень не нравится, как Тимур воспринимает fsd, так что после окончания курса нужно обязательно сделать полный рефактор по этой части
@@ -29,7 +28,7 @@ export const ArticleRecommendationsList = memo(
 		}
 
 		return (
-			<VStack gap='8' className={classNames('', {}, [className])}>
+			<VStack gap='8' className={className}>
 				<Text size={TextSize.L} title={t('Рекомендуем')} />
 				<ArticleList articles={articles} target='_blank' />
 			</VStack>

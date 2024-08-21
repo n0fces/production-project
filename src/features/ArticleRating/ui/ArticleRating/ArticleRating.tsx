@@ -23,7 +23,6 @@ const ArticleRating = ({ className, articleId }: ArticleRatingProps) => {
 		// мы показываем основной контент нашего приложения только авторизованным пользователям
 		userId: userData?.id ?? '',
 	});
-	const rating = data?.[0];
 
 	const [rateArticleMutation] = useRateArticleMutation();
 	const handleRateArticleMutation = useCallback(
@@ -57,6 +56,8 @@ const ArticleRating = ({ className, articleId }: ArticleRatingProps) => {
 	if (isLoading) {
 		return <Skeleton width='100%' height='120px' />;
 	}
+
+	const rating = data?.[0];
 
 	return (
 		<RatingCard
