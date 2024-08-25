@@ -83,7 +83,18 @@ module.exports = {
 		'react/no-array-index-key': 'off',
 		'function-paren-newline': 'off',
 		'path-checker-fsd-trainee/path-checker': ['error', { alias: '@' }],
-		'path-checker-fsd-trainee/public-api-imports': ['error', { alias: '@' }],
+		'path-checker-fsd-trainee/public-api-imports': [
+			'error',
+			{
+				alias: '@',
+				// указываем файлы, которые являются тестовыми (для разработки)
+				testFilesPatterns: [
+					'**/*.test.*',
+					'**/StoreDecorator.tsx',
+					'**/*.story.*',
+				],
+			},
+		],
 	},
 	globals: {
 		__IS_DEV__: true,
