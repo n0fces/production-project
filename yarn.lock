@@ -7233,10 +7233,10 @@ eslint-plugin-jsx-a11y@^6.5.1:
     language-tags "^1.0.5"
     minimatch "^3.0.4"
 
-eslint-plugin-path-checker-fsd-trainee@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.npmjs.org/eslint-plugin-path-checker-fsd-trainee/-/eslint-plugin-path-checker-fsd-trainee-0.0.2.tgz"
-  integrity sha512-pbB4q9J9l0TtrlJINl9vUpY/A/N/0NCFjo0EXHn+eqS8oQsUZ3j8+t9y35aa1iQtCb7sY6D1ZcnIPm1XGPL9ig==
+eslint-plugin-path-checker-fsd-trainee@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.npmjs.org/eslint-plugin-path-checker-fsd-trainee/-/eslint-plugin-path-checker-fsd-trainee-0.0.3.tgz"
+  integrity sha512-riGZHcOXa0a8NS1kpA5OuCaPrEqM7NvWOHjwLDZyXA6RjKkf38jsI+EdxCceO5uUn3PbVpKlV2Mw5YH0inCKDA==
   dependencies:
     micromatch "^4.0.5"
     requireindex "^1.2.0"

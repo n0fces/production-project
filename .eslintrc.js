@@ -83,6 +83,11 @@ module.exports = {
 		'react/no-array-index-key': 'off',
 		'function-paren-newline': 'off',
 		'path-checker-fsd-trainee/path-checker': ['error', { alias: '@' }],
+		'path-checker-fsd-trainee/layer-imports': [
+			'error',
+			// ! а вообще можно было бы сделать типизированную версию useSelector и не использовать в селекторах тип StateScheme
+			{ alias: '@', ignoreImportPatterns: ['**/StoreProvider', '**/testing'] },
+		],
 		'path-checker-fsd-trainee/public-api-imports': [
 			'error',
 			{

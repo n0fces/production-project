@@ -1,11 +1,11 @@
 import { Reducer } from '@reduxjs/toolkit';
 import { ReactNode, useEffect } from 'react';
 import { useDispatch, useStore } from 'react-redux';
-import { ReduxStoreWithManager } from '@/app/providers/StoreProvider';
 import {
+	ReduxStoreWithManager,
 	StateScheme,
 	StateSchemeKey,
-} from '@/app/providers/StoreProvider/config/StateScheme';
+} from '@/app/providers/StoreProvider';
 
 // вполне возможно, что у нас могут быть сложные модули, которые будут требовать подключения нескольких асинхронных редьюсеров. Здесь мы как раз реализовали и такое
 export type ReducersList = {

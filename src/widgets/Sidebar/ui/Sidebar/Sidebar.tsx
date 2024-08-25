@@ -1,14 +1,14 @@
-import { useSelector } from 'react-redux';
 import { memo, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { LangSwitcher } from '@/features/LangSwitcher';
+import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { ThemeSwitcher } from '@/widgets/ThemeSwitcher';
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/Button/Button';
 import { VStack } from '@/shared/ui/Stack';
-import cls from './Sidebar.module.scss';
-import { SidebarItem } from '../SidebarItem/SidebarItem';
 import { getSidebarItems } from '../../model/selectors/getSidebarItems';
+import { SidebarItem } from '../SidebarItem/SidebarItem';
+import cls from './Sidebar.module.scss';
 // ! это явно ошибка по fsd, потому мы не можем использовать модули в рамках одного слоя
-import { LangSwitcher } from '@/widgets/LangSwitcher';
 
 interface SidebarProps {
 	className?: string;
