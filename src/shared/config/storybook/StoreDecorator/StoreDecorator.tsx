@@ -1,3 +1,4 @@
+/* eslint-disable path-checker-fsd-trainee/public-api-imports */
 /* eslint-disable indent */
 import { Story } from '@storybook/react';
 import { StateScheme, StoreProvider } from '@/app/providers/StoreProvider';
