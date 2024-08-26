@@ -23,6 +23,8 @@ export default {
 		'\\.s?css$': 'identity-obj-proxy',
 		// мок, который будет использоваться для всех импортов, в которых используются свг
 		'\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+		// потому что мы используем алиасы в проекте
+		'^@/(.*)$': '<rootDir>/src/$1',
 	},
 	// A set of global variables that need to be available in all test environments
 	// * Запомни, что тестовая среда отличается от той, что мы настраивали в вебпаке, поэтому здесь мы некоторые значения еще раз обозначаем

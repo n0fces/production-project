@@ -1,27 +1,20 @@
 import { StateScheme } from '@/app/providers/StoreProvider';
-import { Currency } from '@/entities/Currency';
-import { Country } from '@/entities/Country';
-import { getProfileValidateErrors } from './getProfileValidateErrors';
 import { ValidateProfileError } from '../../consts/consts';
+import { getProfileValidateErrors } from './getProfileValidateErrors';
 
 describe('getProfileValidateErrors.test', () => {
-	test('should return some validate errors', () => {
-		const data = {
-			first: 'Ilya',
-			lastname: 'Abzalov',
-			age: 21,
-			currency: Currency.RUB,
-			country: Country.Russia,
-			city: 'Saint-Petersburg',
-			username: 'admin',
-		};
+	test('should work with filled state', () => {
 		const state: DeepPartial<StateScheme> = {
 			profile: {
-				validateErrors: [ValidateProfileError.INCORRECT_USER_DATA],
+				validateErrors: [
+					ValidateProfileError.SERVER_ERROR,
+					ValidateProfileError.INCORRECT_AGE,
+				],
 			},
 		};
 		expect(getProfileValidateErrors(state as StateScheme)).toEqual([
-			ValidateProfileError.INCORRECT_USER_DATA,
+			ValidateProfileError.SERVER_ERROR,
+			ValidateProfileError.INCORRECT_AGE,
 		]);
 	});
 	test('should work with empty state', () => {
