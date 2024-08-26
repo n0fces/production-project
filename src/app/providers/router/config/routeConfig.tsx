@@ -8,60 +8,71 @@ import { ForbiddenPage } from '@/pages/ForbiddenPage';
 import { MainPage } from '@/pages/MainPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import { ProfilePage } from '@/pages/ProfilePage';
+import {
+	AppRoutes,
+	getRouteAbout,
+	getRouteAdmin,
+	getRouteArticleCreate,
+	getRouteArticleEdit,
+	getRouteArticles,
+	getRouteArticlesDetails,
+	getRouteForbidden,
+	getRouteMain,
+	getRouteProfile
+} from '@/shared/const/router';
 import { AppRoutesProps } from '@/shared/types/router';
-import { RoutePath, AppRoutes } from '@/shared/const/router';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 	[AppRoutes.MAIN]: {
-		path: RoutePath.main,
+		path: getRouteMain(),
 		element: <MainPage />,
 	},
 	[AppRoutes.ABOUT]: {
-		path: RoutePath.about,
+		path: getRouteAbout(),
 		element: <AboutPage />,
 	},
 	[AppRoutes.PROFILE]: {
-		path: `${RoutePath.profile}:id`,
+		path: getRouteProfile(':id'),
 		element: <ProfilePage />,
 		// если данное поле равно true, то данный маршрут будет доступен только авторизованным пользователям
 		authOnly: true,
 	},
 	[AppRoutes.ARTICLES]: {
-		path: RoutePath.articles,
+		path: getRouteArticles(),
 		element: <ArticlesPage />,
 		// доступ к статьям сделаем только для авторизованных пользователей
 		authOnly: true,
 	},
 	[AppRoutes.ARTICLES_DETAILS]: {
 		// здесь задаем переменную для id, которая показывает, что данный путь является динамическим
-		path: `${RoutePath.articles_details}:id`,
+		path: getRouteArticlesDetails(':id'),
 		element: <ArticleDetailsPage />,
 		// доступ к статьям сделаем только для авторизованных пользователей
 		authOnly: true,
 	},
 	[AppRoutes.ARTICLE_CREATE]: {
-		path: `${RoutePath.article_create}`,
+		path: getRouteArticleCreate(),
 		element: <ArticleEditPage />,
 		authOnly: true,
 	},
 	[AppRoutes.ARTICLE_EDIT]: {
-		path: `${RoutePath.article_edit}`,
+		path: getRouteArticleEdit(':id'),
 		element: <ArticleEditPage />,
 		authOnly: true,
 	},
 	[AppRoutes.ADMIN_PANEL]: {
-		path: `${RoutePath.admin_panel}`,
+		path: getRouteAdmin(),
 		element: <AdminPanelPage />,
 		authOnly: true,
 		// Указываем роли, для которых данная страница будет доступна
 		roles: [UserRole.ADMIN, UserRole.MANAGER],
 	},
 	[AppRoutes.FORBIDDEN]: {
-		path: `${RoutePath.forbidden}`,
+		path: getRouteForbidden(),
 		element: <ForbiddenPage />,
 	},
 	[AppRoutes.NOT_FOUND]: {
-		path: RoutePath.not_found,
+		path: '*',
 		element: <NotFoundPage />,
 	},
 };

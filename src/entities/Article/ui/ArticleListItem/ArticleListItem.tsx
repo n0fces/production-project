@@ -1,7 +1,7 @@
 import { HTMLAttributeAnchorTarget } from 'react';
 import { useTranslation } from 'react-i18next';
 import EyeIcon from '@/shared/assets/icons/eye.svg';
-import { RoutePath } from '@/shared/const/router';
+import { getRouteArticlesDetails } from '@/shared/const/router';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { AppLink } from '@/shared/ui/AppLink';
 import { Avatar } from '@/shared/ui/Avatar';
@@ -79,7 +79,7 @@ export const ArticleListItem = ({
 						{/* отличная идея с точки зрения доступности. Кнопку запихнуть в ссылку) */}
 						<AppLink
 							target={target}
-							to={RoutePath.articles_details + article.id}
+							to={getRouteArticlesDetails(article.id)}
 						>
 							<Button theme={ButtonTheme.OUTLINE}>
 								{t('Читать далее')}
@@ -95,7 +95,7 @@ export const ArticleListItem = ({
 	return (
 		<AppLink
 			target={target}
-			to={RoutePath.articles_details + article.id}
+			to={getRouteArticlesDetails(article.id)}
 			className={classNames(styles.ArticleListItem, {}, [
 				className,
 				styles[view],

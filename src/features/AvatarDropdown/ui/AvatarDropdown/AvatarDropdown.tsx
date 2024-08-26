@@ -7,7 +7,7 @@ import {
 	isUserManager,
 	userActions,
 } from '@/entities/User';
-import { RoutePath } from '@/shared/const/router';
+import { getRouteAdmin, getRouteProfile } from '@/shared/const/router';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { AppLink } from '@/shared/ui/AppLink';
 import { Avatar } from '@/shared/ui/Avatar';
@@ -47,7 +47,7 @@ export const AvatarDropdown = ({ className }: AvatarDropdownProps) => {
 					? [
 						{
 							content: t('Админ панель'),
-							href: RoutePath.admin_panel,
+							href: getRouteAdmin(),
 							ItemType: AppLink,
 						},
 					  ]
@@ -55,7 +55,7 @@ export const AvatarDropdown = ({ className }: AvatarDropdownProps) => {
 
 				{
 					content: t('Профиль'),
-					href: RoutePath.profile + authData.id,
+					href: getRouteProfile(authData.id),
 					ItemType: AppLink,
 				},
 				{
