@@ -12,6 +12,16 @@ interface UseModalProps {
 	animationDelay?: number;
 }
 
+/**
+ * The useModal function manages the state of a modal component, including opening, closing, and
+ * handling keyboard events.
+ * @param {UseModalProps}  - The `useModal` function is a custom React hook that manages the state of a
+ * modal component. It takes in the following parameters:
+ * @returns The `useModal` custom hook is returning an object with three properties:
+ * 1. `close`: a function that triggers the modal close action
+ * 2. `isClosing`: a boolean state variable indicating if the modal is currently closing
+ * 3. `isMounted`: a boolean state variable indicating if the modal is currently mounted or visible
+ */
 export const useModal = ({
 	onClose,
 	isOpen,
