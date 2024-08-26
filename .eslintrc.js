@@ -23,11 +23,13 @@ module.exports = {
 		'i18next',
 		'react-hooks',
 		'path-checker-fsd-trainee',
+		'unused-imports',
 	],
 	rules: {
 		indent: ['error', 'tab', { SwitchCase: 1 }],
 		'react/jsx-indent': ['error', 'tab'],
 		'react/jsx-indent-props': ['error', 'tab'],
+		'unused-imports/no-unused-imports': 'error',
 		'no-tabs': 'off',
 		'arrow-body-style': 'off',
 		'react/jsx-filename-extension': [
@@ -86,7 +88,10 @@ module.exports = {
 		'path-checker-fsd-trainee/layer-imports': [
 			'error',
 			// ! а вообще можно было бы сделать типизированную версию useSelector и не использовать в селекторах тип StateScheme
-			{ alias: '@', ignoreImportPatterns: ['**/StoreProvider', '**/testing'] },
+			{
+				alias: '@',
+				ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
+			},
 		],
 		'path-checker-fsd-trainee/public-api-imports': [
 			'error',
