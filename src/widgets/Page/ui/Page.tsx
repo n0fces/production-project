@@ -9,8 +9,9 @@ import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitial
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
 import { StateScheme } from '@/app/providers/StoreProvider';
 import styles from './Page.module.scss';
+import { TestProps } from '@/shared/types/tests';
 
-interface PageProps {
+interface PageProps extends TestProps {
 	className?: string;
 	children?: ReactNode;
 	// для разных страниц нам понадобится своя логика при работе с интерсекши обсервер
@@ -19,7 +20,13 @@ interface PageProps {
 
 export const PAGE_ID = 'PAGE_ID';
 
-export const Page = ({ className, children, onScrollEnd }: PageProps) => {
+export const Page = (props: PageProps) => {
+	const {
+		className,
+		children,
+		onScrollEnd,
+		'data-testid': dataTestId,
+	} = props;
 	const wrapperRef = useRef() as MutableRefObject<HTMLElement>;
 	const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
 	const dispatch = useAppDispatch();
@@ -57,6 +64,7 @@ export const Page = ({ className, children, onScrollEnd }: PageProps) => {
 			className={classNames(styles.Page, {}, [className])}
 			onScroll={onScroll}
 			id={PAGE_ID}
+			data-testid={dataTestId ?? 'Page'}
 		>
 			{children}
 			{/* это будет триггерный элемент, за которым будем следить */}
