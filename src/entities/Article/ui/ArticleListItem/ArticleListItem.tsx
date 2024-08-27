@@ -13,6 +13,8 @@ import { ArticleBlockType, ArticleView } from '../../model/consts/consts';
 import { Article, ArticleTextBlock } from '../../model/types/article';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import styles from './ArticleListItem.module.scss';
+import { Skeleton } from '@/shared/ui/Skeleton';
+import { AppImage } from '@/shared/ui/AppImage';
 
 interface ArticleListItemProps {
 	className?: string;
@@ -64,7 +66,8 @@ export const ArticleListItem = ({
 					</div>
 					<Text title={article.title} className={styles.title} />
 					{types}
-					<img
+					<AppImage
+						fallback={<Skeleton width='100%' height='250px' />}
 						src={article.img}
 						alt={article.title}
 						className={styles.img}
@@ -103,7 +106,8 @@ export const ArticleListItem = ({
 		>
 			<Card>
 				<div className={styles.imageWrapper}>
-					<img
+					<AppImage
+						fallback={<Skeleton width='200px' height='200px' />}
 						src={article.img}
 						alt={article.title}
 						className={styles.img}
