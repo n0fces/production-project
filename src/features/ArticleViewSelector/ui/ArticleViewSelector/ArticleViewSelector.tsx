@@ -3,8 +3,8 @@ import TiledIcon from '@/shared/assets/icons/tiled.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
 import { Icon } from '@/shared/ui/Icon';
-import { ArticleView } from '../../model/consts/consts';
 import styles from './ArticleViewSelector.module.scss';
+import { ArticleView } from '@/entities/Article';
 
 interface ArticleViewSelectorProps {
 	className?: string;
