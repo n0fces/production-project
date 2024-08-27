@@ -7,21 +7,19 @@ interface BuildBabelLoaderProps extends BuildOptions {
 }
 
 export function buildBabelLoader({ isDev, isTsx }: BuildBabelLoaderProps) {
+	const isProd = !isDev;
 	return {
 		test: isTsx ? /\.(jsx|tsx)$/ : /\.(js|ts)$/,
 		exclude: /node_modules/,
 		use: {
 			loader: 'babel-loader',
 			options: {
+				// будем использовать кэширование для тех файлов, которые редко меняются
+				// то есть babel лоадеру уже не придется ре-билдить большую часть файлов, так как они буудт браться из кэша
+				// опять же это ускоряет ре-билд при разработке
+				cacheDirectory: true,
 				presets: ['@babel/preset-env'],
 				plugins: [
-					[
-						'i18next-extract',
-						{
-							locales: ['ru', 'en'],
-							keyAsDefaultValue: true,
-						},
-					],
 					[
 						'@babel/plugin-transform-typescript',
 						{
@@ -31,7 +29,9 @@ export function buildBabelLoader({ isDev, isTsx }: BuildBabelLoaderProps) {
 					'@babel/plugin-transform-runtime',
 					// добавили свой babel-plugin, который будет удалять те атрибуты в jsx-нодах, которые мы захотим
 					// для обычных ts файлов никакого смысла прогонять этот плагин нет. Только увеличим время сборки
-					isTsx && [
+					// нам нужно удалять data-testid у tsx файлов именно в проде (в дев режиме они нам не мешают, но зато мы ускорим сборку в дев режиме, так как этот плагин не будет отрабатывать)
+					isTsx &&
+						isProd && [
 						babelRemovePropsPlugin,
 						{
 							props: ['data-testid'],

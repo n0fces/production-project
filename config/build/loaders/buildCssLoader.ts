@@ -4,6 +4,8 @@ export function buildCssLoader(isDev: boolean) {
 	return {
 		// настроено на sass, scss (то есть сразу для предпроцессоров)
 		test: /\.s[ac]ss$/i,
+		// по-хорошему node_modules нужно везде исключать, чтобы мы случайно не обрабатывали лишний код
+		exclude: /node_modules/,
 		use: [
 			// Creates `style` nodes from JS strings
 			// в дев режиме не будем генерировать отдельные css файлы

@@ -14,6 +14,7 @@ export function buildPlugins({
 	apiUrl,
 	project,
 }: BuildOptions): webpack.WebpackPluginInstance[] {
+	const isProd = !isDev;
 	const plugins = [
 		// чтобы использовать index.html из public в качестве шаблона при сборке, используем настройку template
 		new HtmlWebpackPlugin({
@@ -21,22 +22,12 @@ export function buildPlugins({
 		}),
 		// помогает отслеживать продвижение процесса сборки
 		new webpack.ProgressPlugin(),
-		// как сказал улби, порядок плагинов особой роли не играет, в отличие от лоадеров
-		// данный плагин нужен для того, чтобы стили у нас при сборке генерировались в css файлы
-		new MiniCssExtractPlugin({
-			filename: 'css/[name].[contenthash:8].css',
-			chunkFilename: 'css/[name].[contenthash:8].css',
-		}),
 		// с помощью этого плагина можно в само приложение прокидывать глобальные переменные
 		new webpack.DefinePlugin({
 			// необязательно оформлять названия именно так, но это позволяет отделить глобальные переменные вебпака от других глобальных переменных
 			__IS_DEV__: JSON.stringify(isDev),
 			__API__: JSON.stringify(apiUrl),
 			__PROJECT__: JSON.stringify(project),
-		}),
-		// благодаря этому плагину мы сможем при сборке добавлять переводы
-		new CopyPlugin({
-			patterns: [{ from: paths.locales, to: paths.buildLocales }],
 		}),
 		// плагин, который будет отслеживать кольцевые зависимости и пробрасывать ошибки об этом
 		new CircularDependencyPlugin({
@@ -71,6 +62,23 @@ export function buildPlugins({
 			new BundleAnalyzerPlugin({
 				// теперь бандл аналайзер не будет сразу открываться, а будет только ссылка на него, если мы хотим посмотреть этот отчет
 				openAnalyzer: false,
+			})
+		);
+	}
+
+	// нам не имеет смысла использовать данный плагин в дев моде (он используется только в продакшн моде)
+	if (isProd) {
+		plugins.push(
+			// как сказал улби, порядок плагинов особой роли не играет, в отличие от лоадеров
+			// данный плагин нужен для того, чтобы стили у нас при сборке генерировались в css файлы
+			new MiniCssExtractPlugin({
+				filename: 'css/[name].[contenthash:8].css',
+				chunkFilename: 'css/[name].[contenthash:8].css',
+			}),
+			// благодаря этому плагину мы сможем при сборке добавлять переводы в папку build
+			// нужен только для продакшн сборки
+			new CopyPlugin({
+				patterns: [{ from: paths.locales, to: paths.buildLocales }],
 			})
 		);
 	}

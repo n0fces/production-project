@@ -1,4 +1,11 @@
 # Browers that we support
 # Чем более точно мы укажем поддерживаемые версии, тем меншье babel будет добавлять разных полифилов, а значит итоговый бандл будет становиться меньше
+[production]
 defaults
 not IE 11
+
+# нам вовсе не нужно в дев моде поддерживать большое количество браузеров. Это может ускорить сборку в дев режиме
+[development]
+last 2 Chrome versions
+last 2 Firefox versions
+last 1 Safari versions
