@@ -1,5 +1,4 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import withMock from 'storybook-addon-mock';
 import { ArticleBlockType, ArticleType } from '@/entities/Article';
 // eslint-disable-next-line path-checker-fsd-trainee/public-api-imports
 import { Article } from '@/entities/Article/model/types/article';
@@ -12,7 +11,6 @@ export default {
 	argTypes: {
 		backgroundColor: { control: 'color' },
 	},
-	decorators: [withMock],
 } as ComponentMeta<typeof ArticleDetailsPage>;
 
 const Template: ComponentStory<typeof ArticleDetailsPage> = (args) => (
