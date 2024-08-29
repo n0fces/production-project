@@ -35,3 +35,5 @@ Cypress.Commands.addAll(ratingCommands);
 // 	if(FIXTURE_MODE === 'WRITE') {
 // 	}
 // });
+
+// чтобы не указывать каждый раз обертку в виде TestProvider, может создать отдельную команду overwrite, чтобы добавлять ее

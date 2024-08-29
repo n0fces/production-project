@@ -13,4 +13,11 @@ export default defineConfig({
 		// после указания базового url нам не нужно указывать полный адрес в тестах, а можем сразу писать относительные пути
 		baseUrl: 'http://localhost:3000/',
 	},
+
+	component: {
+		devServer: {
+			framework: 'react',
+			bundler: 'webpack',
+		},
+	},
 });
