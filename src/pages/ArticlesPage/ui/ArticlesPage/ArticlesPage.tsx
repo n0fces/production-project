@@ -1,5 +1,4 @@
 import { memo, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import {
@@ -26,7 +25,6 @@ const reducers: ReducersList = {
 
 const ArticlesPage = (props: ArticlesPageProps) => {
 	const { className } = props;
-	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 	const [searchParams] = useSearchParams();
 
@@ -41,6 +39,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 	return (
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
 			<Page
+				data-testid='ArticlesPage'
 				onScrollEnd={onLoadNextPart}
 				className={classNames(styles.ArticlesPage, {}, [className])}
 			>

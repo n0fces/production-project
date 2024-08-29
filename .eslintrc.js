@@ -32,6 +32,7 @@ module.exports = {
 		'unused-imports/no-unused-imports': 'error',
 		'no-tabs': 'off',
 		'arrow-body-style': 'off',
+		'linebreak-style': 'off',
 		'react/jsx-filename-extension': [
 			2,
 			{ extensions: ['.js', '.jsx', '.tsx'] },
