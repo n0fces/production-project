@@ -56,6 +56,7 @@ export const Flex = ({
 	direction = 'row',
 	gap,
 	max,
+	...otherProps
 }: FlexProps) => {
 	// на компонент будут навешиваться нужные классы в соответствии с переданными пропсами. Помимо этого, мы не забыли про className, который может передаваться извне для уточнения некоторых стилей
 	const classes = [
@@ -71,6 +72,10 @@ export const Flex = ({
 	};
 
 	return (
-		<div className={classNames(styles.Flex, mods, classes)}>{children}</div>
+		<div
+			className={classNames(styles.Flex, mods, classes)}
+			{...otherProps}>
+			{children}
+		</div>
 	);
 };

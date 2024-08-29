@@ -1,4 +1,9 @@
-import { login } from './commands/login';
+import * as commonCommands from './commands/common';
+import * as profileCommands from './commands/profile';
+import * as articleCommands from './commands/article';
+import * as commentsCommands from './commands/comments';
+import * as ratingCommands from './commands/rating';
+
 /// <reference types="cypress" />
 // ***********************************************
 // This example commands.ts shows you how to
@@ -10,15 +15,10 @@ import { login } from './commands/login';
 // https://on.cypress.io/custom-commands
 // ***********************************************
 //
-//
-Cypress.Commands.add('login', login);
-
-declare global {
-	namespace Cypress {
-		interface Chainable {
-			// чтобы  правильно работал автокомплит,
-			// необходимо в interface Chainable определить команду login
-			login(email?: string, password?: string): Chainable<void>;
-		}
-	}
-}
+// addAll позволяет добавить все команды сразу, а не отдельные
+// мы это делаем, чтобы интелисенс мог нам подсказывать, какие команды у нас есть (из добавленных в том числе)
+Cypress.Commands.addAll(commonCommands);
+Cypress.Commands.addAll(profileCommands);
+Cypress.Commands.addAll(articleCommands);
+Cypress.Commands.addAll(commentsCommands);
+Cypress.Commands.addAll(ratingCommands);

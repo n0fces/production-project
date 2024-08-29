@@ -67,6 +67,8 @@ export const StarRating = ({
 					onClick={onClick(star)}
 					width={size}
 					height={size}
+					data-testid={`StarRating.${star}`}
+					data-selected={currentStarsCount >= star}
 				/>
 			))}
 		</div>

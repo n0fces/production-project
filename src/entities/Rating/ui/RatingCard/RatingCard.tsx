@@ -76,6 +76,7 @@ export const RatingCard = ({
 		<>
 			<Text title={feedbackTitle} />
 			<Input
+				data-testid='RatingCard.Input'
 				value={feedback}
 				onChange={setFeedback}
 				placeholder={t('Ваш отзыв')}
@@ -84,8 +85,14 @@ export const RatingCard = ({
 	);
 
 	return (
-		<Card className={className} max>
-			<VStack align='center' gap='8' max>
+		<Card
+			data-testid='RatingCard'
+			className={className}
+			max>
+			<VStack
+				align='center'
+				gap='8'
+				max>
 				<Text title={starsCount ? t('Спасибо за оценку!') : title} />
 				<StarRating
 					selectedStars={starsCount}
@@ -94,17 +101,27 @@ export const RatingCard = ({
 				/>
 			</VStack>
 			<BrowserView>
-				<Modal isOpen={isModalOpen} onClose={cancelHandle} lazy>
-					<VStack gap='32' max>
+				<Modal
+					isOpen={isModalOpen}
+					onClose={cancelHandle}
+					lazy>
+					<VStack
+						gap='32'
+						max>
 						{formContent}
-						<HStack justify='end' gap='16' max>
+						<HStack
+							justify='end'
+							gap='16'
+							max>
 							<Button
+								data-testid='RatingCard.Close'
 								onClick={cancelHandle}
-								theme={ButtonTheme.OUTLINE_RED}
-							>
+								theme={ButtonTheme.OUTLINE_RED}>
 								{t('Закрыть')}
 							</Button>
-							<Button onClick={acceptHandle}>
+							<Button
+								data-testid='RatingCard.Send'
+								onClick={acceptHandle}>
 								{t('Отправить')}
 							</Button>
 						</HStack>
@@ -112,14 +129,15 @@ export const RatingCard = ({
 				</Modal>
 			</BrowserView>
 			<MobileView>
-				<Drawer isOpen={isModalOpen} onClose={cancelHandle}>
+				<Drawer
+					isOpen={isModalOpen}
+					onClose={cancelHandle}>
 					<VStack gap='32'>
 						{formContent}
 						<Button
 							onClick={acceptHandle}
 							size={ButtonSize.L}
-							fullWidth
-						>
+							fullWidth>
 							{t('Отправить')}
 						</Button>
 					</VStack>

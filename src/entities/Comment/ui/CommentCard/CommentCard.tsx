@@ -22,22 +22,30 @@ export const CommentCard = ({
 	if (isLoading) {
 		return (
 			<VStack
+				data-testid='CommentCard.Loading'
 				gap='8'
 				max
 				className={classNames(styles.CommentCard, {}, [
 					className,
 					styles.loading,
-				])}
-			>
+				])}>
 				<div className={styles.header}>
-					<Skeleton width={30} height={30} border='50%' />
+					<Skeleton
+						width={30}
+						height={30}
+						border='50%'
+					/>
 					<Skeleton
 						height={16}
 						width={100}
 						className={styles.username}
 					/>
 				</div>
-				<Skeleton className={styles.text} height={50} width='100%' />
+				<Skeleton
+					className={styles.text}
+					height={50}
+					width='100%'
+				/>
 			</VStack>
 		);
 	}
@@ -46,23 +54,28 @@ export const CommentCard = ({
 
 	return (
 		<VStack
+			data-testid='CommentCard.Content'
 			gap='8'
 			max
-			className={classNames(styles.CommentCard, {}, [className])}
-		>
+			className={classNames(styles.CommentCard, {}, [className])}>
 			<AppLink
 				to={getRouteProfile(comment.user.id)}
-				className={styles.header}
-			>
+				className={styles.header}>
 				{comment.user.avatar && (
-					<Avatar size={30} src={comment.user.avatar} />
+					<Avatar
+						size={30}
+						src={comment.user.avatar}
+					/>
 				)}
 				<Text
 					className={styles.username}
 					title={comment.user.username}
 				/>
 			</AppLink>
-			<Text className={styles.text} text={comment.text} />
+			<Text
+				className={styles.text}
+				text={comment.text}
+			/>
 		</VStack>
 	);
 };
