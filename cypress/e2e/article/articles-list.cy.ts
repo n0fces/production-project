@@ -10,4 +10,17 @@ describe('Пользователь заходит на страницу со с�
 		// если у нас статьи нормально загрузились, то по крайней мере 3 статьи должно быть
 		cy.getByTestId('ArticleListItem').should('have.length.greaterThan', 3);
 	});
+	it('На стабах (фикстурах)', () => {
+		cy.intercept('GET', '**/articles?*', {
+			fixture: 'articles.json',
+		});
+		cy.getByTestId('ArticleList').should('exist');
+		// если у нас статьи нормально загрузились, то по крайней мере 3 статьи должно быть
+		cy.getByTestId('ArticleListItem').should('have.length.greaterThan', 3);
+	});
+	it.skip('Пример заскипанного теста', () => {
+		cy.getByTestId('ArticleList').should('exist');
+		cy.getByTestId('ArticleListItem').should('have.length.greaterThan', 3);
+		cy.getByTestId('dfx').should('exist');
+	});
 });

@@ -22,3 +22,16 @@ Cypress.Commands.addAll(profileCommands);
 Cypress.Commands.addAll(articleCommands);
 Cypress.Commands.addAll(commentsCommands);
 Cypress.Commands.addAll(ratingCommands);
+// фикстуры могут помочь, когда идет активная разработка большой командой, каждая из которых работает над отдельной веткой проекта
+// может быть такое, что разработчики будут нагружать при пулл реквестах сервер, так как тестов много и все работают
+// здесь как раз могут помочь эти моки. мы не будем спамить запросами на сервер
+// можем прогонять все тесты на реальных данных только при релизе
+// ниже просто пример, как это могло бы выглядеть (слишком грубый пример)
+// Cypress.Commands.overwrite('intercept', () => {
+// 	const FIXTURE_MODE = process.env.FIXTURE_MODE;
+// 	const fixtureName = req.METHOD + req.url + Hash(req.body);
+// 	if(FIXTURE_MODE === 'READ') {
+// 	}
+// 	if(FIXTURE_MODE === 'WRITE') {
+// 	}
+// });
