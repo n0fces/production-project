@@ -60,7 +60,7 @@ export const StarRating = ({
 							// когда у нас выбрана оценка, то убираем cursor: pointer;
 							[styles.selected]: isSelected,
 						},
-						[]
+						[],
 					)}
 					onMouseLeave={onLeave()}
 					onMouseEnter={onHover(star)}

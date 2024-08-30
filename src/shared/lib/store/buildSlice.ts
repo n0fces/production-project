@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 export function buildSlice<
 	State,
 	CaseReducers extends SliceCaseReducers<State>,
-	Name extends string = string
+	Name extends string = string,
 >(options: CreateSliceOptions<State, CaseReducers, Name>) {
 	const slice = createSlice(options);
 
@@ -20,11 +20,15 @@ export function buildSlice<
 		// первыым аргументом передаем сами экшены, а вторым - dispatch
 		// этот dispatch к каждому экшену будет прибинджен
 		// @ts-ignore
-		return useMemo(() => bindActionCreators(slice.actions, dispatch), [dispatch]);
+		return useMemo(
+			// @ts-ignore
+			() => bindActionCreators(slice.actions, dispatch),
+			[dispatch],
+		);
 	};
 
 	return {
 		...slice,
-		useActions
+		useActions,
 	};
 }

@@ -27,18 +27,14 @@ export const Tabs = <T extends string>({
 				onTabClick(tab as TabItem<T>);
 			};
 		},
-		[onTabClick]
+		[onTabClick],
 	);
 
 	return (
 		<div className={classNames(styles.Tabs, {}, [className])}>
 			{tabs.map((tab) => (
 				<Card
-					theme={
-						tab.value === value
-							? CardTheme.NORMAL
-							: CardTheme.OUTLINED
-					}
+					theme={tab.value === value ? CardTheme.NORMAL : CardTheme.OUTLINED}
 					key={tab.value}
 					className={styles.tab}
 					onClick={clickHandle(tab)}

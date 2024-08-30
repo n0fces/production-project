@@ -43,13 +43,13 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
 		(value: string) => {
 			dispatch(loginActions.setUsername(value));
 		},
-		[dispatch]
+		[dispatch],
 	);
 	const onChangePassword = useCallback(
 		(value: string) => {
 			dispatch(loginActions.setPassword(value));
 		},
-		[dispatch]
+		[dispatch],
 	);
 	const onLoginClick = useCallback(async () => {
 		const result = await dispatch(loginByUsername({ username, password }));
@@ -71,14 +71,14 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
 				)}
 				<Input
 					autoFocus
-					type='text'
+					type="text"
 					className={styles.input}
 					placeholder={t('Введите имя')}
 					onChange={onChangeUsername}
 					value={username}
 				/>
 				<Input
-					type='text'
+					type="text"
 					className={styles.input}
 					placeholder={t('Введите пароль')}
 					onChange={onChangePassword}

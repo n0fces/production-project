@@ -27,7 +27,7 @@ export const CountrySelect = memo(
 				// * костыль, мне кажется) Но в принципе логично, так как здесь конкретно речь идет только про Country
 				onChange?.(value as Country);
 			},
-			[onChange]
+			[onChange],
 		);
 
 		return (
@@ -39,8 +39,8 @@ export const CountrySelect = memo(
 				onChange={onChangeHandler}
 				items={options}
 				readOnly={readOnly}
-				direction='bottomRight'
+				direction="bottomRight"
 			/>
 		);
-	}
+	},
 );

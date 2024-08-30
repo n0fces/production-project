@@ -67,9 +67,7 @@ export const Input = memo(
 		return (
 			<div className={classNames(styles.InputWrapper, mods, [className])}>
 				{placeholder && (
-					<div className={styles.placeholder}>
-						{`${placeholder}>`}
-					</div>
+					<div className={styles.placeholder}>{`${placeholder}>`}</div>
 				)}
 				<div className={styles.caretWrapper}>
 					<input
@@ -93,5 +91,5 @@ export const Input = memo(
 				</div>
 			</div>
 		);
-	}
+	},
 );

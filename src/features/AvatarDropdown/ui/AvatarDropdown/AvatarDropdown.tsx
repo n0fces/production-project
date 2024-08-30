@@ -45,11 +45,11 @@ export const AvatarDropdown = ({ className }: AvatarDropdownProps) => {
 			items={[
 				...(isAdminPagenAvailable
 					? [
-						{
-							content: t('Админ панель'),
-							href: getRouteAdmin(),
-							ItemType: AppLink,
-						},
+							{
+								content: t('Админ панель'),
+								href: getRouteAdmin(),
+								ItemType: AppLink,
+							},
 					  ]
 					: []),
 

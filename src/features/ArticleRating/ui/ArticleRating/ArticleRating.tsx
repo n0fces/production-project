@@ -38,23 +38,23 @@ const ArticleRating = ({ className, articleId }: ArticleRatingProps) => {
 				console.error(error);
 			}
 		},
-		[articleId, rateArticleMutation, userData?.id]
+		[articleId, rateArticleMutation, userData?.id],
 	);
 	const onCancel = useCallback(
 		(starsCount: number) => {
 			handleRateArticleMutation(starsCount);
 		},
-		[handleRateArticleMutation]
+		[handleRateArticleMutation],
 	);
 	const onAccept = useCallback(
 		(starsCount: number, feedback?: string) => {
 			handleRateArticleMutation(starsCount, feedback);
 		},
-		[handleRateArticleMutation]
+		[handleRateArticleMutation],
 	);
 
 	if (isLoading) {
-		return <Skeleton width='100%' height='120px' />;
+		return <Skeleton width="100%" height="120px" />;
 	}
 
 	const rating = data?.[0];
@@ -67,7 +67,7 @@ const ArticleRating = ({ className, articleId }: ArticleRatingProps) => {
 			className={className}
 			title={t('Оцените статью')}
 			feedbackTitle={t(
-				'Оставьте свой отзыв о статье, это поможет улучшить качество'
+				'Оставьте свой отзыв о статье, это поможет улучшить качество',
 			)}
 			hasFeedback
 		/>

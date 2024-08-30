@@ -18,15 +18,9 @@ export const ArticleImageBlockComponent = memo(
 				])}
 			>
 				{/* вообще картинка с подписью делается через специальные теги. Надо будет это потом поправить */}
-				<img
-					src={block.src}
-					alt={block.title}
-					className={styles.image}
-				/>
-				{block.title && (
-					<Text text={block.title} align={TextAlign.CENTER} />
-				)}
+				<img src={block.src} alt={block.title} className={styles.image} />
+				{block.title && <Text text={block.title} align={TextAlign.CENTER} />}
 			</div>
 		);
-	}
+	},
 );

@@ -25,7 +25,7 @@ export const CurrencySelect = memo(
 				// * костыль, мне кажется) Но в принципе логично, так как здесь конкретно речь идет только про Currency
 				onChange?.(value as Currency);
 			},
-			[onChange]
+			[onChange],
 		);
 
 		return (
@@ -37,8 +37,8 @@ export const CurrencySelect = memo(
 				onChange={onChangeHandler}
 				items={options}
 				readOnly={readOnly}
-				direction='bottomRight'
+				direction="bottomRight"
 			/>
 		);
-	}
+	},
 );

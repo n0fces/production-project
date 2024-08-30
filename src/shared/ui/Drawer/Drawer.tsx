@@ -24,7 +24,7 @@ export const DrawerContent = memo((props: DrawerProps) => {
 	const { Spring, Gesture } = useAnimationLibs();
 	const [{ y }, api] = Spring.useSpring(() => ({ y: height }));
 	const { theme } = useTheme();
-	const { className, children, onClose, isOpen, lazy } = props;
+	const { className, children, onClose, isOpen } = props;
 
 	// когда открываем drawer, мы запускаем анимацию
 	const openDrawer = useCallback(() => {
@@ -74,7 +74,7 @@ export const DrawerContent = memo((props: DrawerProps) => {
 			filterTaps: true,
 			bounds: { top: 0 },
 			rubberband: true,
-		}
+		},
 	);
 
 	if (!isOpen) {
@@ -86,11 +86,7 @@ export const DrawerContent = memo((props: DrawerProps) => {
 	return (
 		<Portal>
 			<div
-				className={classNames(cls.Drawer, {}, [
-					className,
-					theme,
-					'app_drawer',
-				])}
+				className={classNames(cls.Drawer, {}, [className, theme, 'app_drawer'])}
 			>
 				<Overlay onClick={close} />
 				<Spring.a.div

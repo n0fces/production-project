@@ -42,7 +42,7 @@ export const ArticlesPageFilters = ({
 		dispatch(
 			fetchArticlesList({
 				replace: true,
-			})
+			}),
 		);
 	}, [dispatch]);
 	const debouncedFetchData = useDebounce(fetchData, 500);
@@ -50,7 +50,7 @@ export const ArticlesPageFilters = ({
 		(view: ArticleView) => {
 			dispatch(articlesPageActions.setView(view));
 		},
-		[dispatch]
+		[dispatch],
 	);
 	const onChangeSort = useCallback(
 		(newSort: ArticleSortField) => {
@@ -58,7 +58,7 @@ export const ArticlesPageFilters = ({
 			dispatch(articlesPageActions.setPage(1));
 			fetchData();
 		},
-		[dispatch, fetchData]
+		[dispatch, fetchData],
 	);
 	const onChangeOrder = useCallback(
 		(newOrder: SortOrder) => {
@@ -66,7 +66,7 @@ export const ArticlesPageFilters = ({
 			dispatch(articlesPageActions.setPage(1));
 			fetchData();
 		},
-		[dispatch, fetchData]
+		[dispatch, fetchData],
 	);
 	const onChangeSearch = useCallback(
 		(search: string) => {
@@ -74,7 +74,7 @@ export const ArticlesPageFilters = ({
 			dispatch(articlesPageActions.setPage(1));
 			debouncedFetchData();
 		},
-		[dispatch, debouncedFetchData]
+		[dispatch, debouncedFetchData],
 	);
 	const onChangeType = useCallback(
 		(tab: TabItem<ArticleType>) => {
@@ -82,13 +82,11 @@ export const ArticlesPageFilters = ({
 			dispatch(articlesPageActions.setPage(1));
 			fetchData();
 		},
-		[dispatch, fetchData]
+		[dispatch, fetchData],
 	);
 
 	return (
-		<div
-			className={classNames(styles.ArticlesPageFilters, {}, [className])}
-		>
+		<div className={classNames(styles.ArticlesPageFilters, {}, [className])}>
 			<div className={styles.sortWrapper}>
 				<ArticleSortSelector
 					sort={sort}

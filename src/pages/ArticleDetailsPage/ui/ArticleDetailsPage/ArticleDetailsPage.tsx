@@ -36,12 +36,8 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 	return (
 		// Здесь DynamicModuleLoader нужен для работы с асинхронным экшеном под комментарии конкретной статьи (articleDetailsCommentsReducer)
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-			<Page
-				className={classNames(styles.ArticleDetailsPage, {}, [
-					className,
-				])}
-			>
-				<VStack gap='16' max>
+			<Page className={classNames(styles.ArticleDetailsPage, {}, [className])}>
+				<VStack gap="16" max>
 					<ArticleDetailsPageHeader />
 					<ArticleDetails id={id} />
 					<ArticleRating articleId={id} />

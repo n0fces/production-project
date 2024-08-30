@@ -16,9 +16,7 @@ const ArticleEditPage = ({ className }: ArticleEditPageProps) => {
 
 	return (
 		<Page className={classNames('', {}, [className])}>
-			{isEdit
-				? `Редактирование статьи с ID = ${id}`
-				: 'Создание новой статьи'}
+			{isEdit ? `Редактирование статьи с ID = ${id}` : 'Создание новой статьи'}
 		</Page>
 	);
 };

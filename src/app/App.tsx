@@ -19,9 +19,9 @@ function App() {
 
 	return (
 		<div className={classNames('app', {}, [theme])}>
-			<Suspense fallback=''>
+			<Suspense fallback="">
 				<Navbar />
-				<div className='content-page'>
+				<div className="content-page">
 					<Sidebar />
 					{/* AppRouter у нас рендерится раньше, чем мы инициализируем данные о пользователе, потому что логика по инициализации данных о пользователе происходит в хуке useEffect. Решили пойти следующим образом. Мы будем отрисовывать AppRouter только тогда, когда произошла инициализацию пользователя */}
 					{inited && <AppRouter />}

@@ -19,6 +19,6 @@ export const useHover = (): UseHoverResult => {
 	// вообще не понимаю, к чему здесь мемоизация, если у нас ховер постоянно будет меняться. Против мемоизации колбэков ничего не имею, так надо, но вот useMemo ни к чему
 	return useMemo(
 		() => [isHover, { onMouseEnter, onMouseLeave }],
-		[isHover, onMouseEnter, onMouseLeave]
+		[isHover, onMouseEnter, onMouseLeave],
 	);
 };

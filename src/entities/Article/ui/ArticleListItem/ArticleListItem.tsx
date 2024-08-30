@@ -32,59 +32,37 @@ export const ArticleListItem = ({
 	const { t } = useTranslation();
 
 	const types = (
-		<Text
-			text={article.type.join(', ')}
-			className={styles.types}
-		/>
+		<Text text={article.type.join(', ')} className={styles.types} />
 	);
 	const views = (
 		<>
-			<Text
-				text={String(article.views)}
-				className={styles.views}
-			/>
+			<Text text={String(article.views)} className={styles.views} />
 			<Icon Svg={EyeIcon} />
 		</>
 	);
 
 	if (view === ArticleView.BIG) {
 		const textBlock = article.blocks.find(
-			(block) => block.type === ArticleBlockType.TEXT
+			(block) => block.type === ArticleBlockType.TEXT,
 		) as ArticleTextBlock;
 		return (
 			<div
-				data-testid='ArticleListItem'
+				data-testid="ArticleListItem"
 				className={classNames(styles.ArticleListItem, {}, [
 					className,
 					styles[view],
-				])}>
+				])}
+			>
 				<Card>
 					<div className={styles.header}>
-						<Avatar
-							size={30}
-							src={article.user.avatar}
-						/>
-						<Text
-							text={article.user.username}
-							className={styles.username}
-						/>
-						<Text
-							text={article.createdAt}
-							className={styles.date}
-						/>
+						<Avatar size={30} src={article.user.avatar} />
+						<Text text={article.user.username} className={styles.username} />
+						<Text text={article.createdAt} className={styles.date} />
 					</div>
-					<Text
-						title={article.title}
-						className={styles.title}
-					/>
+					<Text title={article.title} className={styles.title} />
 					{types}
 					<AppImage
-						fallback={(
-							<Skeleton
-								width='100%'
-								height='250px'
-							/>
-						)}
+						fallback={<Skeleton width="100%" height="250px" />}
 						src={article.img}
 						alt={article.title}
 						className={styles.img}
@@ -97,12 +75,8 @@ export const ArticleListItem = ({
 					)}
 					<div className={styles.footer}>
 						{/* отличная идея с точки зрения доступности. Кнопку запихнуть в ссылку) */}
-						<AppLink
-							target={target}
-							to={getRouteArticlesDetails(article.id)}>
-							<Button theme={ButtonTheme.OUTLINE}>
-								{t('Читать далее')}
-							</Button>
+						<AppLink target={target} to={getRouteArticlesDetails(article.id)}>
+							<Button theme={ButtonTheme.OUTLINE}>{t('Читать далее')}</Button>
 						</AppLink>
 						{views}
 					</div>
@@ -113,39 +87,29 @@ export const ArticleListItem = ({
 
 	return (
 		<AppLink
-			data-testid='ArticleListItem'
+			data-testid="ArticleListItem"
 			target={target}
 			to={getRouteArticlesDetails(article.id)}
 			className={classNames(styles.ArticleListItem, {}, [
 				className,
 				styles[view],
-			])}>
+			])}
+		>
 			<Card>
 				<div className={styles.imageWrapper}>
 					<AppImage
-						fallback={(
-							<Skeleton
-								width='200px'
-								height='200px'
-							/>
-						)}
+						fallback={<Skeleton width="200px" height="200px" />}
 						src={article.img}
 						alt={article.title}
 						className={styles.img}
 					/>
-					<Text
-						text={article.createdAt}
-						className={styles.date}
-					/>
+					<Text text={article.createdAt} className={styles.date} />
 				</div>
 				<div className={styles.infoWrapper}>
 					{types}
 					{views}
 				</div>
-				<Text
-					text={article.title}
-					className={styles.title}
-				/>
+				<Text text={article.title} className={styles.title} />
 			</Card>
 		</AppLink>
 	);

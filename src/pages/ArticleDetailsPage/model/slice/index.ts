@@ -4,7 +4,8 @@ import { articleDetailsCommentsReducer } from './articleDetailsCommentsSlice';
 import { articleDetailsPageRecommendationsReducer } from './articleDetailsPageRecommendationsSlice';
 
 // группируем редьюсеры (опять же это пример чисто в ознакомительных целях)
-export const articleDetailsPageReducer = combineReducers<ArticleDetailsPageScheme>({
-	recommendations: articleDetailsPageRecommendationsReducer,
-	comments: articleDetailsCommentsReducer,
-});
+export const articleDetailsPageReducer =
+	combineReducers<ArticleDetailsPageScheme>({
+		recommendations: articleDetailsPageRecommendationsReducer,
+		comments: articleDetailsCommentsReducer,
+	});

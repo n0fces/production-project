@@ -32,7 +32,8 @@ export const resetProfile = (profileId: string) => {
 			country: 'Russia',
 			city: 'Moscow',
 			username: 'testuser',
-			avatar: 'https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg',
+			avatar:
+				'https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg',
 		},
 	});
 };

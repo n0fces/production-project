@@ -31,7 +31,7 @@ export const ArticleDetailsPageHeader = ({
 	}, [article, navigate]);
 
 	return (
-		<HStack max justify='between' className={className}>
+		<HStack max justify="between" className={className}>
 			<Button theme={ButtonTheme.OUTLINE} onClick={onBackToList}>
 				{t('Назад к списку')}
 			</Button>

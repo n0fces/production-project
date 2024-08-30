@@ -18,7 +18,7 @@ const commentsAdapter = createEntityAdapter<Comment>({
 // делаем наш селектор
 export const getArticleComments = commentsAdapter.getSelectors<StateScheme>(
 	(state) =>
-		state.articleDetailsPage?.comments || commentsAdapter.getInitialState()
+		state.articleDetailsPage?.comments || commentsAdapter.getInitialState(),
 );
 
 const articleDetailsCommentsSlice = createSlice({
@@ -44,7 +44,7 @@ const articleDetailsCommentsSlice = createSlice({
 					state.error = undefined;
 					// не будем же мы сами нормализовывать данные, поэтому используем готовую вещь из тулкита
 					commentsAdapter.setAll(state, action.payload);
-				}
+				},
 			)
 			.addCase(fetchCommentsByArticleId.rejected, (state, action) => {
 				state.isLoading = false;

@@ -12,7 +12,7 @@ import {
 } from './StateScheme';
 
 export function createReducerManager(
-	initialReducers: ReducersMapObject<StateScheme>
+	initialReducers: ReducersMapObject<StateScheme>,
 ): ReducerManager {
 	// получаем на вход дефолтные редьюсеры, которые потом собираем в корневой редьюсер
 	const reducers = { ...initialReducers };

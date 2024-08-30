@@ -5,7 +5,7 @@ const AboutPage = () => {
 	// по умолчанию namespace называется translation
 	// мы указываем конкретный namespace, чтобы разбить на чанки перевод. мы не хотим, чтобы для пользователя подгружался перевод страниц, на которые он может даже не планировал заходить
 	const { t } = useTranslation('about');
-	return <Page data-testid='AboutPage'>{t('О сайте')}</Page>;
+	return <Page data-testid="AboutPage">{t('О сайте')}</Page>;
 };
 
 export default AboutPage;

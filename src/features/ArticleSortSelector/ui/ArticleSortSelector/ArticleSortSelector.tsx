@@ -32,7 +32,7 @@ export const ArticleSortSelector = ({
 				content: t('убыванию'),
 			},
 		],
-		[t]
+		[t],
 	);
 	const sortFieldOptions = useMemo<SelectOption<ArticleSortField>[]>(
 		() => [
@@ -49,13 +49,11 @@ export const ArticleSortSelector = ({
 				content: t('просмотрам'),
 			},
 		],
-		[t]
+		[t],
 	);
 
 	return (
-		<div
-			className={classNames(styles.ArticleSortSelector, {}, [className])}
-		>
+		<div className={classNames(styles.ArticleSortSelector, {}, [className])}>
 			{/* можно вот так явно задавать тип для generic component */}
 			<Select<ArticleSortField>
 				options={sortFieldOptions}

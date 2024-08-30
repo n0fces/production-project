@@ -36,7 +36,7 @@ export const ArticleDetailsComments = ({
 		(text: string) => {
 			dispatch(addCommentForArticle(text));
 		},
-		[dispatch]
+		[dispatch],
 	);
 
 	useInitialEffect(() => {
@@ -44,7 +44,7 @@ export const ArticleDetailsComments = ({
 	});
 
 	return (
-		<VStack gap='16' max className={className}>
+		<VStack gap="16" max className={className}>
 			<Text size={TextSize.L} title={t('Комментарии')} />
 			<Suspense fallback={<Loader />}>
 				<AddCommentForm onSendComment={onSendComment} />

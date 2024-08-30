@@ -49,8 +49,7 @@ export default {
 			}
 
 			return rule;
-		}
-		);
+		});
 
 		config.module?.rules?.push({
 			test: /\.svg$/,
@@ -67,7 +66,7 @@ export default {
 				__API__: JSON.stringify('https://testapi.ru'),
 				// у нас есть 3 среды, которые мы можем отличать по глобальной переменной __PROJECT__
 				__PROJECT__: JSON.stringify('storybook'),
-			})
+			}),
 		);
 
 		return config;

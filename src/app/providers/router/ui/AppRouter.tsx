@@ -20,9 +20,7 @@ const AppRouter = () => {
 					// при попытке перейти на роут, который существует, но который доступен только для авторизованных пользователей, будет осуществлен редирект на главную страницу, если пользователь не авторизован. При этом если пользователь попытается перейти на страницу, которая не существует в нашем приложение, то отработает как надо not found page
 					element={
 						authOnly ? (
-							<RequireAuth roles={roles}>
-								{suspenseElement}
-							</RequireAuth>
+							<RequireAuth roles={roles}>{suspenseElement}</RequireAuth>
 						) : (
 							suspenseElement
 						)
@@ -30,7 +28,7 @@ const AppRouter = () => {
 				/>
 			);
 		},
-		[]
+		[],
 	);
 
 	return <Routes>{Object.values(routeConfig).map(renderWihWrapper)}</Routes>;

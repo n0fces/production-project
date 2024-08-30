@@ -33,9 +33,7 @@ export const NotificationButton = ({ className }: NotificationButtonProps) => {
 		<div>
 			<BrowserView>
 				<Popover
-					className={classNames(styles.NotificationButton, {}, [
-						className,
-					])}
+					className={classNames(styles.NotificationButton, {}, [className])}
 					trigger={trigger}
 				>
 					<NotificationList className={styles.notifications} />

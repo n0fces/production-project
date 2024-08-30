@@ -26,13 +26,13 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
 
 	return (
 		<aside
-			data-testid='sidebar'
+			data-testid="sidebar"
 			className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [
 				className,
 			])}
 		>
 			<Button
-				data-testid='sidebar-toggle'
+				data-testid="sidebar-toggle"
 				onClick={onToggle}
 				className={cls.collapseBtn}
 				theme={ButtonTheme.BACKGROUND_INVERTED}
@@ -42,13 +42,9 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
 				{collapsed ? '>' : '<'}
 			</Button>
 			{/* Здесь можно было бы пойти другим путем и, как у меня сделано для кнопки в movies-app, сделать здесь (сразу определяем тег, который хотим использовать). Но такая реализация намного легче */}
-			<VStack role='navigation' gap='8' className={cls.items}>
+			<VStack role="navigation" gap="8" className={cls.items}>
 				{sidebarItemsList.map((item) => (
-					<SidebarItem
-						key={item.path}
-						item={item}
-						collapsed={collapsed}
-					/>
+					<SidebarItem key={item.path} item={item} collapsed={collapsed} />
 				))}
 			</VStack>
 			<div className={cls.switchers}>

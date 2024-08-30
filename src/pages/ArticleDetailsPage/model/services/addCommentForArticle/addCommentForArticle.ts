@@ -37,7 +37,7 @@ export const addCommentForArticle = createAsyncThunk<
 		} catch (error) {
 			return rejectWithValue('error');
 		}
-	}
+	},
 );
 
 // НАПИШИ ТЕСТЫ НА НОВЫЕ СЕЛЕКТОРЫ, СЛАЙСЫ И АСИНХРОННЫЕ ФАНКИ

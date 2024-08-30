@@ -13,8 +13,8 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
 
 	return (
 		// * На этом моменте даже приятно удивился, насколько легко мы подключили логику асинхронного подключения редьюсеров) Просто использовали уже созданные вещи. Тогда долго сидели, чтобы сейчас просто использовать
-		<Page data-testid='ProfilePage' className={classNames('', {}, [className])}>
-			<VStack gap='16' max>
+		<Page data-testid="ProfilePage" className={classNames('', {}, [className])}>
+			<VStack gap="16" max>
 				<EditableProfileCard id={id} />
 			</VStack>
 		</Page>

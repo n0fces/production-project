@@ -23,23 +23,11 @@ export const ArticleListItemSkeleton = ({
 			>
 				<Card>
 					<div className={styles.header}>
-						<Skeleton width={30} height={30} border='50%' />
-						<Skeleton
-							width={150}
-							height={16}
-							className={styles.username}
-						/>
-						<Skeleton
-							width={150}
-							height={16}
-							className={styles.date}
-						/>
+						<Skeleton width={30} height={30} border="50%" />
+						<Skeleton width={150} height={16} className={styles.username} />
+						<Skeleton width={150} height={16} className={styles.date} />
 					</div>
-					<Skeleton
-						width={250}
-						height={24}
-						className={styles.title}
-					/>
+					<Skeleton width={250} height={24} className={styles.title} />
 					<Skeleton height={200} className={styles.img} />
 					<div className={styles.footer}>
 						<Skeleton height={36} width={200} />

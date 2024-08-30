@@ -19,5 +19,5 @@ export const fetchProfileData = createAsyncThunk<
 			console.log(error);
 			return rejectWithValue('error');
 		}
-	}
+	},
 );

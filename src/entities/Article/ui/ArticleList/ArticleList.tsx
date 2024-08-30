@@ -20,12 +20,9 @@ interface ArticleListProps {
 }
 
 const getSkeletons = (view: ArticleView) =>
-	new Array(view === ArticleView.SMALL ? 9 : 3).fill(0).map((_, index) => (
-		<ArticleListItemSkeleton
-			key={index}
-			view={view}
-		/>
-	));
+	new Array(view === ArticleView.SMALL ? 9 : 3)
+		.fill(0)
+		.map((_, index) => <ArticleListItemSkeleton key={index} view={view} />);
 
 export const ArticleList = ({
 	className,
@@ -42,11 +39,9 @@ export const ArticleList = ({
 				className={classNames(styles.ArticleList, {}, [
 					className,
 					styles[view],
-				])}>
-				<Text
-					size={TextSize.L}
-					title={t('Статьи не найдены')}
-				/>
+				])}
+			>
+				<Text size={TextSize.L} title={t('Статьи не найдены')} />
 			</div>
 		);
 	}
@@ -55,11 +50,9 @@ export const ArticleList = ({
 	// * ПОТОМУ ЧТО СЛИШКОМ УСТАРЕВШЕЕ РЕШЕНИЕ
 	return (
 		<div
-			data-testid='ArticleList'
-			className={classNames(styles.ArticleList, {}, [
-				className,
-				styles[view],
-			])}>
+			data-testid="ArticleList"
+			className={classNames(styles.ArticleList, {}, [className, styles[view]])}
+		>
 			{articles.map((article) => (
 				<ArticleListItem
 					article={article}

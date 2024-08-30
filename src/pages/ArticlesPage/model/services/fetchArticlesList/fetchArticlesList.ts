@@ -35,7 +35,7 @@ export const fetchArticlesList = createAsyncThunk<
 				sort,
 				order,
 				search,
-				type
+				type,
 			});
 			const response = await api.get<Article[]>('/articles', {
 				params: {
@@ -58,5 +58,5 @@ export const fetchArticlesList = createAsyncThunk<
 		} catch (error) {
 			return rejectWithValue('error');
 		}
-	}
+	},
 );

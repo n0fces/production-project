@@ -32,9 +32,7 @@ export function RequireAuth({ children, roles }: RequireAuthProps) {
 	}, [roles, userRoles]);
 
 	if (!auth) {
-		return (
-			<Navigate to={getRouteMain()} state={{ from: location }} replace />
-		);
+		return <Navigate to={getRouteMain()} state={{ from: location }} replace />;
 	}
 
 	// обязательно этот фрагмент кода должен быть здесь, чтобы нас при авторизации, но не при наличии нужных ролей, редиректило сюда
@@ -42,11 +40,7 @@ export function RequireAuth({ children, roles }: RequireAuthProps) {
 	// * потом надо поправить, чтобы после разлогина и логина нас перенаправляло на главную страницу
 	if (!hasRequiredRoles) {
 		return (
-			<Navigate
-				to={getRouteForbidden()}
-				state={{ from: location }}
-				replace
-			/>
+			<Navigate to={getRouteForbidden()} state={{ from: location }} replace />
 		);
 	}
 

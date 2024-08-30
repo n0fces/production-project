@@ -45,14 +45,10 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 
 	// сделали такой маппинг с нормальными интернационализованными названиями ошибок
 	const validateErrorTranslates = {
-		[ValidateProfileError.SERVER_ERROR]: t(
-			'Серверная ошибка при сохранении'
-		),
+		[ValidateProfileError.SERVER_ERROR]: t('Серверная ошибка при сохранении'),
 		[ValidateProfileError.INCORRECT_COUNTRY]: t('Некорректный регион'),
 		[ValidateProfileError.NO_DATA]: t('Данные не указаны'),
-		[ValidateProfileError.INCORRECT_USER_DATA]: t(
-			'Имя и фамилия обязательны'
-		),
+		[ValidateProfileError.INCORRECT_USER_DATA]: t('Имя и фамилия обязательны'),
 		[ValidateProfileError.INCORRECT_AGE]: t('Некорректный возраст'),
 	};
 
@@ -65,65 +61,65 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 		(value?: string) => {
 			dispatch(profileActions.updateProfile({ first: value || '' }));
 		},
-		[dispatch]
+		[dispatch],
 	);
 	const onChangeLastname = useCallback(
 		(value?: string) => {
 			dispatch(profileActions.updateProfile({ lastname: value || '' }));
 		},
-		[dispatch]
+		[dispatch],
 	);
 	const onChangeCity = useCallback(
 		(value?: string) => {
 			dispatch(profileActions.updateProfile({ city: value || '' }));
 		},
-		[dispatch]
+		[dispatch],
 	);
 	const onChangeAge = useCallback(
 		(value?: string) => {
 			dispatch(
 				profileActions.updateProfile({
 					age: Number(value || 1),
-				})
+				}),
 			);
 		},
-		[dispatch]
+		[dispatch],
 	);
 	const onChangeUsername = useCallback(
 		(value?: string) => {
 			dispatch(profileActions.updateProfile({ username: value || '' }));
 		},
-		[dispatch]
+		[dispatch],
 	);
 	const onChangeAvatar = useCallback(
 		(value?: string) => {
 			dispatch(profileActions.updateProfile({ avatar: value || '' }));
 		},
-		[dispatch]
+		[dispatch],
 	);
 	const onChangeCurrency = useCallback(
 		(currency: Currency) => {
 			dispatch(profileActions.updateProfile({ currency }));
 		},
-		[dispatch]
+		[dispatch],
 	);
 	const onChangeCountry = useCallback(
 		(country: Country) => {
 			dispatch(profileActions.updateProfile({ country }));
 		},
-		[dispatch]
+		[dispatch],
 	);
 
 	return (
 		<DynamicModuleLoader reducers={reducers}>
-			<VStack gap='8' max className={className}>
+			<VStack gap="8" max className={className}>
 				<EditableProfileCardHeader />
 				{validateErrors?.map((err) => (
 					<Text
 						key={err}
 						theme={TextTheme.ERROR}
 						text={validateErrorTranslates[err]}
-						data-testid='EditableProfileCard.Error'
+						data-testid="EditableProfileCard.Error"
 					/>
 				))}
 				{/* при такой реализации мы можем делать целую ленту карточек пользователей, а в качестве данных пробрасывать соответствующие значения, а не хардкодить, как это у нас было до этого. Сейчас мы можем получать данные с сервера, а потом их пробрасывать в нашу карточку и все будет работать */}

@@ -22,7 +22,7 @@ export const updateProfileData = createAsyncThunk<
 			// отправляем запрос на обновление данных для конкретного пользователя
 			const response = await api.put<Profile>(
 				`/profile/${formData?.id}`,
-				formData
+				formData,
 			);
 			// предполагаем, что сервер точно должен нам вернуть какие-то данные
 			if (!response.data) throw new Error();
@@ -30,5 +30,5 @@ export const updateProfileData = createAsyncThunk<
 		} catch (error) {
 			return rejectWithValue([ValidateProfileError.SERVER_ERROR]);
 		}
-	}
+	},
 );

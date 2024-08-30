@@ -19,9 +19,10 @@ describe('EditableProfileCard.cy.tsx', () => {
 							},
 						},
 					},
-				}}>
+				}}
+			>
 				<EditableProfileCard id={USER_ID} />
-			</TestProvider>
+			</TestProvider>,
 		);
 		// описываем тест кейс (правда мы это все делали в интеграционных тестах rtl)
 	});

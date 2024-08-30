@@ -19,7 +19,7 @@ import { createReducerManager } from './reducerManager';
 // * + надо будет сделать типизированные хуки useSelector и useDispatch. Типизированный useSelector позволит каждый раз не указывать тип стейта. Типизированный useDispatch будет знать про наши события и не позволит пердеать какую-то дичь
 export function createReduxStore(
 	initialState?: StateScheme,
-	asyncReducers?: ReducersMapObject<StateScheme>
+	asyncReducers?: ReducersMapObject<StateScheme>,
 ) {
 	// в корневом редьюсере оставляем только те редьюсеры, которые являются обязательными
 	const rootReducers: ReducersMapObject<StateScheme> = {

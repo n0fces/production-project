@@ -4,7 +4,7 @@ import { StateScheme } from '@/app/providers/StoreProvider';
 
 // Здесь мы сконструировали тот самый тип, который возвращается после работы createAsyncThunk. Чтобы это достать, пришлось глубоко залезть в типы тулкита)
 type ActionCreatorType<Return, Arg, RejectedValue> = (
-	arg: Arg
+	arg: Arg,
 ) => AsyncThunkAction<Return, Arg, { rejectValue: RejectedValue }>;
 
 // мокаем модуль axios, чтобы с ним работать в тестах
@@ -25,7 +25,7 @@ export class TestAsyncThunk<Return, Arg, RejectedValue> {
 	// для отдельных тестовых сценариев мы хотим задавать какое-то дефолтное значение стейта, поэтому 3 параметром идет стейт
 	constructor(
 		actionCreator: ActionCreatorType<Return, Arg, RejectedValue>,
-		state?: DeepPartial<StateScheme>
+		state?: DeepPartial<StateScheme>,
 	) {
 		this.actionCreator = actionCreator;
 		this.dispatch = jest.fn();

@@ -10,5 +10,5 @@ export const getScrollSaveByPath = createSelector(
 	// сначала передаем путь, по которому мы хотим получить значение скролла
 	(state: StateScheme, path: string) => path,
 	// затем получаем конкретное значение скролла
-	(scroll, path) => scroll[path] || 0
+	(scroll, path) => scroll[path] || 0,
 );

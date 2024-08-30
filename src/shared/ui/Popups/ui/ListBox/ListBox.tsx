@@ -37,14 +37,14 @@ export const ListBox = ({
 }: ListBoxProps) => {
 	// потом, если будет время, можно перейти на более свежую версию данной библиотеки
 	return (
-		<HStack gap='4'>
+		<HStack gap="4">
 			{label && (
 				<span className={readOnly ? stylesPopup.disabled : undefined}>
 					{`${label}>`}
 				</span>
 			)}
 			<HListBox
-				as='div'
+				as="div"
 				disabled={readOnly}
 				className={classNames(styles.ListBox, {}, [
 					className,
@@ -58,9 +58,7 @@ export const ListBox = ({
 					<Button disabled={readOnly}>{value ?? defaultValue}</Button>
 				</HListBox.Button>
 				<HListBox.Options
-					className={classNames(styles.options, {}, [
-						stylesPopup[direction],
-					])}
+					className={classNames(styles.options, {}, [stylesPopup[direction]])}
 				>
 					{items?.map((item) => (
 						<HListBox.Option
@@ -69,7 +67,7 @@ export const ListBox = ({
 							disabled={item.disabled}
 							as={Fragment}
 						>
-							{({ active, selected }) => (
+							{({ active }) => (
 								<li
 									className={classNames(
 										styles.item,
@@ -77,7 +75,7 @@ export const ListBox = ({
 											[stylesPopup.active]: active,
 											[stylesPopup.disabled]: item.disabled,
 										},
-										[]
+										[],
 									)}
 								>
 									{item.content}

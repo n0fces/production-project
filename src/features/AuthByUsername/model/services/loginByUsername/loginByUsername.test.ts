@@ -29,7 +29,7 @@ describe('loginByUsername.test', () => {
 		// далее в зависимости от того, что мы получили в объекте result, мы можем делать различные проверки
 		// здесь мы убеждаемся, что диспатч с изменением стора был вызван. Мы здесь проверяем даже не сам вызов диспатча, а то, с какими аргументами он был вызван
 		expect(thunk.dispatch).toHaveBeenCalledWith(
-			userActions.setAuthData(userValue)
+			userActions.setAuthData(userValue),
 		);
 		// первый раз диспатч у нас отрабатывает, когда мы вызвали сам loginByUsername
 		// второй раз диспатч срабатывает, когда вызываем с userActions.setAuthData(userValue)

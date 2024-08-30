@@ -4,7 +4,7 @@ import { Page } from '@/widgets/Page';
 const ForbiddenPage = () => {
 	const { t } = useTranslation('forbidden-page');
 	return (
-		<Page data-testid='ForbiddenPage'>
+		<Page data-testid="ForbiddenPage">
 			{t('У вас нет доступа к этой странице')}
 		</Page>
 	);

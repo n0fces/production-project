@@ -16,11 +16,9 @@ export const Icon = ({
 	// сделали обертку над свг иконками, чтобы размеры сразу подстраивались по соответствующую тему
 	return (
 		<Svg
-			className={classNames(
-				inverted ? styles.inverted : styles.Icon,
-				{},
-				[className]
-			)}
+			className={classNames(inverted ? styles.inverted : styles.Icon, {}, [
+				className,
+			])}
 			{...otherProps}
 		/>
 	);

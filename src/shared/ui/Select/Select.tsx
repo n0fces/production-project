@@ -28,15 +28,11 @@ export const Select = <T extends string>({
 	const optionsList = useMemo(
 		() =>
 			options?.map((opt) => (
-				<option
-					key={opt.value}
-					className={styles.option}
-					value={opt.value}
-				>
+				<option key={opt.value} className={styles.option} value={opt.value}>
 					{opt.content}
 				</option>
 			)),
-		[options]
+		[options],
 	);
 
 	const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {

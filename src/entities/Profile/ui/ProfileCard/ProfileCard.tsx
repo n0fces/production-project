@@ -47,7 +47,7 @@ export const ProfileCard = ({
 	if (isLoading) {
 		return (
 			<HStack
-				justify='center'
+				justify="center"
 				max
 				className={classNames(styles.ProfileCard, {}, [
 					className,
@@ -62,7 +62,7 @@ export const ProfileCard = ({
 	if (error) {
 		return (
 			<HStack
-				justify='center'
+				justify="center"
 				max
 				className={classNames(styles.ProfileCard, {}, [
 					className,
@@ -86,12 +86,12 @@ export const ProfileCard = ({
 	// * Потом надо будет сделать тестирование всех инпутов
 	return (
 		<VStack
-			gap='8'
+			gap="8"
 			max
 			className={classNames(styles.ProfileCard, mods, [className])}
 		>
 			{data?.avatar && (
-				<HStack justify='center' max className={styles.avatarWrapper}>
+				<HStack justify="center" max className={styles.avatarWrapper}>
 					<Avatar src={data?.avatar} alt={data.username} />
 				</HStack>
 			)}
@@ -101,7 +101,7 @@ export const ProfileCard = ({
 				className={styles.input}
 				onChange={onChangeFirstname}
 				readOnly={readonly}
-				data-testid='ProfileCard.firstname'
+				data-testid="ProfileCard.firstname"
 			/>
 			<Input
 				value={data?.lastname}
@@ -109,11 +109,11 @@ export const ProfileCard = ({
 				className={styles.input}
 				onChange={onChangeLastname}
 				readOnly={readonly}
-				data-testid='ProfileCard.lastname'
+				data-testid="ProfileCard.lastname"
 			/>
 			<Input
 				value={data?.age}
-				type='number'
+				type="number"
 				min={1}
 				placeholder={t('Ваш возраст')}
 				className={styles.input}

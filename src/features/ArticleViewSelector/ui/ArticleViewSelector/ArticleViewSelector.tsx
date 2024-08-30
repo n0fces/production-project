@@ -35,9 +35,7 @@ export const ArticleViewSelector = ({
 	};
 
 	return (
-		<div
-			className={classNames(styles.ArticleViewSelector, {}, [className])}
-		>
+		<div className={classNames(styles.ArticleViewSelector, {}, [className])}>
 			{viewTypes.map((viewType, index) => (
 				<Button
 					key={index}

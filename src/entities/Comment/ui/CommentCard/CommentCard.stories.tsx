@@ -22,8 +22,8 @@ Normal.args = {
 	},
 };
 
-export const isLoading = Template.bind({});
-isLoading.args = {
+export const IsLoading = Template.bind({});
+IsLoading.args = {
 	comment: {
 		id: '1',
 		text: 'Hello world',

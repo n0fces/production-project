@@ -72,9 +72,7 @@ export const Flex = ({
 	};
 
 	return (
-		<div
-			className={classNames(styles.Flex, mods, classes)}
-			{...otherProps}>
+		<div className={classNames(styles.Flex, mods, classes)} {...otherProps}>
 			{children}
 		</div>
 	);

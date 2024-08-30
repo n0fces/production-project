@@ -21,18 +21,13 @@ interface PageProps extends TestProps {
 export const PAGE_ID = 'PAGE_ID';
 
 export const Page = (props: PageProps) => {
-	const {
-		className,
-		children,
-		onScrollEnd,
-		'data-testid': dataTestId,
-	} = props;
+	const { className, children, onScrollEnd, 'data-testid': dataTestId } = props;
 	const wrapperRef = useRef() as MutableRefObject<HTMLElement>;
 	const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
 	const dispatch = useAppDispatch();
 	const { pathname } = useLocation();
 	const scrollPosition = useSelector((state: StateScheme) =>
-		getScrollSaveByPath(state, pathname)
+		getScrollSaveByPath(state, pathname),
 	);
 
 	useInfiniteScroll({
@@ -54,7 +49,7 @@ export const Page = (props: PageProps) => {
 			scrollSaveActions.setScrollPosition({
 				position: e.currentTarget.scrollTop,
 				path: pathname,
-			})
+			}),
 		);
 	}, 500);
 
@@ -68,9 +63,7 @@ export const Page = (props: PageProps) => {
 		>
 			{children}
 			{/* это будет триггерный элемент, за которым будем следить */}
-			{onScrollEnd ? (
-				<div className={styles.trigger} ref={triggerRef} />
-			) : null}
+			{onScrollEnd ? <div className={styles.trigger} ref={triggerRef} /> : null}
 		</main>
 	);
 };

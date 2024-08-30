@@ -1,8 +1,6 @@
 import { Button } from '@/shared/ui/Button';
 import { useCounterValue } from '../model/selectors/getCounterValue/getCounterValue';
-import {
-	useCounterActions
-} from '../model/slice/counterSlice';
+import { useCounterActions } from '../model/slice/counterSlice';
 
 export const Counter = () => {
 	const counterValue = useCounterValue();
@@ -19,14 +17,14 @@ export const Counter = () => {
 
 	return (
 		<div>
-			<h1 data-testid='value-title'>{counterValue}</h1>
-			<Button onClick={handleAdd} data-testid='add-btn'>
+			<h1 data-testid="value-title">{counterValue}</h1>
+			<Button onClick={handleAdd} data-testid="add-btn">
 				+5
 			</Button>
-			<Button onClick={handleIncrement} data-testid='increment-btn'>
+			<Button onClick={handleIncrement} data-testid="increment-btn">
 				+
 			</Button>
-			<Button onClick={handleDecrement} data-testid='decrement-btn'>
+			<Button onClick={handleDecrement} data-testid="decrement-btn">
 				-
 			</Button>
 		</div>

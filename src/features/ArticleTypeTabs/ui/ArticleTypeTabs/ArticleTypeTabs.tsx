@@ -35,7 +35,7 @@ export const ArticleTypeTabs = ({
 				content: t('Наука'),
 			},
 		],
-		[t]
+		[t],
 	);
 
 	return (

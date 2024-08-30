@@ -19,8 +19,6 @@ describe('getProfileValidateErrors.test', () => {
 	});
 	test('should work with empty state', () => {
 		const state: DeepPartial<StateScheme> = {};
-		expect(getProfileValidateErrors(state as StateScheme)).toEqual(
-			undefined
-		);
+		expect(getProfileValidateErrors(state as StateScheme)).toEqual(undefined);
 	});
 });

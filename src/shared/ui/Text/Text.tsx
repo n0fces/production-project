@@ -69,14 +69,11 @@ export const Text = memo(
 					</HeaderTag>
 				)}
 				{text && (
-					<p
-						className={styles.text}
-						data-testid={`${dataTestId}.Paragraph`}
-					>
+					<p className={styles.text} data-testid={`${dataTestId}.Paragraph`}>
 						{text}
 					</p>
 				)}
 			</div>
 		);
-	}
+	},
 );

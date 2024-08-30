@@ -17,17 +17,11 @@ export const ArticleTextBlockComponent = memo(
 					className,
 				])}
 			>
-				{block.title && (
-					<Text title={block.title} className={styles.title} />
-				)}
+				{block.title && <Text title={block.title} className={styles.title} />}
 				{block.paragraphs.map((paragraph) => (
-					<Text
-						key={paragraph}
-						text={paragraph}
-						className={styles.paragraph}
-					/>
+					<Text key={paragraph} text={paragraph} className={styles.paragraph} />
 				))}
 			</div>
 		);
-	}
+	},
 );

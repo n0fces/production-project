@@ -22,7 +22,7 @@ export const ThemeProvider = ({
 			theme,
 			setTheme,
 		}),
-		[theme]
+		[theme],
 	);
 
 	return (

@@ -29,7 +29,7 @@ export const Dropdown = ({
 }: DropdownProps) => {
 	return (
 		<Menu
-			as='div'
+			as="div"
 			className={classNames(styles.Dropdown, {}, [
 				className,
 				stylesPopup.popup,
@@ -37,18 +37,13 @@ export const Dropdown = ({
 		>
 			<Menu.Button className={stylesPopup.trigger}>{trigger}</Menu.Button>
 			<Menu.Items
-				as='ul'
-				className={classNames(styles.menu, {}, [
-					stylesPopup[direction],
-				])}
+				as="ul"
+				className={classNames(styles.menu, {}, [stylesPopup[direction]])}
 			>
 				{items.map(
-					(
-						{ content, ItemType = 'div', disabled, href, onClick },
-						index
-					) => (
+					({ content, ItemType = 'div', disabled, href, onClick }, index) => (
 						<Menu.Item
-							as='li'
+							as="li"
 							disabled={disabled}
 							key={`dropdown-key-${index}`}
 						>
@@ -60,14 +55,14 @@ export const Dropdown = ({
 									className={classNames(
 										styles.item,
 										{ [stylesPopup.active]: active },
-										[]
+										[],
 									)}
 								>
 									{content}
 								</ItemType>
 							)}
 						</Menu.Item>
-					)
+					),
 				)}
 			</Menu.Items>
 		</Menu>

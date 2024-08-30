@@ -24,5 +24,5 @@ export const fetchArticleRecommendations = createAsyncThunk<
 		} catch (error) {
 			return rejectWithValue('error');
 		}
-	}
+	},
 );

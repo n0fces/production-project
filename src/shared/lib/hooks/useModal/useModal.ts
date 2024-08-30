@@ -29,9 +29,7 @@ export const useModal = ({
 }: UseModalProps) => {
 	const [isClosing, setIsClosing] = useState(false);
 	const [isMounted, setIsMounted] = useState(false);
-	const timerRef = useRef() as MutableRefObject<
-		ReturnType<typeof setTimeout>
-	>;
+	const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
 
 	useEffect(() => {
 		if (isOpen) {
@@ -53,7 +51,7 @@ export const useModal = ({
 		(e: KeyboardEvent) => {
 			if (e.key === 'Escape') close();
 		},
-		[close]
+		[close],
 	);
 
 	useEffect(() => {

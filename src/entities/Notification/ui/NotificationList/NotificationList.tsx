@@ -18,19 +18,19 @@ export const NotificationList = ({ className }: NotificationListProps) => {
 	if (isLoading) {
 		return (
 			<VStack
-				gap='16'
+				gap="16"
 				max
 				className={classNames(styles.NotificationList, {}, [className])}
 			>
-				<Skeleton width='100%' border='8px' height='80px' />
-				<Skeleton width='100%' border='8px' height='80px' />
-				<Skeleton width='100%' border='8px' height='80px' />
+				<Skeleton width="100%" border="8px" height="80px" />
+				<Skeleton width="100%" border="8px" height="80px" />
+				<Skeleton width="100%" border="8px" height="80px" />
 			</VStack>
 		);
 	}
 	return (
 		<VStack
-			gap='16'
+			gap="16"
 			max
 			className={classNames(styles.NotificationList, {}, [className])}
 		>

@@ -40,10 +40,7 @@ export type MountedReducers = OptionalRecord<StateSchemeKey, boolean>;
 
 export interface ReducerManager {
 	getReducerMap: () => ReducersMapObject<StateScheme>;
-	reduce: (
-		state: StateScheme,
-		action: AnyAction
-	) => CombinedState<StateScheme>;
+	reduce: (state: StateScheme, action: AnyAction) => CombinedState<StateScheme>;
 	add: (key: StateSchemeKey, reducer: Reducer) => void;
 	remove: (key: StateSchemeKey) => void;
 	// true - вмонтирован, false - демонтирован или не

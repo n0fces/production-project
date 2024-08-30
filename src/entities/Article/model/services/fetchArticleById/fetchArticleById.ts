@@ -29,5 +29,5 @@ export const fetchArticleById = createAsyncThunk<
 		} catch (error) {
 			return rejectWithValue('error');
 		}
-	}
+	},
 );
