@@ -1,7 +1,19 @@
 import webpack from 'webpack';
 import path from 'path';
 import { buildWebpackConfig } from './config/build/buildWebpackConfig';
-import { BuildEnv, BuildPaths } from './config/build/types/config';
+import { BuildEnv, BuildMode, BuildPaths } from './config/build/types/config';
+
+function getApiUrl(mode: BuildMode, apiUrl?: string) {
+	if (apiUrl) {
+		return apiUrl;
+	}
+	// в качестве текущего адреса будет текущий хост
+	// по текущему хосту запрос и так будет улетать, так что нет смысла его явно указывать
+	if (mode === 'production') {
+		return '/api';
+	}
+	return 'http://localhost:8000';
+}
 
 export default (env: BuildEnv) => {
 	const paths: BuildPaths = {
@@ -15,7 +27,7 @@ export default (env: BuildEnv) => {
 
 	const mode = env?.mode || 'development';
 	const PORT = env?.port || 3000;
-	const apiUrl = env?.apiUrl || 'http://localhost:8000';
+	const apiUrl = getApiUrl(mode, env?.apiUrl);
 
 	const isDev = mode === 'development';
 

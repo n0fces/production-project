@@ -9,3 +9,4 @@ storybook-static
 /reports/unit
 /json-server/cert.pem
 /json-server/key.pem
+comments.txt
