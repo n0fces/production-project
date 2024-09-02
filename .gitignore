@@ -7,3 +7,5 @@ storybook-static
 /.loki/report.json
 /.husky
 /reports/unit
+/json-server/cert.pem
+/json-server/key.pem
