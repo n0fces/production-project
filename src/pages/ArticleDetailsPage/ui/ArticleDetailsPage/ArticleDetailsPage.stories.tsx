@@ -27,6 +27,10 @@ const article: Article = {
 	user: {
 		id: '1',
 		username: 'Ilya',
+		features: {
+			isArticleRatingEnabled: true,
+			isCounterEnabled: true,
+		},
 	},
 	type: [ArticleType.IT],
 	blocks: [
