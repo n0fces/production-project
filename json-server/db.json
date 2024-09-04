@@ -1042,9 +1042,10 @@
         "isCounterEnabled": true
       },
       "jsonSettings": {
-        "theme": "app_dark_theme",
+        "theme": "app_green_theme",
         "isFirstVisit": true,
-        "settingsPageHasBeenOpen": false
+        "isArticlesPageWasOpened": true,
+        "isArticlesPageWasOpen": true
       },
       "avatar": "https://image.spreadshirtmedia.net/image-server/v1/compositions/T6A1PA5835PT17X67Y83D175825012W17698H15087/views/1,width=550,height=550,appearanceId=1,backgroundColor=FFFFFF,noPt=true/wednesday-frog-mens-t-shirt.jpg"
     },
@@ -1062,7 +1063,7 @@
       "jsonSettings": {
         "theme": "app_light_theme",
         "isFirstVisit": true,
-        "settingsPageHasBeenOpen": false
+        "isArticlesPageWasOpened": true
       },
       "avatar": "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg"
     },
@@ -1078,9 +1079,9 @@
         "isCounterEnabled": true
       },
       "jsonSettings": {
-        "theme": "app_light_theme",
+        "theme": "app_dark_theme",
         "isFirstVisit": true,
-        "settingsPageHasBeenOpen": false
+        "isArticlesPageWasOpen": true
       },
       "avatar": "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg"
     },
@@ -1097,8 +1098,7 @@
       },
       "jsonSettings": {
         "theme": "app_light_theme",
-        "isFirstVisit": true,
-        "settingsPageHasBeenOpen": false
+        "isFirstVisit": true
       },
       "avatar": "https://image.spreadshirtmedia.net/image-server/v1/compositions/T6A1PA5835PT17X67Y83D175825012W17698H15087/views/1,width=550,height=550,appearanceId=1,backgroundColor=FFFFFF,noPt=true/wednesday-frog-mens-t-shirt.jpg"
     }
@@ -1178,6 +1178,18 @@
       "articleId": "11",
       "rate": 5,
       "id": "2HnUbQn"
+    },
+    {
+      "userId": "1",
+      "articleId": "12",
+      "rate": 5,
+      "id": "_8TOy6R"
+    },
+    {
+      "userId": "1",
+      "articleId": "18",
+      "rate": 3,
+      "id": "pKyT2QQ"
     }
   ]
 }
