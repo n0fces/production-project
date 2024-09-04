@@ -15,7 +15,7 @@ import { articleDetailsPageReducer } from '../../model/slice';
 import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments';
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 import styles from './ArticleDetailsPage.module.scss';
-import { toggleFeatures } from '@/shared/lib/features';
+import { ToggleFeatures } from '@/shared/lib/features';
 import { Card } from '@/shared/ui/Card';
 
 interface ArticleDetailsPageProps {
@@ -38,12 +38,6 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 		return null;
 	}
 
-	const articleRatingCard = toggleFeatures({
-		name: 'isArticleRatingEnabled',
-		on: () => <ArticleRating articleId={id} />,
-		off: () => <Card>{t('Оценка статей скоро появится!')}</Card>,
-	});
-
 	return (
 		// Здесь DynamicModuleLoader нужен для работы с асинхронным экшеном под комментарии конкретной статьи (articleDetailsCommentsReducer)
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount>
@@ -51,8 +45,11 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 				<VStack gap="16" max>
 					<ArticleDetailsPageHeader />
 					<ArticleDetails id={id} />
-					{/* <ArticleRating articleId={id} /> */}
-					{articleRatingCard}
+					<ToggleFeatures
+						feature="isArticleRatingEnabled"
+						on={<ArticleRating articleId={id} />}
+						off={<Card>{t('Оценка статей скоро появится!')}</Card>}
+					/>
 					<ArticleRecommendationsList />
 					<ArticleDetailsComments id={id} />
 				</VStack>

@@ -61,6 +61,7 @@ module.exports = {
 					'align',
 					'gap',
 					'border',
+					'feature',
 				],
 			},
 		],
@@ -98,7 +99,7 @@ module.exports = {
 				],
 			},
 		],
-		'react/no-unstable-nested-components': 'warn'
+		'react/no-unstable-nested-components': 'warn',
 	},
 	globals: {
 		__IS_DEV__: true,

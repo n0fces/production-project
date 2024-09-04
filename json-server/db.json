@@ -1044,8 +1044,7 @@
       "jsonSettings": {
         "theme": "app_green_theme",
         "isFirstVisit": true,
-        "isArticlesPageWasOpened": true,
-        "isArticlesPageWasOpen": true
+        "isArticlesPageWasOpened": true
       },
       "avatar": "https://image.spreadshirtmedia.net/image-server/v1/compositions/T6A1PA5835PT17X67Y83D175825012W17698H15087/views/1,width=550,height=550,appearanceId=1,backgroundColor=FFFFFF,noPt=true/wednesday-frog-mens-t-shirt.jpg"
     },
@@ -1062,8 +1061,7 @@
       },
       "jsonSettings": {
         "theme": "app_light_theme",
-        "isFirstVisit": true,
-        "isArticlesPageWasOpened": true
+        "isFirstVisit": true
       },
       "avatar": "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg"
     },
@@ -1080,8 +1078,7 @@
       },
       "jsonSettings": {
         "theme": "app_dark_theme",
-        "isFirstVisit": true,
-        "isArticlesPageWasOpen": true
+        "isFirstVisit": true
       },
       "avatar": "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg"
     },
@@ -1190,6 +1187,12 @@
       "articleId": "18",
       "rate": 3,
       "id": "pKyT2QQ"
+    },
+    {
+      "userId": "1",
+      "articleId": "17",
+      "rate": 4,
+      "id": "JMm0oBE"
     }
   ]
 }
