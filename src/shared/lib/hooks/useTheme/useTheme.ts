@@ -1,17 +1,18 @@
 import { useContext } from 'react';
 import { ThemeContext } from '../../context/ThemeContext';
-import { LOCAL_STORAGE_THEME_KEY } from '../../../const/localStorage';
 import { Theme } from '../../../const/theme';
 
 interface UseThemeResult {
-	toggleTheme: () => void;
+	// место, куда сохраняется тема, определяется не внутри хука, а определяется извне
+	// извне дается функция, которая будет определять, как и куда будет происходить сохранение значения темы
+	toggleTheme: (saveAction?: (theme: Theme) => void) => void;
 	theme: Theme;
 }
 
 export function useTheme(): UseThemeResult {
 	const { theme, setTheme } = useContext(ThemeContext);
 
-	const toggleTheme = () => {
+	const toggleTheme = (saveAction?: (theme: Theme) => void) => {
 		let newTheme: Theme;
 		switch (theme) {
 			case Theme.DARK:
@@ -28,8 +29,9 @@ export function useTheme(): UseThemeResult {
 		}
 		// потому что контекст инициализируется не сразу
 		setTheme?.(newTheme);
-		document.body.className = newTheme;
-		localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
+		// document.body.className = newTheme;
+		// localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
+		saveAction?.(newTheme);
 	};
 
 	return {
