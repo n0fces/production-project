@@ -10,3 +10,4 @@ export {
 } from './model/selectors/roleSelectors';
 export { saveJsonSettings } from './model/services/saveJsonSettings';
 export { useJsonSettings } from './model/selectors/jsonSettings';
+export { initAuthData } from './model/services/initAuthData';

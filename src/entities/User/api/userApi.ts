@@ -22,9 +22,18 @@ const userApi = rtkApi.injectEndpoints({
 				},
 			}),
 		}),
+		getUserDataById: build.query<User, string>({
+			query: (userId) => ({
+				url: `/users/${userId}`,
+				// хотим у пользователя обновить лишь одно поле
+				method: 'GET',
+			}),
+		}),
 	}),
 });
 
 // в rtk есть возможность делать запросы без использования хуков, благодаря чему можно отправлять запросы не только в компонентах
 export const setJsonSettingsMutation =
 	userApi.endpoints.setJsonSettings.initiate;
+
+export const getUserDataByIdQuery = userApi.endpoints.getUserDataById.initiate;
