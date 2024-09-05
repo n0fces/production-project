@@ -5,7 +5,7 @@ import { getSidebarItems } from '../../model/selectors/getSidebarItems';
 import styles from './Sidebar.module.scss';
 import { ToggleFeatures } from '@/shared/lib/features';
 import { SidebarDeprecated } from './SidebarDeprecated';
-import { AppLogo } from '@/shared/ui/AppLogo';
+import { AppLogo } from '@/shared/ui/deprecated/AppLogo';
 
 interface SidebarProps {
 	className?: string;

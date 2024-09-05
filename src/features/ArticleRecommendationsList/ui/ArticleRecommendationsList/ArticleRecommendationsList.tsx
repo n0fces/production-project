@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArticleList } from '@/entities/Article';
-import { VStack } from '@/shared/ui/Stack';
-import { Text, TextSize } from '@/shared/ui/Text';
+import { VStack } from '@/shared/ui/deprecated/Stack';
+import { Text, TextSize } from '@/shared/ui/deprecated/Text';
 import { useGetArticleRecommendationsListQuery } from '../../api/articleRecommendationsApi';
 
 // ! Мне очень не нравится, как Тимур воспринимает fsd, так что после окончания курса нужно обязательно сделать полный рефактор по этой части

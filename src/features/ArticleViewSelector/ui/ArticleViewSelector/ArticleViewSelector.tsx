@@ -1,8 +1,8 @@
-import ListIcon from '@/shared/assets/icons/list.svg';
-import TiledIcon from '@/shared/assets/icons/tiled.svg';
+import ListIcon from '@/shared/assets/icons/list-24-24.svg';
+import TiledIcon from '@/shared/assets/icons/tiled-24-24.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
-import { Icon } from '@/shared/ui/Icon';
+import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
+import { Icon } from '@/shared/ui/deprecated/Icon';
 import styles from './ArticleViewSelector.module.scss';
 import { ArticleView } from '@/entities/Article';
 
