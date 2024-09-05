@@ -5,13 +5,12 @@ import { getUserAuthData } from '@/entities/User';
 import { LoginModal } from '@/features/AuthByUsername';
 import { AvatarDropdown } from '@/features/AvatarDropdown';
 import { NotificationButton } from '@/features/NotificationButton';
-import { getRouteArticleCreate } from '@/shared/const/router';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink';
+import { ToggleFeatures } from '@/shared/lib/features';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
 import { HStack } from '@/shared/ui/Stack';
-import { Text, TextTheme } from '@/shared/ui/Text';
 import styles from './Navbar.module.scss';
+import { NavbarDeprecated } from './NavbarDeprecated';
 
 interface NavbarProps {
 	className?: string;
@@ -30,41 +29,45 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 		setIsAuthModal(true);
 	}, []);
 
-	if (authData) {
-		return (
-			<header className={classNames(styles.Navbar, {}, [className])}>
-				<Text
-					className={styles.appName}
-					title={t('Приложение статей')}
-					theme={TextTheme.INVERTED}
-				/>
-				<AppLink
-					to={getRouteArticleCreate()}
-					theme={AppLinkTheme.SECONDARY}
-					className={styles.createBtn}
-				>
-					{t('Создать статью')}
-				</AppLink>
-				<HStack gap="16" className={styles.actions}>
-					<NotificationButton />
-					<AvatarDropdown />
-				</HStack>
-			</header>
-		);
-	}
-
 	return (
-		<header className={classNames(styles.Navbar, {}, [className])}>
-			<Button
-				theme={ButtonTheme.CLEAR_INVERTED}
-				className={styles.links}
-				onClick={onShowModal}
-			>
-				{t('Войти')}
-			</Button>
-			{isAuthModal && (
-				<LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
-			)}
-		</header>
+		<ToggleFeatures
+			feature="isAppRedesigned"
+			off={
+				<NavbarDeprecated
+					authData={authData}
+					isAuthModal={isAuthModal}
+					onCloseModal={onCloseModal}
+					onShowModal={onShowModal}
+					className={className}
+				/>
+			}
+			on={
+				authData ? (
+					<header
+						className={classNames(styles.NavbarRedesigned, {}, [className])}
+					>
+						<HStack gap="16" className={styles.actions}>
+							<NotificationButton />
+							<AvatarDropdown />
+						</HStack>
+					</header>
+				) : (
+					<header
+						className={classNames(styles.NavbarRedesigned, {}, [className])}
+					>
+						<Button
+							theme={ButtonTheme.CLEAR_INVERTED}
+							className={styles.links}
+							onClick={onShowModal}
+						>
+							{t('Войти')}
+						</Button>
+						{isAuthModal && (
+							<LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
+						)}
+					</header>
+				)
+			}
+		/>
 	);
 });
