@@ -43,6 +43,8 @@ export const ArticleViewSelector = ({
 					onClick={onClick(viewType.view)}
 				>
 					<Icon
+						width={24}
+						height={24}
 						Svg={viewType.icon}
 						className={classNames('', {
 							[styles.notSelected]: viewType.view !== view,
