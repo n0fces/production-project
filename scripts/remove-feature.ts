@@ -148,13 +148,12 @@ const replaceComponent = (node: Node) => {
 files.forEach((sourceFile) => {
 	// в каждом файле необходимо пройтись по всем нодам, чтобы найти ноду с нужным типом и проверить ее значение (нужен toggleFeatures)
 	sourceFile.forEachDescendant((node) => {
+		// необходимо оформить в виде else if, чтобы после дальше код не шел, когда мы что-то с ним сделали в первой ветке условия (дальше не нужно ничего делать)
 		// здесь обрабатывается CallExpression, то есть для реализации toggleFeature
 		if (node.isKind(SyntaxKind.CallExpression) && isToggleFunction(node)) {
 			replaceToggleFunction(node);
-		}
-
-		// здесь обрабатывается JsxClosingElement, то есть для реализации ToggleFeature
-		if (
+		} else if (
+			// здесь обрабатывается JsxClosingElement, то есть для реализации ToggleFeature
 			node.isKind(SyntaxKind.JsxSelfClosingElement) &&
 			isToggleComponent(node)
 		) {
