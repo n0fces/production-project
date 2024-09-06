@@ -5,7 +5,13 @@ import { getSidebarItems } from '../../model/selectors/getSidebarItems';
 import styles from './Sidebar.module.scss';
 import { ToggleFeatures } from '@/shared/lib/features';
 import { SidebarDeprecated } from './SidebarDeprecated';
-import { AppLogo } from '@/shared/ui/deprecated/AppLogo';
+import { AppLogo } from '@/shared/ui/redesigned/AppLogo';
+import { VStack } from '@/shared/ui/deprecated/Stack';
+import { SidebarItem } from '../SidebarItem/SidebarItem';
+import { Icon } from '@/shared/ui/redesigned/Icon';
+import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
+import { ThemeSwitcher } from '@/features/ThemeSwitcher';
+import { LangSwitcher } from '@/features/LangSwitcher';
 
 interface SidebarProps {
 	className?: string;
@@ -29,11 +35,27 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
 					data-testid="sidebar"
 					className={classNames(
 						styles.SidebarRedesigned,
-						{ [styles.collapsed]: collapsed },
+						{ [styles.collapsedRedesigned]: collapsed },
 						[className],
 					)}
 				>
-					<AppLogo className={styles.appLogo} />
+					<AppLogo size={collapsed ? 30 : 50} className={styles.appLogo} />
+					<VStack role="navigation" gap="8" className={styles.items}>
+						{sidebarItemsList.map((item) => (
+							<SidebarItem key={item.path} item={item} collapsed={collapsed} />
+						))}
+					</VStack>
+					<Icon
+						data-testid="sidebar-toggle"
+						onClick={onToggle}
+						className={styles.collapseBtn}
+						Svg={ArrowIcon}
+					/>
+					{/* здесь можно было бы использовать HStack и VStack */}
+					<div className={styles.switchers}>
+						<ThemeSwitcher />
+						<LangSwitcher short={collapsed} className={styles.lang} />
+					</div>
 				</aside>
 			}
 			off={
