@@ -32,6 +32,14 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	 * Увеличивает кнопку на всю свободную ширину
 	 */
 	fullWidth?: boolean;
+	/**
+	 * Добавляет иконку слева
+	 */
+	addonLeft?: ReactNode;
+	/**
+	 * Добавляет иконку справа
+	 */
+	addonRight?: ReactNode;
 }
 
 export const Button = memo((props: ButtonProps) => {
@@ -43,6 +51,8 @@ export const Button = memo((props: ButtonProps) => {
 		size = 'm',
 		disabled,
 		fullWidth,
+		addonLeft,
+		addonRight,
 		...otherProps
 	} = props;
 
@@ -50,6 +60,7 @@ export const Button = memo((props: ButtonProps) => {
 		[styles.square]: square,
 		[styles.disabled]: disabled,
 		[styles.fullWidth]: fullWidth,
+		[styles.withAddon]: Boolean(addonLeft) || Boolean(addonRight),
 	};
 
 	return (
@@ -63,7 +74,9 @@ export const Button = memo((props: ButtonProps) => {
 			disabled={disabled}
 			{...otherProps}
 		>
+			{addonLeft && <span className={styles.addonLeft}>{addonLeft}</span>}
 			{children}
+			{addonRight && <span className={styles.addonRight}>{addonRight}</span>}
 		</button>
 	);
 });

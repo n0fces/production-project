@@ -6,9 +6,11 @@ import { Button } from '../../../Button/Button';
 import { HStack } from '../../../../redesigned/Stack';
 import stylesPopup from '../../styles/popup.module.scss';
 import styles from './ListBox.module.scss';
+import { Icon } from '../../../Icon';
+import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
 
 export interface ListBoxItem<T extends string> {
-	value: string;
+	value: T;
 	content: ReactNode;
 	disabled?: boolean;
 }
@@ -56,7 +58,11 @@ export const ListBox = <T extends string>({
 			>
 				{/* Здесь кнопка в кнопке, что обязательно нужно исправить */}
 				<HListBox.Button className={stylesPopup.trigger}>
-					<Button variant="filled" disabled={readOnly}>
+					<Button
+						variant="filled"
+						disabled={readOnly}
+						addonRight={<Icon Svg={ArrowIcon} />}
+					>
 						{selectedItem?.content ?? defaultValue}
 					</Button>
 				</HListBox.Button>
