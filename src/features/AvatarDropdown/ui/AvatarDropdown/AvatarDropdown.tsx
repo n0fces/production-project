@@ -9,9 +9,11 @@ import {
 } from '@/entities/User';
 import { getRouteAdmin, getRouteProfile } from '@/shared/const/router';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { AppLink } from '@/shared/ui/deprecated/AppLink';
-import { Avatar } from '@/shared/ui/deprecated/Avatar';
-import { Dropdown } from '@/shared/ui/deprecated/Popups';
+import { ToggleFeatures } from '@/shared/lib/features';
+import { Avatar as AvatarDeorecated } from '@/shared/ui/deprecated/Avatar';
+import { Dropdown as DropdownDeprecated } from '@/shared/ui/deprecated/Popups';
+import { Avatar } from '@/shared/ui/redesigned/Avatar';
+import { Dropdown } from '@/shared/ui/redesigned/Popups';
 
 interface AvatarDropdownProps {
 	className?: string;
@@ -32,38 +34,48 @@ export const AvatarDropdown = ({ className }: AvatarDropdownProps) => {
 		dispatch(userActions.logout());
 	}, [dispatch]);
 	// для обычных пользователей мы не должны давать возможность перейти в админ панель
-	const isAdminPagenAvailable = isAdmin || isManager;
+	const isAdminPanelAvailable = isAdmin || isManager;
 
 	if (!authData) {
 		return null;
 	}
 
-	return (
-		<Dropdown
-			className={classNames('', {}, [className])}
-			trigger={<Avatar size={30} src={authData.avatar} />}
-			items={[
-				...(isAdminPagenAvailable
-					? [
-							{
-								content: t('Админ панель'),
-								href: getRouteAdmin(),
-								ItemType: AppLink,
-							},
-					  ]
-					: []),
+	const items = [
+		...(isAdminPanelAvailable
+			? [
+					{
+						content: t('Админ панель'),
+						href: getRouteAdmin(),
+					},
+			  ]
+			: []),
+		{
+			content: t('Профиль'),
+			href: getRouteProfile(authData.id),
+		},
+		{
+			content: t('Выйти'),
+			onClick: onLogout,
+		},
+	];
 
-				{
-					content: t('Профиль'),
-					href: getRouteProfile(authData.id),
-					ItemType: AppLink,
-				},
-				{
-					content: t('Выйти'),
-					onClick: onLogout,
-					ItemType: 'button',
-				},
-			]}
+	return (
+		<ToggleFeatures
+			feature="isAppRedesigned"
+			on={
+				<Dropdown
+					className={classNames('', {}, [className])}
+					trigger={<Avatar size={40} src={authData.avatar} />}
+					items={items}
+				/>
+			}
+			off={
+				<DropdownDeprecated
+					className={classNames('', {}, [className])}
+					trigger={<AvatarDeorecated size={30} src={authData.avatar} />}
+					items={items}
+				/>
+			}
 		/>
 	);
 };

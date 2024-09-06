@@ -8,10 +8,6 @@ interface OverlayProps {
 }
 
 // отвечает за затемнение бэкграунда для различный элементов по типу Modal, Drawer
-/**
- * Устарел, используем новые компоненты из папки redesigned
- * @deprecated
- */
 export const Overlay = memo(({ className, onClick }: OverlayProps) => {
 	return (
 		<div

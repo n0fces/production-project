@@ -6,7 +6,7 @@ import styles from './Sidebar.module.scss';
 import { ToggleFeatures } from '@/shared/lib/features';
 import { SidebarDeprecated } from './SidebarDeprecated';
 import { AppLogo } from '@/shared/ui/redesigned/AppLogo';
-import { VStack } from '@/shared/ui/deprecated/Stack';
+import { VStack } from '@/shared/ui/redesigned/Stack';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
