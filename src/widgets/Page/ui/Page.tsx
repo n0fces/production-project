@@ -32,7 +32,13 @@ export const Page = (props: PageProps) => {
 	);
 
 	useInfiniteScroll({
-		wrapperRef,
+		// в новой версии остался только основной скролл, так что мы бередаем undefined, чтобы внутри присвоилось значение null
+		// согласно документации Intersection Observer, если рут null, то отслеживание будет относительно window
+		wrapperRef: toggleFeatures({
+			name: 'isAppRedesigned',
+			on: () => undefined,
+			off: () => wrapperRef,
+		}),
 		triggerRef,
 		callback: onScrollEnd,
 	});

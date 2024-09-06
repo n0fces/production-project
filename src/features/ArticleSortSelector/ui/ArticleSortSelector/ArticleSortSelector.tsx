@@ -5,6 +5,10 @@ import { SortOrder } from '@/shared/types/sort';
 import { Select, SelectOption } from '@/shared/ui/deprecated/Select';
 import styles from './ArticleSortSelector.module.scss';
 import { ArticleSortField } from '@/entities/Article';
+import { ToggleFeatures } from '@/shared/lib/features';
+import { ListBox } from '@/shared/ui/redesigned/Popups';
+import { VStack } from '@/shared/ui/redesigned/Stack';
+import { Text } from '@/shared/ui/redesigned/Text';
 
 interface ArticleSortSelectorProps {
 	className?: string;
@@ -53,21 +57,50 @@ export const ArticleSortSelector = ({
 	);
 
 	return (
-		<div className={classNames(styles.ArticleSortSelector, {}, [className])}>
-			{/* можно вот так явно задавать тип для generic component */}
-			<Select<ArticleSortField>
-				options={sortFieldOptions}
-				label={t('Сортировать по')}
-				value={sort}
-				onChange={onChangeSort}
-			/>
-			<Select
-				options={orderOptions}
-				label={t('по')}
-				value={order}
-				onChange={onChangeOrder}
-				className={styles.order}
-			/>
-		</div>
+		<ToggleFeatures
+			feature="isAppRedesigned"
+			on={
+				<div
+					className={classNames(styles.ArticleSortSelectorRedesigned, {}, [
+						className,
+					])}
+				>
+					<VStack gap="8">
+						<Text text={t('Сортировать по:')} />
+						{/* можно вот так явно задавать тип для generic component */}
+						<ListBox
+							items={sortFieldOptions}
+							value={sort}
+							onChange={onChangeSort}
+						/>
+						<ListBox
+							items={orderOptions}
+							value={order}
+							onChange={onChangeOrder}
+						/>
+					</VStack>
+				</div>
+			}
+			off={
+				<div
+					className={classNames(styles.ArticleSortSelector, {}, [className])}
+				>
+					{/* можно вот так явно задавать тип для generic component */}
+					<Select<ArticleSortField>
+						options={sortFieldOptions}
+						label={t('Сортировать по:')}
+						value={sort}
+						onChange={onChangeSort}
+					/>
+					<Select
+						options={orderOptions}
+						label={t('по')}
+						value={order}
+						onChange={onChangeOrder}
+						className={styles.order}
+					/>
+				</div>
+			}
+		/>
 	);
 };

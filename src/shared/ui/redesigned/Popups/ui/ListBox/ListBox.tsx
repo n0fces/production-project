@@ -7,25 +7,25 @@ import { HStack } from '../../../../redesigned/Stack';
 import stylesPopup from '../../styles/popup.module.scss';
 import styles from './ListBox.module.scss';
 
-export interface ListBoxItem {
+export interface ListBoxItem<T extends string> {
 	value: string;
 	content: ReactNode;
 	disabled?: boolean;
 }
 
-interface ListBoxProps {
+interface ListBoxProps<T extends string> {
+	items?: ListBoxItem<T>[];
 	className?: string;
-	items?: ListBoxItem[];
-	value?: string;
+	value?: T;
 	// значение по умолчанию, когда у нас не выбран еще какой-то value
 	defaultValue?: string;
-	onChange: (value: string) => void;
+	onChange: (value: T) => void;
 	readOnly?: boolean;
 	direction?: DropdownDirection;
 	label?: string;
 }
 
-export const ListBox = ({
+export const ListBox = <T extends string>({
 	className,
 	items,
 	value,
@@ -34,7 +34,8 @@ export const ListBox = ({
 	readOnly,
 	direction = 'bottomRight',
 	label,
-}: ListBoxProps) => {
+}: ListBoxProps<T>) => {
+	const selectedItem = items?.find((item) => item.value === value);
 	// потом, если будет время, можно перейти на более свежую версию данной библиотеки
 	return (
 		<HStack gap="4">
@@ -55,7 +56,9 @@ export const ListBox = ({
 			>
 				{/* Здесь кнопка в кнопке, что обязательно нужно исправить */}
 				<HListBox.Button className={stylesPopup.trigger}>
-					<Button disabled={readOnly}>{value ?? defaultValue}</Button>
+					<Button variant="filled" disabled={readOnly}>
+						{selectedItem?.content ?? defaultValue}
+					</Button>
 				</HListBox.Button>
 				<HListBox.Options
 					className={classNames(styles.options, {}, [
@@ -70,13 +73,14 @@ export const ListBox = ({
 							disabled={item.disabled}
 							as={Fragment}
 						>
-							{({ active }) => (
+							{({ active, selected }) => (
 								<li
 									className={classNames(
 										styles.item,
 										{
 											[stylesPopup.active]: active,
 											[stylesPopup.disabled]: item.disabled,
+											[styles.selected]: selected,
 										},
 										[],
 									)}
