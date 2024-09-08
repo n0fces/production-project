@@ -1,6 +1,6 @@
-import { HTMLAttributes, ReactNode } from 'react';
+import { HTMLAttributes, memo, ReactNode } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import styles from './Card.module.scss';
+import cls from './Card.module.scss';
 
 export enum CardTheme {
 	NORMAL = 'normal',
@@ -18,22 +18,24 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
  * Устарел, используем новые компоненты из папки redesigned
  * @deprecated
  */
-export const Card = ({
-	className,
-	children,
-	theme = CardTheme.NORMAL,
-	max,
-	...otherProps
-}: CardProps) => {
+export const Card = memo((props: CardProps) => {
+	const {
+		className,
+		children,
+		theme = CardTheme.NORMAL,
+		max,
+		...otherProps
+	} = props;
+
 	return (
 		<div
-			className={classNames(styles.Card, { [styles.max]: max }, [
+			className={classNames(cls.Card, { [cls.max]: max }, [
 				className,
-				styles[theme],
+				cls[theme],
 			])}
 			{...otherProps}
 		>
 			{children}
 		</div>
 	);
-};
+});

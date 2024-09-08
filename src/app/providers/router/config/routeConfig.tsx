@@ -15,7 +15,7 @@ import {
 	getRouteArticleCreate,
 	getRouteArticleEdit,
 	getRouteArticles,
-	getRouteArticlesDetails,
+	getRouteArticleDetails,
 	getRouteForbidden,
 	getRouteMain,
 	getRouteProfile,
@@ -45,7 +45,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 	},
 	[AppRoutes.ARTICLES_DETAILS]: {
 		// здесь задаем переменную для id, которая показывает, что данный путь является динамическим
-		path: getRouteArticlesDetails(':id'),
+		path: getRouteArticleDetails(':id'),
 		element: <ArticleDetailsPage />,
 		// доступ к статьям сделаем только для авторизованных пользователей
 		authOnly: true,

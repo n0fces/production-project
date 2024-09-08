@@ -1,19 +1,58 @@
+import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Card } from '@/shared/ui/deprecated/Card';
-import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
-import { ArticleView } from '../../model/consts/consts';
+import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
+import { Card as CardRedesigned } from '@/shared/ui/redesigned/Card';
+import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
+import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 import styles from './ArticleListItem.module.scss';
+import { toggleFeatures } from '@/shared/lib/features';
+import { ArticleView } from '../../model/consts/consts';
 
 interface ArticleListItemSkeletonProps {
 	className?: string;
 	view: ArticleView;
 }
 
-export const ArticleListItemSkeleton = ({
-	className,
-	view,
-}: ArticleListItemSkeletonProps) => {
-	if (view === ArticleView.BIG) {
+export const ArticleListItemSkeleton = memo(
+	(props: ArticleListItemSkeletonProps) => {
+		const { className, view } = props;
+
+		const Skeleton = toggleFeatures({
+			name: 'isAppRedesigned',
+			on: () => SkeletonRedesigned,
+			off: () => SkeletonDeprecated,
+		});
+		const Card = toggleFeatures({
+			name: 'isAppRedesigned',
+			on: () => CardRedesigned,
+			off: () => CardDeprecated,
+		});
+
+		if (view === ArticleView.BIG) {
+			return (
+				<div
+					className={classNames(styles.ArticleListItem, {}, [
+						className,
+						styles[view],
+					])}
+				>
+					{/* по-хорошему здесь можно использовать стеки, чтобы избавиться от лишних стилей */}
+					<Card className={styles.card}>
+						<div className={styles.header}>
+							<Skeleton border="50%" height={30} width={30} />
+							<Skeleton width={150} height={16} className={styles.username} />
+							<Skeleton width={150} height={16} className={styles.date} />
+						</div>
+						<Skeleton width={250} height={24} className={styles.title} />
+						<Skeleton height={200} className={styles.img} />
+						<div className={styles.footer}>
+							<Skeleton height={36} width={200} />
+						</div>
+					</Card>
+				</div>
+			);
+		}
+
 		return (
 			<div
 				className={classNames(styles.ArticleListItem, {}, [
@@ -21,38 +60,16 @@ export const ArticleListItemSkeleton = ({
 					styles[view],
 				])}
 			>
-				<Card>
-					<div className={styles.header}>
-						<Skeleton width={30} height={30} border="50%" />
-						<Skeleton width={150} height={16} className={styles.username} />
-						<Skeleton width={150} height={16} className={styles.date} />
+				<Card className={styles.card}>
+					<div className={styles.imageWrapper}>
+						<Skeleton width={200} height={200} className={styles.img} />
 					</div>
-					<Skeleton width={250} height={24} className={styles.title} />
-					<Skeleton height={200} className={styles.img} />
-					<div className={styles.footer}>
-						<Skeleton height={36} width={200} />
+					<div className={styles.infoWrapper}>
+						<Skeleton width={130} height={16} />
 					</div>
+					<Skeleton width={150} height={16} className={styles.title} />
 				</Card>
 			</div>
 		);
-	}
-
-	return (
-		<div
-			className={classNames(styles.ArticleListItem, {}, [
-				className,
-				styles[view],
-			])}
-		>
-			<Card>
-				<div className={styles.imageWrapper}>
-					<Skeleton className={styles.img} width={200} height={200} />
-				</div>
-				<div className={styles.infoWrapper}>
-					<Skeleton width={130} height={16} />
-				</div>
-				<Skeleton width={150} height={16} className={styles.title} />
-			</Card>
-		</div>
-	);
-};
+	},
+);
