@@ -7,6 +7,8 @@ import { Article } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
 import styles from './ArticleList.module.scss';
+import { ToggleFeatures } from '@/shared/lib/features';
+import { HStack } from '@/shared/ui/redesigned/Stack';
 
 // в этих компонентах мы также не будем подвязываться на определенный стейт, а будем принимать статьи извне
 // данный компонент списка статей мы можем использовать на других страницах, например, рекомендаций
@@ -55,21 +57,47 @@ export const ArticleList = ({
 	// * СЮДА ВПОСЛЕДСТВИИ НАДО ВПИСАТЬ СОВРЕМЕННОЕ РЕШЕНИЕ ДЛЯ ВИРТУАЛИЗАЦИИ СПИСКОВ. СЕЙЧАС ВИПИЛИЛИ REACT-VIRTUALIZED,
 	// * ПОТОМУ ЧТО СЛИШКОМ УСТАРЕВШЕЕ РЕШЕНИЕ
 	return (
-		<div
-			data-testid="ArticleList"
-			className={classNames(styles.ArticleList, {}, [className, styles[view]])}
-		>
-			{articles.map((article) => (
-				<ArticleListItem
-					article={article}
-					view={view}
-					key={article.id}
-					target={target}
-					className={styles.card}
-				/>
-			))}
-
-			{isLoading && getSkeletons(view)}
-		</div>
+		<ToggleFeatures
+			feature="isAppRedesigned"
+			on={
+				<HStack
+					wrap="wrap"
+					gap="16"
+					className={classNames(styles.ArticleListRedesigned, {}, [])}
+					data-testid="ArticleList"
+				>
+					{articles.map((item) => (
+						<ArticleListItem
+							article={item}
+							view={view}
+							target={target}
+							key={item.id}
+							className={styles.card}
+						/>
+					))}
+					{isLoading && getSkeletons(view)}
+				</HStack>
+			}
+			off={
+				<div
+					className={classNames(styles.ArticleList, {}, [
+						className,
+						styles[view],
+					])}
+					data-testid="ArticleList"
+				>
+					{articles.map((item) => (
+						<ArticleListItem
+							article={item}
+							view={view}
+							target={target}
+							key={item.id}
+							className={styles.card}
+						/>
+					))}
+					{isLoading && getSkeletons(view)}
+				</div>
+			}
+		/>
 	);
 };

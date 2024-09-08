@@ -6,6 +6,7 @@ export type FLexJustify = 'start' | 'center' | 'end' | 'between';
 export type FlexAlign = 'start' | 'center' | 'end';
 export type FlexDirection = 'row' | 'column';
 export type FlexGap = '4' | '8' | '16' | '24' | '32';
+export type FlexWrap = 'wrap' | 'nowrap';
 
 // описываем сопоставлепния того пропса, который нам пришел, с классом, который необходимо применить
 const justifyClasses: Record<FLexJustify, string> = {
@@ -46,6 +47,7 @@ export interface FlexProps extends DivProps {
 	align?: FlexAlign;
 	direction?: FlexDirection;
 	gap?: FlexGap;
+	wrap?: FlexWrap;
 	max?: boolean;
 }
 
@@ -57,6 +59,7 @@ export const Flex = ({
 	direction = 'row',
 	gap,
 	max,
+	wrap = 'nowrap',
 	...otherProps
 }: FlexProps) => {
 	// на компонент будут навешиваться нужные классы в соответствии с переданными пропсами. Помимо этого, мы не забыли про className, который может передаваться извне для уточнения некоторых стилей
@@ -65,6 +68,7 @@ export const Flex = ({
 		justifyClasses[justify],
 		alignClasses[align],
 		directionClasses[direction],
+		styles[wrap],
 		gap && gapClasses[gap],
 	];
 

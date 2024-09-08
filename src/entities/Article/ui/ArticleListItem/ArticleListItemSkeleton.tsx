@@ -17,6 +17,11 @@ export const ArticleListItemSkeleton = memo(
 	(props: ArticleListItemSkeletonProps) => {
 		const { className, view } = props;
 
+		const mainClass = toggleFeatures({
+			name: 'isAppRedesigned',
+			on: () => styles.ArticleListItemRedesigned,
+			off: () => styles.ArticleListItem,
+		});
 		const Skeleton = toggleFeatures({
 			name: 'isAppRedesigned',
 			on: () => SkeletonRedesigned,
@@ -30,12 +35,7 @@ export const ArticleListItemSkeleton = memo(
 
 		if (view === ArticleView.BIG) {
 			return (
-				<div
-					className={classNames(styles.ArticleListItem, {}, [
-						className,
-						styles[view],
-					])}
-				>
+				<div className={classNames(mainClass, {}, [className, styles[view]])}>
 					{/* по-хорошему здесь можно использовать стеки, чтобы избавиться от лишних стилей */}
 					<Card className={styles.card}>
 						<div className={styles.header}>
@@ -54,12 +54,7 @@ export const ArticleListItemSkeleton = memo(
 		}
 
 		return (
-			<div
-				className={classNames(styles.ArticleListItem, {}, [
-					className,
-					styles[view],
-				])}
-			>
+			<div className={classNames(mainClass, {}, [className, styles[view]])}>
 				<Card className={styles.card}>
 					<div className={styles.imageWrapper}>
 						<Skeleton width={200} height={200} className={styles.img} />
