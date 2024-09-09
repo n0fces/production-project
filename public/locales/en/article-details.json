@@ -9,5 +9,8 @@
 	"Редактировать": "Edit",
 	"Оцените статью": "Give your feedback",
 	"Оставьте свой отзыв о статье, это поможет улучшить качество": "Leave your feedback about the article, it will help to improve the quality",
-	"Оценка статей скоро появится!": "You can gauge articles soon!"
+	"Оценка статей скоро появится!": "You can gauge articles soon!",
+	"{{count}} просмотров_zero": "{{count}} views",
+	"{{count}} просмотров_one": "{{count}} view",
+	"{{count}} просмотров_other": "{{count}} views"
 }

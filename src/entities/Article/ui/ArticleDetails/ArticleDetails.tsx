@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
 import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg';
-import { classNames } from '@/shared/lib/classNames/classNames';
 import {
 	DynamicModuleLoader,
 	ReducersList,
@@ -33,6 +32,7 @@ import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleC
 import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import styles from './ArticleDetails.module.scss';
+import { Card } from '@/shared/ui/redesigned/Card';
 
 interface ArticleDetailsProps {
 	className?: string;
@@ -120,15 +120,13 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
 	}
 
 	return (
-		// будем размонтировать редьюсер после того, как ушли со страницы статьи
-		<DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-			<VStack
-				gap="16"
-				max
-				className={classNames(styles.ArticleDetails, {}, [className])}
-			>
-				{content}
-			</VStack>
-		</DynamicModuleLoader>
+		<Card max className={className} padding="24">
+			{/* будем размонтировать редьюсер после того, как ушли со страницы статьи */}
+			<DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+				<VStack gap="16" max className={styles.ArticleDetails}>
+					{content}
+				</VStack>
+			</DynamicModuleLoader>
+		</Card>
 	);
 });

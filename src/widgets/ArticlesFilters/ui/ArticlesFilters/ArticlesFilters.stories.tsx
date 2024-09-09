@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ArticlesFilters } from './ArticlesFilters';
 
 export default {
-	title: 'enitites/ArticlesFilters',
+	title: 'widgets/ArticlesFilters',
 	component: ArticlesFilters,
 	argTypes: {
 		backgroundColor: { control: 'color' },

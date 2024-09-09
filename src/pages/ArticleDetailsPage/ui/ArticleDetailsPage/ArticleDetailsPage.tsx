@@ -1,24 +1,15 @@
 import { memo } from 'react';
 import { useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { ArticleDetails } from '@/entities/Article';
-import { ArticleRating } from '@/features/ArticleRating';
-import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
-import { classNames } from '@/shared/lib/classNames/classNames';
 import {
 	DynamicModuleLoader,
 	ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader';
-import { VStack } from '@/shared/ui/redesigned/Stack';
-import { Page } from '@/widgets/Page';
-import { articleDetailsPageReducer } from '../../model/slice';
-import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments';
-import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
-import styles from './ArticleDetailsPage.module.scss';
 import { ToggleFeatures } from '@/shared/lib/features';
-import { Card } from '@/shared/ui/deprecated/Card';
+import { articleDetailsPageReducer } from '../../model/slice';
+import { ArticleDetailsPageDeprecated } from './ArticleDetailsPageDeprecated/ArticleDetailsPageDeprecated';
+import { ArticleDetailsPageRedesigned } from './ArticleDetailsPageRedesigned/ArticleDetailsPageRedesigned';
 
-interface ArticleDetailsPageProps {
+export interface ArticleDetailsPageProps {
 	className?: string;
 }
 
@@ -29,7 +20,6 @@ const reducers: ReducersList = {
 
 const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 	const { id } = useParams<{ id: string }>();
-	const { t } = useTranslation('article-details');
 
 	// данная тулкитовая абстрация позволяет нам даже не писать свои собственные селекторы во многих случаях, так как базовые и наиболее часто используемые кейсы уже имплементированы
 
@@ -41,19 +31,11 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 	return (
 		// Здесь DynamicModuleLoader нужен для работы с асинхронным экшеном под комментарии конкретной статьи (articleDetailsCommentsReducer)
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-			<Page className={classNames(styles.ArticleDetailsPage, {}, [className])}>
-				<VStack gap="16" max>
-					<ArticleDetailsPageHeader />
-					<ArticleDetails id={id} />
-					<ToggleFeatures
-						feature="isArticleRatingEnabled"
-						on={<ArticleRating articleId={id} />}
-						off={<Card>{t('Оценка статей скоро появится!')}</Card>}
-					/>
-					<ArticleRecommendationsList />
-					<ArticleDetailsComments id={id} />
-				</VStack>
-			</Page>
+			<ToggleFeatures
+				feature="isAppRedesigned"
+				on={<ArticleDetailsPageRedesigned className={className} id={id} />}
+				off={<ArticleDetailsPageDeprecated className={className} id={id} />}
+			/>
 		</DynamicModuleLoader>
 	);
 };
