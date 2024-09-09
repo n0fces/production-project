@@ -1,4 +1,4 @@
-import { FeatureFlags } from '../../types/featureFlags';
+import { FeatureFlags } from '../../../types/featureFlags';
 
 // фичи не меняются в ходе сессии, их необязательно делать такими, чтобы изменения сразу были у пользователя
 let featureFlags: FeatureFlags = {};
@@ -11,4 +11,8 @@ export function setFeatureFlags(newFeatureFlags?: FeatureFlags) {
 
 export function getFeatureFlag(flag: keyof FeatureFlags) {
 	return featureFlags[flag];
+}
+
+export function getAllFeatureFlags() {
+	return featureFlags;
 }
