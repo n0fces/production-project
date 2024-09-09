@@ -129,10 +129,6 @@ const DrawerAsync = (props: DrawerProps) => {
 
 // Опять же не уверен, что нужно создавать отдельно DrawerAsync
 // все это можно перенести в DrawerContent
-/**
- * Устарел, используем новые компоненты из папки redesigned
- * @deprecated
- */
 export const Drawer = memo((props: DrawerProps) => {
 	return (
 		<AnimationProvider>

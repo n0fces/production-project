@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { classNames } from '../../../lib/classNames/classNames';
-import { Icon } from '../Icon/Icon';
+import { Icon as IconDeprecated } from '../../deprecated/Icon/Icon';
 import styles from './StarRating.module.scss';
 import StarIcon from '@/shared/assets/icons/star.svg';
+import { ToggleFeatures, toggleFeatures } from '@/shared/lib/features';
+import { Icon } from '../Icon';
 
 interface StarRatingProps {
 	className?: string;
@@ -13,10 +15,6 @@ interface StarRatingProps {
 
 const stars = [1, 2, 3, 4, 5];
 
-/**
- * Устарел, используем новые компоненты из папки redesigned
- * @deprecated
- */
 export const StarRating = ({
 	className,
 	onSelect,
@@ -51,30 +49,42 @@ export const StarRating = ({
 	};
 
 	return (
-		<div className={classNames(styles.StarRating, {}, [className])}>
-			{stars.map((star) => (
-				<Icon
-					Svg={StarIcon}
-					key={star}
-					className={classNames(
+		<div
+			className={classNames(
+				toggleFeatures({
+					name: 'isAppRedesigned',
+					off: () => styles.StarRating,
+					on: () => styles.StarRatingRedesigned,
+				}),
+				{},
+				[className],
+			)}
+		>
+			{stars.map((star) => {
+				const commonProps = {
+					className: classNames(
 						styles.starIcon,
-						{
-							[styles.hovered]: currentStarsCount >= star,
-							[styles.normal]: !(currentStarsCount >= star),
-							// когда у нас выбрана оценка, то убираем cursor: pointer;
-							[styles.selected]: isSelected,
-						},
-						[],
-					)}
-					onMouseLeave={onLeave()}
-					onMouseEnter={onHover(star)}
-					onClick={onClick(star)}
-					width={size}
-					height={size}
-					data-testid={`StarRating.${star}`}
-					data-selected={currentStarsCount >= star}
-				/>
-			))}
+						{ [styles.selected]: isSelected },
+						[currentStarsCount >= star ? styles.hovered : styles.normal],
+					),
+					Svg: StarIcon,
+					key: star,
+					width: size,
+					height: size,
+					onMouseLeave: onLeave,
+					onMouseEnter: onHover(star),
+					onClick: !isSelected ? onClick(star) : undefined,
+					'data-testid': `StarRating.${star}`,
+					'data-selected': currentStarsCount >= star,
+				};
+				return (
+					<ToggleFeatures
+						feature="isAppRedesigned"
+						on={<Icon {...commonProps} />}
+						off={<IconDeprecated {...commonProps} />}
+					/>
+				);
+			})}
 		</div>
 	);
 };

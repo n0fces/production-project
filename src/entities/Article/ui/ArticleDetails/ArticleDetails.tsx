@@ -7,20 +7,23 @@ import {
 	DynamicModuleLoader,
 	ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader';
-import { ToggleFeatures } from '@/shared/lib/features';
+import { ToggleFeatures, toggleFeatures } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { Avatar as AvatarDeprecated } from '@/shared/ui/deprecated/Avatar';
 import { Icon as IconDeprecated } from '@/shared/ui/deprecated/Icon';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 import {
-	Text as TextDeprecated,
 	TextAlign,
+	Text as TextDeprecated,
 	TextSize,
 	TextTheme,
 } from '@/shared/ui/deprecated/Text';
+import { AppImage } from '@/shared/ui/redesigned/AppImage';
 import { Card } from '@/shared/ui/redesigned/Card';
+import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+import { Text } from '@/shared/ui/redesigned/Text';
 import {
 	getArticleDetailsData,
 	getArticleDetailsError,
@@ -30,9 +33,6 @@ import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArt
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 import styles from './ArticleDetails.module.scss';
 import { renderArticleBlock } from './renderBlock';
-import { Text } from '@/shared/ui/redesigned/Text';
-import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
-import { AppImage } from '@/shared/ui/redesigned/AppImage';
 
 interface ArticleDetailsProps {
 	className?: string;
@@ -87,12 +87,36 @@ const Redesigned = () => {
 			<Text title={article?.title} size="l" bold />
 			<Text title={article?.subtitle} />
 			<AppImage
-				fallback={<Skeleton width="100%" height={420} border="16px" />}
+				fallback={
+					<SkeletonRedesigned width="100%" height={420} border="16px" />
+				}
 				src={article?.img}
 				className={styles.img}
 			/>
 			{article?.blocks.map(renderArticleBlock)}
 		</>
+	);
+};
+
+const ArticleDetailsSkeleton = () => {
+	const Skeleton = toggleFeatures({
+		name: 'isAppRedesigned',
+		on: () => SkeletonRedesigned,
+		off: () => SkeletonDeprecated,
+	});
+	return (
+		<VStack gap="16" max>
+			<Skeleton
+				className={styles.avatar}
+				width={200}
+				height={200}
+				border="50%"
+			/>
+			<Skeleton className={styles.title} width={300} height={32} />
+			<Skeleton className={styles.skeleton} width={600} height={24} />
+			<Skeleton className={styles.skeleton} width="100%" height={200} />
+			<Skeleton className={styles.skeleton} width="100%" height={200} />
+		</VStack>
 	);
 };
 
@@ -108,26 +132,25 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
 	let content;
 
 	if (isLoading) {
-		content = (
-			<>
-				<SkeletonDeprecated
-					className={styles.avatar}
-					width={200}
-					height={200}
-					border="50%"
-				/>
-				<SkeletonDeprecated width={300} height={32} />
-				<SkeletonDeprecated width={600} height={24} />
-				<SkeletonDeprecated width="100%" height={200} />
-				<SkeletonDeprecated width="100%" height={200} />
-			</>
-		);
+		content = <ArticleDetailsSkeleton />;
 	} else if (error) {
 		content = (
-			<TextDeprecated
-				align={TextAlign.CENTER}
-				theme={TextTheme.ERROR}
-				title={t('Произошла ошибка при загрузке статьи')}
+			<ToggleFeatures
+				feature="isAppRedesigned"
+				on={
+					<Text
+						align="center"
+						variant="error"
+						title={t('Произошла ошибка при загрузке статьи')}
+					/>
+				}
+				off={
+					<TextDeprecated
+						align={TextAlign.CENTER}
+						theme={TextTheme.ERROR}
+						title={t('Произошла ошибка при загрузке статьи')}
+					/>
+				}
 			/>
 		);
 	} else {
