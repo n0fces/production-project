@@ -40,7 +40,7 @@ export const Text = memo((props: TextProps) => {
 	} = props;
 
 	const HeaderTag = mapSizeToHeaderTag[size];
-	const sizeClass = `size_${size}`;
+	const sizeClass = styles[`size_${size}`];
 
 	const additionalClasses = [
 		className,
