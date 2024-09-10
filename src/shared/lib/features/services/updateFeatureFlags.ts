@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { FeatureFlags } from '@/shared/types/featureFlags';
 import { updateFeatureFlagsMutation } from '../api/featureFlagsApi';
-import { getAllFeatureFlags } from '../lib/setGetFeatures';
+import { getAllFeatureFlags, setFeatureFlags } from '../lib/setGetFeatures';
 
 interface UpdateFeatureFlagOptions {
 	userId: string;
@@ -17,17 +17,23 @@ export const updateFeatureFlag = createAsyncThunk<
 >('user/saveJsonSettings', async ({ userId, newFeatures }, thunkApi) => {
 	const { rejectWithValue, dispatch } = thunkApi;
 
+	const allFeatures = {
+		...getAllFeatureFlags(),
+		...newFeatures,
+	};
+
 	try {
 		await dispatch(
 			updateFeatureFlagsMutation({
 				userId,
 				// по итогу все равно весь объект фичей отправляем)
-				features: {
-					...getAllFeatureFlags(),
-					...newFeatures,
-				},
+				features: allFeatures,
 			}),
 		);
+
+		// при обновлении фичей посредством перезагрузки данное решение не нужно
+		// при использование forceUpdate данное решение нужно, так как не происходит перезагрузки
+		setFeatureFlags(allFeatures);
 
 		// чтобы изменения отобразились, необходимо перезагрузить страницу
 		// при текущей реализации мы храним фичи просто в константе, поэтому так

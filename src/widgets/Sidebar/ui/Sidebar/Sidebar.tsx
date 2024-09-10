@@ -1,17 +1,16 @@
 import { memo, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import { getSidebarItems } from '../../model/selectors/getSidebarItems';
-import styles from './Sidebar.module.scss';
-import { ToggleFeatures } from '@/shared/lib/features';
-import { SidebarDeprecated } from './SidebarDeprecated';
-import { AppLogo } from '@/shared/ui/redesigned/AppLogo';
-import { VStack } from '@/shared/ui/redesigned/Stack';
-import { SidebarItem } from '../SidebarItem/SidebarItem';
-import { Icon } from '@/shared/ui/redesigned/Icon';
-import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
-import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { LangSwitcher } from '@/features/LangSwitcher';
+import { ThemeSwitcher } from '@/features/ThemeSwitcher';
+import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { ToggleFeatures } from '@/shared/lib/features';
+import { AppLogo } from '@/shared/ui/redesigned/AppLogo';
+import { Icon } from '@/shared/ui/redesigned/Icon';
+import { VStack } from '@/shared/ui/redesigned/Stack';
+import { useSidebarItems } from '../../model/selectors/getSidebarItems';
+import { SidebarItem } from '../SidebarItem/SidebarItem';
+import styles from './Sidebar.module.scss';
+import { SidebarDeprecated } from './SidebarDeprecated';
 
 interface SidebarProps {
 	className?: string;
@@ -19,7 +18,7 @@ interface SidebarProps {
 
 export const Sidebar = memo(({ className }: SidebarProps) => {
 	const [collapsed, setCollapsed] = useState(false);
-	const sidebarItemsList = useSelector(getSidebarItems);
+	const sidebarItemsList = useSidebarItems();
 
 	// * Мне кажется, что Тимур слишком перебарщивает с использованием мемоизации. У нас и так все вроде декомпозировано таким образом, что лишних ререндоров не возникает. В большинстве случаем мы просто по приколу используем мемоизацию, хотя и так не возникает ререндеров. Вроде было только пару кейсов, где использование мемоизации реально имело эффект
 
