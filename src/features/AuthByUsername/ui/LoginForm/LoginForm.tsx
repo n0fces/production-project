@@ -1,22 +1,29 @@
-import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { memo, useCallback } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
-import { Input } from '@/shared/ui/deprecated/Input';
-import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
+import { useSelector } from 'react-redux';
 import {
 	DynamicModuleLoader,
 	ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader';
+import { ToggleFeatures } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
-import styles from './LoginForm.module.scss';
-import { loginActions, loginReducer } from '../../model/slice/loginSlice';
-import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername';
-import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
-import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
+import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
+import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
+import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername';
+import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
+import { loginActions, loginReducer } from '../../model/slice/loginSlice';
+import { LoginFormRedesigned } from './LoginFormRedesigned';
+
+export interface LoginFormComponentProps {
+	className?: string;
+	password: string;
+	error: string | undefined;
+	username: string;
+	onChangeUsername: (value: string) => void;
+	onChangePassword: (value: string) => void;
+	onLoginClick: () => Promise<void>;
+	isLoading: boolean;
+}
 
 export interface LoginFormProps {
 	className?: string;
@@ -29,7 +36,6 @@ const initialReducers: ReducersList = {
 };
 
 const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
-	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 	// * Вообще запомни, что при использовании редакса нужно стараться писать селекторы, как можно более точно. Нам не нужно писать широкие селекоры, потому что при изменении используемой части стора у нас будет происходить ререндер компонента
 	// мы написали несколько селекторов, чтобы не здавать какой-то стейт по умолчанию (у нас асинхронно подгружается этот редьюсер), а сразу написать для каждого селектор, где будет значение по умолчанию
@@ -59,40 +65,24 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
 		}
 	}, [dispatch, username, password, onSuccess]);
 
+	const props = {
+		error,
+		isLoading,
+		onChangePassword,
+		onChangeUsername,
+		onLoginClick,
+		password,
+		username,
+		className,
+	};
+
 	return (
 		<DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
-			<div className={classNames(styles.LoginForm, {}, [className])}>
-				<Text title={t('Форма авторизации')} />
-				{error && (
-					<Text
-						text={t('Вы ввели неверный логин или пароль')}
-						theme={TextTheme.ERROR}
-					/>
-				)}
-				<Input
-					autoFocus
-					type="text"
-					className={styles.input}
-					placeholder={t('Введите имя')}
-					onChange={onChangeUsername}
-					value={username}
-				/>
-				<Input
-					type="text"
-					className={styles.input}
-					placeholder={t('Введите пароль')}
-					onChange={onChangePassword}
-					value={password}
-				/>
-				<Button
-					onClick={onLoginClick}
-					theme={ButtonTheme.OUTLINE}
-					className={styles.loginBtn}
-					disabled={isLoading}
-				>
-					{t('Войти')}
-				</Button>
-			</div>
+			<ToggleFeatures
+				feature="isAppRedesigned"
+				on={<LoginFormRedesigned {...props} />}
+				off={<LoginFormRedesigned {...props} />}
+			/>
 		</DynamicModuleLoader>
 	);
 });

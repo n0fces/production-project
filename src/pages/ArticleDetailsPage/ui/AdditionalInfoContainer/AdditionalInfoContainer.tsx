@@ -13,7 +13,7 @@ export const AdditionalInfoContainer = () => {
 	}
 
 	return (
-		<Card padding="24" border="round" className={styles.card}>
+		<Card padding="24" border="normal" className={styles.card}>
 			<ArticleAdditionalInfo
 				id={article.id}
 				author={article.user}

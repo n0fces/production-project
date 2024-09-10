@@ -58,7 +58,7 @@ export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
 					className={classNames(styles.ArticleViewSelectorRedesigned, {}, [
 						className,
 					])}
-					border="round"
+					border="normal"
 				>
 					{/* на этом моменте Тимур предложил создать хелпер getStack, который */}
 					{/* в зависимости от аргументов, будет передавать имя класса с нужными flex стилями */}

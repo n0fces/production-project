@@ -1,16 +1,23 @@
 import { useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from '@/entities/User';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { ToggleFeatures } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
-import { HStack } from '@/shared/ui/redesigned/Stack';
-import { Text } from '@/shared/ui/deprecated/Text';
 import { getProfileData } from '../../model/selectors/getProfileData/getProfileData';
 import { getProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
 import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData';
 import { profileActions } from '../../model/slice/profileSlice';
+import { EditableProfileCardHeaderDeprecated } from './EditableProfileCardHeaderDeprecated';
+import { EditableProfileCardHeaderRedesigned } from './EditableProfileCardHeaderRedesigned';
+
+export interface EditableProfileCardHeaderComponent {
+	className?: string;
+	canEdit: boolean;
+	readonly: boolean | undefined;
+	onCancelEdit: () => void;
+	onSave: () => void;
+	onEdit: () => void;
+}
 
 interface EditableProfileCardHeaderProps {
 	className?: string;
@@ -19,7 +26,6 @@ interface EditableProfileCardHeaderProps {
 export const EditableProfileCardHeader = ({
 	className,
 }: EditableProfileCardHeaderProps) => {
-	const { t } = useTranslation('profile');
 	const authData = useSelector(getUserAuthData);
 	const profileData = useSelector(getProfileData);
 	// здесь мы смотрим, совпадает ли авторизованный пользователь со профилем пользователя, который сейчас открыт. Если да, то мы делаем доступным функционал редактирования
@@ -39,35 +45,20 @@ export const EditableProfileCardHeader = ({
 		dispatch(updateProfileData());
 	}, [dispatch]);
 
+	const props = {
+		className,
+		canEdit,
+		readonly,
+		onEdit,
+		onCancelEdit,
+		onSave,
+	};
+
 	return (
-		<HStack max justify="between" className={classNames('', {}, [className])}>
-			<Text title={t('Профиль')} />
-			{canEdit && readonly ? (
-				<Button
-					theme={ButtonTheme.OUTLINE}
-					onClick={onEdit}
-					data-testid="EditableProfileCardHeader.EditButton"
-				>
-					{t('Редактировать')}
-				</Button>
-			) : (
-				<HStack gap="8">
-					<Button
-						theme={ButtonTheme.OUTLINE_RED}
-						onClick={onCancelEdit}
-						data-testid="EditableProfileCardHeader.CancelButton"
-					>
-						{t('Отменить')}
-					</Button>
-					<Button
-						theme={ButtonTheme.OUTLINE}
-						onClick={onSave}
-						data-testid="EditableProfileCardHeader.SaveButton"
-					>
-						{t('Сохранить')}
-					</Button>
-				</HStack>
-			)}
-		</HStack>
+		<ToggleFeatures
+			feature="isAppRedesigned"
+			on={<EditableProfileCardHeaderRedesigned {...props} />}
+			off={<EditableProfileCardHeaderDeprecated {...props} />}
+		/>
 	);
 };

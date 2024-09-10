@@ -1,23 +1,23 @@
 import { memo, useCallback, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { getUserAuthData } from '@/entities/User';
-import { LoginModal } from '@/features/AuthByUsername';
-import { AvatarDropdown } from '@/features/AvatarDropdown';
-import { NotificationButton } from '@/features/NotificationButton';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { User, getUserAuthData } from '@/entities/User';
 import { ToggleFeatures } from '@/shared/lib/features';
-import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
-import { HStack } from '@/shared/ui/redesigned/Stack';
-import styles from './Navbar.module.scss';
 import { NavbarDeprecated } from './NavbarDeprecated';
+import { NavbarRedesigned } from './NavbarRedesigned';
+
+export interface NavbarComponentProps {
+	isAuthModal: boolean;
+	authData: User | undefined;
+	className?: string;
+	onShowModal: () => void;
+	onCloseModal: () => void;
+}
 
 interface NavbarProps {
 	className?: string;
 }
 
 export const Navbar = memo(({ className }: NavbarProps) => {
-	const { t } = useTranslation();
 	const [isAuthModal, setIsAuthModal] = useState(false);
 	const authData = useSelector(getUserAuthData);
 
@@ -42,31 +42,13 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 				/>
 			}
 			on={
-				authData ? (
-					<header
-						className={classNames(styles.NavbarRedesigned, {}, [className])}
-					>
-						<HStack gap="16" className={styles.actions}>
-							<NotificationButton />
-							<AvatarDropdown />
-						</HStack>
-					</header>
-				) : (
-					<header
-						className={classNames(styles.NavbarRedesigned, {}, [className])}
-					>
-						<Button
-							theme={ButtonTheme.CLEAR_INVERTED}
-							className={styles.links}
-							onClick={onShowModal}
-						>
-							{t('Войти')}
-						</Button>
-						{isAuthModal && (
-							<LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
-						)}
-					</header>
-				)
+				<NavbarRedesigned
+					authData={authData}
+					isAuthModal={isAuthModal}
+					onCloseModal={onCloseModal}
+					onShowModal={onShowModal}
+					className={className}
+				/>
 			}
 		/>
 	);

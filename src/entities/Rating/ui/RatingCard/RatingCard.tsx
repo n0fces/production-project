@@ -196,7 +196,7 @@ export const RatingCard = ({
 		<ToggleFeatures
 			feature="isAppRedesigned"
 			on={
-				<Card data-testid="RatingCard" max padding="24" border="round">
+				<Card data-testid="RatingCard" max padding="24" border="normal">
 					{content}
 				</Card>
 			}

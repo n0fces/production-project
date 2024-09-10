@@ -42,7 +42,7 @@ export const Tabs = <T extends string>({
 						className={styles.tab}
 						key={tab.value}
 						onClick={clickHandle(tab)}
-						border="round"
+						border="normal"
 					>
 						{tab.content}
 					</Card>

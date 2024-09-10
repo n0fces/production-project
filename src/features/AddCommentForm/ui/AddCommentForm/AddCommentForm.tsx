@@ -60,7 +60,7 @@ const AddCommentForm = ({ className, onSendComment }: AddCommentFormProps) => {
 			<ToggleFeatures
 				feature="isAppRedesigned"
 				on={
-					<Card padding="24" border="round" max>
+					<Card padding="24" border="normal" max>
 						<HStack
 							data-testid="AddCommentForm"
 							justify="between"
