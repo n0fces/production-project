@@ -25,6 +25,11 @@ export const ThemeProvider = ({
 		}
 	}, [defaultTheme, isThemeInited]);
 
+	// на самом документе висит скролл, поэтому еще на бади необходимо навешивать тему
+	useEffect(() => {
+		document.body.className = theme;
+	}, [theme]);
+
 	const defaultProps = useMemo(
 		() => ({
 			theme,
