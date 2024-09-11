@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { StickyContentLayout } from './StickyContentLayout';
 
 export default {
-	title: 'enitites/StickyContentLayout',
+	title: 'shared/layouts/StickyContentLayout',
 	component: StickyContentLayout,
 	argTypes: {
 		backgroundColor: { control: 'color' },

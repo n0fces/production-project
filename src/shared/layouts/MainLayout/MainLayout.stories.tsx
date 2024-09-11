@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { MainLayout } from './MainLayout';
 
 export default {
-	title: 'shared/MainLayout',
+	title: 'shared/layouts/MainLayout',
 	component: MainLayout,
 	argTypes: {
 		backgroundColor: { control: 'color' },

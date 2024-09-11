@@ -10,6 +10,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { PageLoader } from '@/widgets/PageLoader';
 import { ToggleFeatures } from '@/shared/lib/features';
 import { MainLayout } from '@/shared/layouts/MainLayout/MainLayout';
+import { AppLoaderLayout } from '@/shared/layouts/AppLoaderLayout/AppLoaderLayout';
 
 function App() {
 	const { theme } = useTheme();
@@ -25,7 +26,17 @@ function App() {
 
 	// AppRouter у нас рендерится раньше, чем мы инициализируем данные о пользователе, потому что логика по инициализации данных о пользователе происходит в хуке useEffect. Решили пойти следующим образом. Мы будем отрисовывать AppRouter только тогда, когда произошла инициализацию пользователя
 	if (!inited) {
-		return <PageLoader />;
+		return (
+			<ToggleFeatures
+				feature="isAppRedesigned"
+				on={
+					<div id="app" className={classNames('app_redesigned', {}, [theme])}>
+						<AppLoaderLayout />{' '}
+					</div>
+				}
+				off={<PageLoader />}
+			/>
+		);
 	}
 
 	return (
