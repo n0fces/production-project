@@ -11,11 +11,13 @@ import { PageLoader } from '@/widgets/PageLoader';
 import { ToggleFeatures } from '@/shared/lib/features';
 import { MainLayout } from '@/shared/layouts/MainLayout/MainLayout';
 import { AppLoaderLayout } from '@/shared/layouts/AppLoaderLayout/AppLoaderLayout';
+import { useAppToolbar } from './lib/useAppToolbar';
 
 function App() {
 	const { theme } = useTheme();
 	const dispatch = useAppDispatch();
 	const inited = useSelector(getUserInited);
+	const toolbar = useAppToolbar();
 
 	// при входе в приложение будем проверять, авторизован ли пользователь
 	useEffect(() => {
@@ -60,7 +62,7 @@ function App() {
 							content={<AppRouter />}
 							header={<Navbar />}
 							sidebar={<Sidebar />}
-							toolbar={<div>123</div>}
+							toolbar={toolbar}
 						/>
 					</Suspense>
 				</div>

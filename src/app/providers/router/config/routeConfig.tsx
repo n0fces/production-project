@@ -49,7 +49,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 		// доступ к статьям сделаем только для авторизованных пользователей
 		authOnly: true,
 	},
-	[AppRoutes.ARTICLES_DETAILS]: {
+	[AppRoutes.ARTICLE_DETAILS]: {
 		// здесь задаем переменную для id, которая показывает, что данный путь является динамическим
 		path: getRouteArticleDetails(':id'),
 		element: <ArticleDetailsPage />,
