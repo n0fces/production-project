@@ -58,8 +58,12 @@ export const ListBox = ({
 				onChange={onChange}
 			>
 				{/* Здесь кнопка в кнопке, что обязательно нужно исправить */}
-				<HListBox.Button className={stylesPopup.trigger}>
-					<Button disabled={readOnly}>{value ?? defaultValue}</Button>
+				<HListBox.Button
+					as={Button}
+					disabled={readOnly}
+					className={stylesPopup.trigger}
+				>
+					{value ?? defaultValue}
 				</HListBox.Button>
 				<HListBox.Options
 					className={classNames(styles.options, {}, [stylesPopup[direction]])}

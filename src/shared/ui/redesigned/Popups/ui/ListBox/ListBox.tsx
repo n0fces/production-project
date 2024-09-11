@@ -57,14 +57,14 @@ export const ListBox = <T extends string>({
 				onChange={onChange}
 			>
 				{/* Здесь кнопка в кнопке, что обязательно нужно исправить */}
-				<HListBox.Button className={stylesPopup.trigger}>
-					<Button
-						variant="filled"
-						disabled={readOnly}
-						addonRight={<Icon Svg={ArrowIcon} />}
-					>
-						{selectedItem?.content ?? defaultValue}
-					</Button>
+				<HListBox.Button
+					as={Button}
+					variant="filled"
+					disabled={readOnly}
+					addonRight={<Icon Svg={ArrowIcon} />}
+					className={stylesPopup.trigger}
+				>
+					{selectedItem?.content ?? defaultValue}
 				</HListBox.Button>
 				<HListBox.Options
 					className={classNames(styles.options, {}, [

@@ -1,4 +1,9 @@
-import { ButtonHTMLAttributes, ReactNode, memo } from 'react';
+import {
+	ButtonHTMLAttributes,
+	ForwardedRef,
+	ReactNode,
+	forwardRef,
+} from 'react';
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import styles from './Button.module.scss';
 
@@ -47,43 +52,46 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	color?: ButtonColor;
 }
 
-export const Button = memo((props: ButtonProps) => {
-	const {
-		className,
-		children,
-		variant = 'outline',
-		square,
-		size = 'm',
-		disabled,
-		fullWidth,
-		addonLeft,
-		addonRight,
-		color = 'normal',
-		...otherProps
-	} = props;
+export const Button = forwardRef(
+	(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) => {
+		const {
+			className,
+			children,
+			variant = 'outline',
+			square,
+			size = 'm',
+			disabled,
+			fullWidth,
+			addonLeft,
+			addonRight,
+			color = 'normal',
+			...otherProps
+		} = props;
 
-	const mods: Mods = {
-		[styles.square]: square,
-		[styles.disabled]: disabled,
-		[styles.fullWidth]: fullWidth,
-		[styles.withAddon]: Boolean(addonLeft) || Boolean(addonRight),
-	};
+		const mods: Mods = {
+			[styles.square]: square,
+			[styles.disabled]: disabled,
+			[styles.fullWidth]: fullWidth,
+			[styles.withAddon]: Boolean(addonLeft) || Boolean(addonRight),
+		};
 
-	return (
-		<button
-			type="button"
-			className={classNames(styles.Button, mods, [
-				className,
-				styles[variant],
-				styles[size],
-				styles[color],
-			])}
-			disabled={disabled}
-			{...otherProps}
-		>
-			{addonLeft && <span className={styles.addonLeft}>{addonLeft}</span>}
-			{children}
-			{addonRight && <span className={styles.addonRight}>{addonRight}</span>}
-		</button>
-	);
-});
+		return (
+			<button
+				type="button"
+				className={classNames(styles.Button, mods, [
+					className,
+					styles[variant],
+					styles[size],
+					styles[color],
+				])}
+				disabled={disabled}
+				ref={ref}
+				{...otherProps}
+			>
+				{addonLeft && <span className={styles.addonLeft}>{addonLeft}</span>}
+				{children}
+				{addonRight && <span className={styles.addonRight}>{addonRight}</span>}
+			</button>
+		);
+	},
+);

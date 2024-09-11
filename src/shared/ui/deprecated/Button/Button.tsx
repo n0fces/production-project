@@ -1,4 +1,9 @@
-import { ButtonHTMLAttributes, ReactNode, memo } from 'react';
+import {
+	ButtonHTMLAttributes,
+	ForwardedRef,
+	ReactNode,
+	forwardRef,
+} from 'react';
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import styles from './Button.module.scss';
 
@@ -30,35 +35,38 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
  * Устарел, используем новые компоненты из папки redesigned
  * @deprecated
  */
-export const Button = memo((props: ButtonProps) => {
-	const {
-		className,
-		children,
-		theme = ButtonTheme.OUTLINE,
-		square,
-		size = ButtonSize.M,
-		disabled,
-		fullWidth,
-		...otherProps
-	} = props;
+export const Button = forwardRef(
+	(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) => {
+		const {
+			className,
+			children,
+			theme = ButtonTheme.OUTLINE,
+			square,
+			size = ButtonSize.M,
+			disabled,
+			fullWidth,
+			...otherProps
+		} = props;
 
-	const mods: Mods = {
-		[styles[theme]]: true,
-		[styles.square]: square,
-		// Такие классы, у которых значение равно true, лучше добавлять в additional категорию
-		[styles[size]]: true,
-		[styles.disabled]: disabled,
-		[styles.fullWidth]: fullWidth,
-	};
+		const mods: Mods = {
+			[styles[theme]]: true,
+			[styles.square]: square,
+			// Такие классы, у которых значение равно true, лучше добавлять в additional категорию
+			[styles[size]]: true,
+			[styles.disabled]: disabled,
+			[styles.fullWidth]: fullWidth,
+		};
 
-	return (
-		<button
-			type="button"
-			className={classNames(styles.Button, mods, [className])}
-			disabled={disabled}
-			{...otherProps}
-		>
-			{children}
-		</button>
-	);
-});
+		return (
+			<button
+				type="button"
+				className={classNames(styles.Button, mods, [className])}
+				disabled={disabled}
+				ref={ref}
+				{...otherProps}
+			>
+				{children}
+			</button>
+		);
+	},
+);

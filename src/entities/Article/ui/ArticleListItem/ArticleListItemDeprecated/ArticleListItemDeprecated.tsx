@@ -19,7 +19,7 @@ import { getRouteArticleDetails } from '@/shared/const/router';
 
 export const ArticleListItemDeprecated = memo((props: ArticleListItemProps) => {
 	const { className, article, view, target } = props;
-	const { t } = useTranslation();
+	const { t } = useTranslation('article');
 
 	const types = (
 		<Text text={article.type.join(', ')} className={styles.types} />
