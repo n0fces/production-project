@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { UIDesignSwitcher } from './UIDesignSwitcher';
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 export default {
 	title: 'features/UIDesignSwitcher',
@@ -16,3 +17,4 @@ const Template: ComponentStory<typeof UIDesignSwitcher> = (args) => (
 
 export const Normal = Template.bind({});
 Normal.args = {};
+Normal.decorators = [StoreDecorator({})];

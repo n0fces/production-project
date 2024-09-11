@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { AppLogo } from './AppLogo';
 
 export default {
-	title: 'enitites/AppLogo',
+	title: 'entities/AppLogo',
 	component: AppLogo,
 	argTypes: {
 		backgroundColor: { control: 'color' },

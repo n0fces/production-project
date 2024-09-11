@@ -1,7 +1,7 @@
 import { HTMLAttributeAnchorTarget } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Text, TextSize } from '@/shared/ui/deprecated/Text';
+import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
 import { ArticleView } from '../../model/consts/consts';
 import { Article } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
@@ -9,6 +9,7 @@ import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkele
 import styles from './ArticleList.module.scss';
 import { ToggleFeatures } from '@/shared/lib/features';
 import { HStack } from '@/shared/ui/redesigned/Stack';
+import { Text } from '@/shared/ui/redesigned/Text';
 
 // в этих компонентах мы также не будем подвязываться на определенный стейт, а будем принимать статьи извне
 // данный компонент списка статей мы можем использовать на других страницах, например, рекомендаций
@@ -49,7 +50,13 @@ export const ArticleList = ({
 					styles[view],
 				])}
 			>
-				<Text size={TextSize.L} title={t('Статьи не найдены')} />
+				<ToggleFeatures
+					feature="isAppRedesigned"
+					on={<Text size="l" title={t('Статьи не найдены')} />}
+					off={
+						<TextDeprecated size={TextSize.L} title={t('Статьи не найдены')} />
+					}
+				/>
 			</div>
 		);
 	}

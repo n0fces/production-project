@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ProfileCardDeprecated } from './ProfileCardDeprecated';
 
 export default {
-	title: 'enitites/ProfileCardDeprecated',
+	title: 'entities/ProfileCardDeprecated',
 	component: ProfileCardDeprecated,
 	argTypes: {
 		backgroundColor: { control: 'color' },

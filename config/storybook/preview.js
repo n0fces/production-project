@@ -3,6 +3,7 @@ import { StyleDecorator } from '../../src/shared/config/storybook/StyleDecorator
 import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { SuspenceDecorator } from '../../src/shared/config/storybook/SuspenceDecorator/SuspenceDecorator';
 import { RouterDecorator } from '../../src/shared/config/storybook/RouterDecorator/RouterDecorator';
+import { FeaturesFlagsDecorator } from '../../src/shared/config/storybook/FeaturesFlagsDecorator/FeaturesFlagsDecorator';
 import { Theme } from '../../src/shared/const/theme';
 
 export const parameters = {
@@ -31,3 +32,6 @@ addDecorator(StyleDecorator);
 addDecorator(ThemeDecorator(Theme.LIGHT));
 addDecorator(RouterDecorator);
 addDecorator(SuspenceDecorator);
+// чтобы глобаальная константа с фичами изначально переопределялась на пустой объект для каждого сторикейса
+// затем уже будем конкретном сторикейсе определять, какая фича нужна
+addDecorator(FeaturesFlagsDecorator({}));

@@ -1,5 +1,4 @@
 import { ReactNode, useEffect, useMemo, useState } from 'react';
-import { useJsonSettings } from '@/entities/User';
 import { Theme } from '@/shared/const/theme';
 import { ThemeContext } from '@/shared/lib/context/ThemeContext';
 import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localStorage';
@@ -18,18 +17,17 @@ export const ThemeProvider = ({
 	children,
 	initialTheme,
 }: ThemeProviderProps) => {
-	const { theme: defaultTheme } = useJsonSettings();
+	const [isThemeInited, setIsThemeInited] = useState(false);
 	const [theme, setTheme] = useState<Theme>(
 		initialTheme || fallbackTheme || Theme.LIGHT,
 	);
-	const [isThemeInited, setIsThemeInited] = useState(false);
 
 	useEffect(() => {
-		if (!isThemeInited && defaultTheme) {
-			setTheme(defaultTheme);
+		if (!isThemeInited && initialTheme) {
+			setTheme(initialTheme);
 			setIsThemeInited(true);
 		}
-	}, [defaultTheme, isThemeInited]);
+	}, [initialTheme, isThemeInited]);
 
 	// на самом документе висит скролл, поэтому еще на бади необходимо навешивать тему
 	useEffect(() => {

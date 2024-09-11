@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ProfileCardRedesigned } from './ProfileCardRedesigned';
 
 export default {
-	title: 'enitites/ProfileCardRedesigned',
+	title: 'entities/ProfileCardRedesigned',
 	component: ProfileCardRedesigned,
 	argTypes: {
 		backgroundColor: { control: 'color' },
