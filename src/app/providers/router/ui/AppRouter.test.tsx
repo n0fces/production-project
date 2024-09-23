@@ -43,7 +43,9 @@ describe('app/router/AppRouter', () => {
 			initialState: {
 				user: {
 					_inited: true,
-					authData: {},
+					authData: {
+						id: '1',
+					},
 				},
 			},
 		});
