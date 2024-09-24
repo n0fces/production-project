@@ -4,7 +4,6 @@ import { useSearchParams } from 'react-router-dom';
 import { ArticleList } from '@/entities/Article';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 import {
 	getArticlesPageError,
 	getArticlesPageIsLoading,
@@ -12,8 +11,7 @@ import {
 } from '../../model/selectors/articlesPageSelectors';
 import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 import { getArticles } from '../../model/slice/articlesPageSlice';
-import { ToggleFeatures } from '@/shared/lib/features';
-import { Text } from '@/shared/ui/redesigned/Text';
+import { Text } from '@/shared/ui/Text';
 
 // ! Опять же я уже описывал эту проблему у Тимура. Он забыл про виджеты!
 
@@ -40,11 +38,7 @@ export const ArticleInfiniteList = ({
 	});
 
 	return error ? (
-		<ToggleFeatures
-			feature="isAppRedesigned"
-			on={<Text text={t('Что-то пошло не так')} />}
-			off={<TextDeprecated text={t('Что-то пошло не так')} />}
-		/>
+		<Text text={t('Что-то пошло не так')} />
 	) : (
 		<ArticleList
 			view={view}

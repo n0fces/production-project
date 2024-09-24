@@ -1,11 +1,9 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArticleList } from '@/entities/Article';
-import { VStack } from '@/shared/ui/redesigned/Stack';
-import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
+import { VStack } from '@/shared/ui/Stack';
 import { useGetArticleRecommendationsListQuery } from '../../api/articleRecommendationsApi';
-import { ToggleFeatures } from '@/shared/lib/features';
-import { Text } from '@/shared/ui/redesigned/Text';
+import { Text } from '@/shared/ui/Text';
 
 // ! Мне очень не нравится, как Тимур воспринимает fsd, так что после окончания курса нужно обязательно сделать полный рефактор по этой части
 // ! Он как будто не различает виджеты и фичи
@@ -35,11 +33,7 @@ export const ArticleRecommendationsList = memo(
 				className={className}
 				data-testid="ArticleRecommendationsList"
 			>
-				<ToggleFeatures
-					feature="isAppRedesigned"
-					on={<Text size="l" title={t('Рекомендуем')} />}
-					off={<TextDeprecated size={TextSize.L} title={t('Рекомендуем')} />}
-				/>
+				<Text size="l" title={t('Рекомендуем')} />
 				<ArticleList articles={articles} target="_blank" />
 			</VStack>
 		);

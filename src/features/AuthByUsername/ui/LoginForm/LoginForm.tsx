@@ -4,7 +4,6 @@ import {
 	DynamicModuleLoader,
 	ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader';
-import { ToggleFeatures } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
@@ -13,7 +12,6 @@ import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLogi
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import { LoginFormRedesigned } from './LoginFormRedesigned';
-import { LoginFormDeprecated } from './LoginFormDeprecated';
 import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
 
 export interface LoginFormComponentProps {
@@ -82,11 +80,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
 
 	return (
 		<DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
-			<ToggleFeatures
-				feature="isAppRedesigned"
-				on={<LoginFormRedesigned {...props} />}
-				off={<LoginFormDeprecated {...props} />}
-			/>
+			<LoginFormRedesigned {...props} />
 		</DynamicModuleLoader>
 	);
 });

@@ -3,7 +3,7 @@ import { ArticleRating } from '@/features/ArticleRating';
 import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout/StickyContentLayout';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { VStack } from '@/shared/ui/Stack';
 import { Page } from '@/widgets/Page';
 import { ArticleDetailsComments } from '../../ArticleDetailsComments/ArticleDetailsComments';
 import styles from './ArticleDetailsPageRedesigned.module.scss';

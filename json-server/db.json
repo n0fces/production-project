@@ -1067,7 +1067,7 @@
         "isCounterEnabled": false
       },
       "jsonSettings": {
-        "theme": "app_dark_theme",
+        "theme": "app_light_theme",
         "isFirstVisit": true,
         "isArticlesPageWasOpened": true
       },
@@ -1125,7 +1125,7 @@
       "first": "Timur",
       "lastname": "Ulbi",
       "age": 23,
-      "currency": "RUB",
+      "currency": "USD",
       "country": "Russia",
       "city": "Moscow",
       "username": "ulbi tv",

@@ -1,15 +1,13 @@
 import { HTMLAttributeAnchorTarget } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
 import { ArticleView } from '../../model/consts/consts';
 import { Article } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
 import styles from './ArticleList.module.scss';
-import { ToggleFeatures } from '@/shared/lib/features';
-import { HStack } from '@/shared/ui/redesigned/Stack';
-import { Text } from '@/shared/ui/redesigned/Text';
+import { HStack } from '@/shared/ui/Stack';
+import { Text } from '@/shared/ui/Text';
 
 // в этих компонентах мы также не будем подвязываться на определенный стейт, а будем принимать статьи извне
 // данный компонент списка статей мы можем использовать на других страницах, например, рекомендаций
@@ -50,13 +48,7 @@ export const ArticleList = ({
 					styles[view],
 				])}
 			>
-				<ToggleFeatures
-					feature="isAppRedesigned"
-					on={<Text size="l" title={t('Статьи не найдены')} />}
-					off={
-						<TextDeprecated size={TextSize.L} title={t('Статьи не найдены')} />
-					}
-				/>
+				<Text size="l" title={t('Статьи не найдены')} />
 			</div>
 		);
 	}
@@ -64,47 +56,22 @@ export const ArticleList = ({
 	// * СЮДА ВПОСЛЕДСТВИИ НАДО ВПИСАТЬ СОВРЕМЕННОЕ РЕШЕНИЕ ДЛЯ ВИРТУАЛИЗАЦИИ СПИСКОВ. СЕЙЧАС ВИПИЛИЛИ REACT-VIRTUALIZED,
 	// * ПОТОМУ ЧТО СЛИШКОМ УСТАРЕВШЕЕ РЕШЕНИЕ
 	return (
-		<ToggleFeatures
-			feature="isAppRedesigned"
-			on={
-				<HStack
-					wrap="wrap"
-					gap="16"
-					className={classNames(styles.ArticleListRedesigned, {}, [])}
-					data-testid="ArticleList"
-				>
-					{articles.map((item) => (
-						<ArticleListItem
-							article={item}
-							view={view}
-							target={target}
-							key={item.id}
-							className={styles.card}
-						/>
-					))}
-					{isLoading && getSkeletons(view)}
-				</HStack>
-			}
-			off={
-				<div
-					className={classNames(styles.ArticleList, {}, [
-						className,
-						styles[view],
-					])}
-					data-testid="ArticleList"
-				>
-					{articles.map((item) => (
-						<ArticleListItem
-							article={item}
-							view={view}
-							target={target}
-							key={item.id}
-							className={styles.card}
-						/>
-					))}
-					{isLoading && getSkeletons(view)}
-				</div>
-			}
-		/>
+		<HStack
+			wrap="wrap"
+			gap="16"
+			className={classNames(styles.ArticleListRedesigned, {}, [])}
+			data-testid="ArticleList"
+		>
+			{articles.map((item) => (
+				<ArticleListItem
+					article={item}
+					view={view}
+					target={target}
+					key={item.id}
+					className={styles.card}
+				/>
+			))}
+			{isLoading && getSkeletons(view)}
+		</HStack>
 	);
 };

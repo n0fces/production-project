@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import { Button } from '@/shared/ui/redesigned/Button';
-import { Card } from '@/shared/ui/redesigned/Card';
-import { HStack } from '@/shared/ui/redesigned/Stack';
-import { Text } from '@/shared/ui/redesigned/Text';
+import { Button } from '@/shared/ui/Button';
+import { Card } from '@/shared/ui/Card';
+import { HStack } from '@/shared/ui/Stack';
+import { Text } from '@/shared/ui/Text';
 import { EditableProfileCardHeaderComponent } from './EditableProfileCardHeader';
 
 export const EditableProfileCardHeaderRedesigned = ({

@@ -1,10 +1,8 @@
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
-import { Text } from '@/shared/ui/redesigned/Text';
+import { Text } from '@/shared/ui/Text';
 import styles from './ArticleTextBlockComponent.module.scss';
 import { ArticleTextBlock } from '../../model/types/article';
-import { ToggleFeatures } from '@/shared/lib/features';
 
 interface ArticleTextBlockComponentProps {
 	className?: string;
@@ -21,29 +19,9 @@ export const ArticleTextBlockComponent = memo(
 					className,
 				])}
 			>
-				{block.title && (
-					<ToggleFeatures
-						feature="isAppRedesigned"
-						on={<Text title={block.title} className={styles.title} />}
-						off={
-							<TextDeprecated title={block.title} className={styles.title} />
-						}
-					/>
-				)}
+				{block.title && <Text title={block.title} className={styles.title} />}
 				{block.paragraphs.map((paragraph, index) => (
-					<ToggleFeatures
-						feature="isAppRedesigned"
-						on={
-							<Text key={index} text={paragraph} className={styles.paragraph} />
-						}
-						off={
-							<TextDeprecated
-								key={index}
-								text={paragraph}
-								className={styles.paragraph}
-							/>
-						}
-					/>
+					<Text key={index} text={paragraph} className={styles.paragraph} />
 				))}
 			</div>
 		);

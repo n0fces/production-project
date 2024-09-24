@@ -3,7 +3,6 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 import { Theme } from '@/shared/const/theme';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
 	title: 'features/ThemeSwitcher',
@@ -21,18 +20,10 @@ export const Normal = Template.bind({});
 Normal.args = {};
 Normal.decorators = [StoreDecorator({})];
 
-export const NormalRedesigned = Template.bind({});
-NormalRedesigned.args = {};
-NormalRedesigned.decorators = [NewDesignDecorator, StoreDecorator({})];
-
 export const Dark = Template.bind({});
 Dark.args = {};
 Dark.decorators = [StoreDecorator({}), ThemeDecorator(Theme.DARK)];
 
-export const NormalRedesignedDark = Template.bind({});
-NormalRedesignedDark.args = {};
-NormalRedesignedDark.decorators = [
-	NewDesignDecorator,
-	StoreDecorator({}),
-	ThemeDecorator(Theme.DARK),
-];
+export const NormalDark = Template.bind({});
+NormalDark.args = {};
+NormalDark.decorators = [StoreDecorator({}), ThemeDecorator(Theme.DARK)];

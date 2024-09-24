@@ -5,15 +5,13 @@ import { AddCommentForm } from '@/features/AddCommentForm';
 import { CommentList } from '@/entities/Comment';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { Loader as LoaderDeprecated } from '@/shared/ui/deprecated/Loader';
-import { VStack } from '@/shared/ui/redesigned/Stack';
-import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
+import { Loader } from '@/shared/ui/Loader';
+import { VStack } from '@/shared/ui/Stack';
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
 import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle';
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { getArticleComments } from '../../model/slice/articleDetailsCommentsSlice';
-import { Text } from '@/shared/ui/redesigned/Text';
-import { ToggleFeatures } from '@/shared/lib/features';
+import { Text } from '@/shared/ui/Text';
 
 // ! Тимур вообще забыл про виджеты, которые как раз и предназначены, чтобы объединять энтити и фичи, а потом эти независимые блоки просто вставлять в страницы
 // ! Тогда страницы будут максимально тонкими, а вся "сборка" будет происходить в виджетах
@@ -47,12 +45,8 @@ export const ArticleDetailsComments = ({
 
 	return (
 		<VStack gap="16" max className={className}>
-			<ToggleFeatures
-				feature="isAppRedesigned"
-				on={<Text size="l" title={t('Комментарии')} />}
-				off={<TextDeprecated size={TextSize.L} title={t('Комментарии')} />}
-			/>
-			<Suspense fallback={<LoaderDeprecated />}>
+			<Text size="l" title={t('Комментарии')} />
+			<Suspense fallback={<Loader />}>
 				<AddCommentForm onSendComment={onSendComment} />
 			</Suspense>
 			<CommentList isLoading={commentsIsLoading} comments={comments} />

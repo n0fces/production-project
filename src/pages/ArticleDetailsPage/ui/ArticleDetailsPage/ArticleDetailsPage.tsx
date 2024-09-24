@@ -4,9 +4,7 @@ import {
 	DynamicModuleLoader,
 	ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader';
-import { ToggleFeatures } from '@/shared/lib/features';
 import { articleDetailsPageReducer } from '../../model/slice';
-import { ArticleDetailsPageDeprecated } from './ArticleDetailsPageDeprecated/ArticleDetailsPageDeprecated';
 import { ArticleDetailsPageRedesigned } from './ArticleDetailsPageRedesigned/ArticleDetailsPageRedesigned';
 
 export interface ArticleDetailsPageProps {
@@ -31,11 +29,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 	return (
 		// Здесь DynamicModuleLoader нужен для работы с асинхронным экшеном под комментарии конкретной статьи (articleDetailsCommentsReducer)
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-			<ToggleFeatures
-				feature="isAppRedesigned"
-				on={<ArticleDetailsPageRedesigned className={className} id={id} />}
-				off={<ArticleDetailsPageDeprecated className={className} id={id} />}
-			/>
+			<ArticleDetailsPageRedesigned className={className} id={id} />
 		</DynamicModuleLoader>
 	);
 };

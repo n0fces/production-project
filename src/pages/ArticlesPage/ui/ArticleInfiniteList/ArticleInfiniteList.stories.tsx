@@ -3,7 +3,6 @@ import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDe
 import { ArticleInfiniteList } from './ArticleInfiniteList';
 import { Article, ArticleBlockType, ArticleType } from '@/entities/Article';
 import AvatarImage from '@/shared/assets/tests/storybook.jpg';
-import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
 	title: 'pages/ArticlesPage/ArticleInfiniteList',
@@ -113,8 +112,3 @@ export const Normal = Template.bind({});
 Normal.args = {};
 Normal.decorators = [StoreDecorator({})];
 Normal.parameters = parameters;
-
-export const NormalRedesigned = Template.bind({});
-NormalRedesigned.args = {};
-NormalRedesigned.decorators = [NewDesignDecorator, StoreDecorator({})];
-NormalRedesigned.parameters = parameters;

@@ -1,6 +1,6 @@
 import { Suspense, lazy } from 'react';
 import { ArticleRatingProps } from './ArticleRating';
-import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
+import { Skeleton } from '@/shared/ui/Skeleton';
 
 // сделали данный компонент ленивым, так как он находится внизу страницы, так что мы вполне может подгрузить его лениво с каким-то саспенс
 const ArticleRatingLazy = lazy(() => import('./ArticleRating'));

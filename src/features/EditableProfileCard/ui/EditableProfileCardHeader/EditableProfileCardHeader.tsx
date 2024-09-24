@@ -1,13 +1,11 @@
 import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from '@/entities/User';
-import { ToggleFeatures } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getProfileData } from '../../model/selectors/getProfileData/getProfileData';
 import { getProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
 import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData';
 import { profileActions } from '../../model/slice/profileSlice';
-import { EditableProfileCardHeaderDeprecated } from './EditableProfileCardHeaderDeprecated';
 import { EditableProfileCardHeaderRedesigned } from './EditableProfileCardHeaderRedesigned';
 
 export interface EditableProfileCardHeaderComponent {
@@ -54,11 +52,5 @@ export const EditableProfileCardHeader = ({
 		onSave,
 	};
 
-	return (
-		<ToggleFeatures
-			feature="isAppRedesigned"
-			on={<EditableProfileCardHeaderRedesigned {...props} />}
-			off={<EditableProfileCardHeaderDeprecated {...props} />}
-		/>
-	);
+	return <EditableProfileCardHeaderRedesigned {...props} />;
 };

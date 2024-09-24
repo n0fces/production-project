@@ -7,17 +7,10 @@ import {
 	isUserManager,
 	userActions,
 } from '@/entities/User';
-import {
-	getRouteAdmin,
-	getRouteProfile,
-	getRouteSettings,
-} from '@/shared/const/router';
+import { getRouteAdmin, getRouteProfile } from '@/shared/const/router';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { ToggleFeatures } from '@/shared/lib/features';
-import { Avatar as AvatarDeorecated } from '@/shared/ui/deprecated/Avatar';
-import { Dropdown as DropdownDeprecated } from '@/shared/ui/deprecated/Popups';
-import { Avatar } from '@/shared/ui/redesigned/Avatar';
-import { Dropdown } from '@/shared/ui/redesigned/Popups';
+import { Avatar } from '@/shared/ui/Avatar';
+import { Dropdown } from '@/shared/ui/Popups';
 
 interface AvatarDropdownProps {
 	className?: string;
@@ -54,10 +47,6 @@ export const AvatarDropdown = ({ className }: AvatarDropdownProps) => {
 			  ]
 			: []),
 		{
-			content: t('Настройки'),
-			href: getRouteSettings(),
-		},
-		{
 			content: t('Профиль'),
 			href: getRouteProfile(authData.id),
 		},
@@ -68,22 +57,10 @@ export const AvatarDropdown = ({ className }: AvatarDropdownProps) => {
 	];
 
 	return (
-		<ToggleFeatures
-			feature="isAppRedesigned"
-			on={
-				<Dropdown
-					className={classNames('', {}, [className])}
-					trigger={<Avatar size={40} src={authData.avatar} />}
-					items={items}
-				/>
-			}
-			off={
-				<DropdownDeprecated
-					className={classNames('', {}, [className])}
-					trigger={<AvatarDeorecated size={30} src={authData.avatar} />}
-					items={items}
-				/>
-			}
+		<Dropdown
+			className={classNames('', {}, [className])}
+			trigger={<Avatar size={40} src={authData.avatar} />}
+			items={items}
 		/>
 	);
 };

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@/shared/ui/redesigned/Button';
+import { Button } from '@/shared/ui/Button';
 import { getRouteArticleEdit } from '@/shared/const/router';
 
 interface EditArticleButtonProps {

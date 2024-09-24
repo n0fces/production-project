@@ -1,8 +1,6 @@
 import { memo, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { User, getUserAuthData } from '@/entities/User';
-import { ToggleFeatures } from '@/shared/lib/features';
-import { NavbarDeprecated } from './NavbarDeprecated';
 import { NavbarRedesigned } from './NavbarRedesigned';
 
 export interface NavbarComponentProps {
@@ -30,26 +28,12 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 	}, []);
 
 	return (
-		<ToggleFeatures
-			feature="isAppRedesigned"
-			off={
-				<NavbarDeprecated
-					authData={authData}
-					isAuthModal={isAuthModal}
-					onCloseModal={onCloseModal}
-					onShowModal={onShowModal}
-					className={className}
-				/>
-			}
-			on={
-				<NavbarRedesigned
-					authData={authData}
-					isAuthModal={isAuthModal}
-					onCloseModal={onCloseModal}
-					onShowModal={onShowModal}
-					className={className}
-				/>
-			}
+		<NavbarRedesigned
+			authData={authData}
+			isAuthModal={isAuthModal}
+			onCloseModal={onCloseModal}
+			onShowModal={onShowModal}
+			className={className}
 		/>
 	);
 });

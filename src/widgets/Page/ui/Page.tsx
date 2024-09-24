@@ -10,7 +10,6 @@ import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
 import { StateScheme } from '@/app/providers/StoreProvider';
 import styles from './Page.module.scss';
 import { TestProps } from '@/shared/types/tests';
-import { toggleFeatures } from '@/shared/lib/features';
 
 interface PageProps extends TestProps {
 	className?: string;
@@ -34,11 +33,7 @@ export const Page = (props: PageProps) => {
 	useInfiniteScroll({
 		// в новой версии остался только основной скролл, так что мы бередаем undefined, чтобы внутри присвоилось значение null
 		// согласно документации Intersection Observer, если рут null, то отслеживание будет относительно window
-		wrapperRef: toggleFeatures({
-			name: 'isAppRedesigned',
-			on: () => undefined,
-			off: () => wrapperRef,
-		}),
+		wrapperRef: undefined,
 		triggerRef,
 		callback: onScrollEnd,
 	});
@@ -60,11 +55,7 @@ export const Page = (props: PageProps) => {
 		);
 	}, 500);
 
-	const cls = toggleFeatures({
-		name: 'isAppRedesigned',
-		on: () => styles.PageRedesigned,
-		off: () => styles.Page,
-	});
+	const cls = styles.PageRedesigned;
 
 	return (
 		<main

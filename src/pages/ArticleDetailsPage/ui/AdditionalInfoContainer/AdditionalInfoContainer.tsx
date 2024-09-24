@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { getArticleDetailsData } from '@/entities/Article';
-import { Card } from '@/shared/ui/redesigned/Card';
+import { Card } from '@/shared/ui/Card';
 import { ArticleAdditionalInfo } from '@/widgets/ArticleAdditionalInfo';
 import styles from './AdditionalInfoContainer.module.scss';
 

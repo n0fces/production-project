@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getRouteArticleEdit, getRouteArticles } from '@/shared/const/router';
-import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
-import { HStack } from '@/shared/ui/redesigned/Stack';
+import { HStack } from '@/shared/ui/Stack';
 import { getArticleDetailsData } from '@/entities/Article';
 import { getCanEditArticle } from '../../model/selectors/article';
+import { Button } from '@/shared/ui/Button';
 
 interface ArticleDetailsPageHeaderProps {
 	className?: string;
@@ -32,14 +32,8 @@ export const ArticleDetailsPageHeader = ({
 
 	return (
 		<HStack max justify="between" className={className}>
-			<Button theme={ButtonTheme.OUTLINE} onClick={onBackToList}>
-				{t('Назад к списку')}
-			</Button>
-			{canEdit && (
-				<Button theme={ButtonTheme.OUTLINE} onClick={onEditArticle}>
-					{t('Редактировать')}
-				</Button>
-			)}
+			<Button onClick={onBackToList}>{t('Назад к списку')}</Button>
+			{canEdit && <Button onClick={onEditArticle}>{t('Редактировать')}</Button>}
 		</HStack>
 	);
 };
