@@ -1,9 +1,6 @@
-import { LOCAL_STORAGE_DESIGN_KEY } from '@/shared/const/localStorage';
 import { FeatureFlags } from '../../../types/featureFlags';
 
-const defaultFeatures: FeatureFlags = {
-	isAppRedesigned: localStorage.getItem(LOCAL_STORAGE_DESIGN_KEY) === 'new',
-};
+const defaultFeatures: FeatureFlags = {};
 
 // фичи не меняются в ходе сессии, их необязательно делать такими, чтобы изменения сразу были у пользователя
 let featureFlags: FeatureFlags = {
