@@ -1,8 +1,0 @@
-{
-	"extends": "stylelint-config-standard-scss",
-	"rules": {
-		"indentation": "tab",
-		"string-quotes": "single",
-		"selector-class-pattern": null
-	}
-}
