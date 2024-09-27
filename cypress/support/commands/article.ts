@@ -1,5 +1,4 @@
 // для рассмотрения тест-кейсов, связанных со страницей конкретной статьи, сделаем две функции,
-
 import { Article } from '../../../src/entities/Article';
 
 const defaultArticle = {

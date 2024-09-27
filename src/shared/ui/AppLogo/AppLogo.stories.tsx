@@ -1,4 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+
 import { AppLogo } from './AppLogo';
 
 export default {

@@ -1,11 +1,14 @@
 import { memo, useState } from 'react';
+
 import { LangSwitcher } from '@/features/LangSwitcher';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
+
 import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { AppLogo } from '@/shared/ui/AppLogo';
 import { Icon } from '@/shared/ui/Icon';
 import { VStack } from '@/shared/ui/Stack';
+
 import { useSidebarItems } from '../../model/selectors/getSidebarItems';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
 import styles from './Sidebar.module.scss';
@@ -31,8 +34,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
 				styles.SidebarRedesigned,
 				{ [styles.collapsedRedesigned]: collapsed },
 				[className],
-			)}
-		>
+			)}>
 			<AppLogo size={collapsed ? 30 : 50} className={styles.appLogo} />
 			<VStack role="navigation" gap="8" className={styles.items}>
 				{sidebarItemsList.map((item) => (

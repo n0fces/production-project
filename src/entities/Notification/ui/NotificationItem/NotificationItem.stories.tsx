@@ -1,4 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+
 import { NotificationItem } from './NotificationItem';
 
 export default {

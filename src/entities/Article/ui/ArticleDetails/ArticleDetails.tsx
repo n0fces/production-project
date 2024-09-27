@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+
 import {
 	DynamicModuleLoader,
 	ReducersList,
@@ -12,6 +13,7 @@ import { Card } from '@/shared/ui/Card';
 import { Skeleton as SkeletonRedesigned } from '@/shared/ui/Skeleton';
 import { VStack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text';
+
 import {
 	getArticleDetailsData,
 	getArticleDetailsError,

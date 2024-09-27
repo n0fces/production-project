@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localStorage';
 
 // экземпляр react query api, где в качестве заголовков присоединяется токен пользователя

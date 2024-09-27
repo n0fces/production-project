@@ -1,18 +1,19 @@
 import { useSelector } from 'react-redux';
+
 import { getUserAuthData } from '@/entities/User';
 
-import MainIcon from '@/shared/assets/icons/home.svg';
-import ArticleIcon from '@/shared/assets/icons/article.svg';
 import AboutIcon from '@/shared/assets/icons/Info.svg';
+import ArticleIcon from '@/shared/assets/icons/article.svg';
 import ProfileIcon from '@/shared/assets/icons/avatar.svg';
-
-import { SidebarItemType } from '../types/sidebar';
+import MainIcon from '@/shared/assets/icons/home.svg';
 import {
 	getRouteAbout,
 	getRouteArticles,
 	getRouteMain,
 	getRouteProfile,
 } from '@/shared/const/router';
+
+import { SidebarItemType } from '../types/sidebar';
 
 export const useSidebarItems = () => {
 	const userData = useSelector(getUserAuthData);

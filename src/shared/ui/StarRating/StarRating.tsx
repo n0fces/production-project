@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import styles from './StarRating.module.scss';
+
 import StarIcon from '@/shared/assets/icons/star.svg';
-import { Icon } from '../Icon';
+
 import { classNames } from '../../lib/classNames/classNames';
+import { Icon } from '../Icon';
+import styles from './StarRating.module.scss';
 
 interface StarRatingProps {
 	className?: string;

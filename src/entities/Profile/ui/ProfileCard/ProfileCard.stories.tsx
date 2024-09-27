@@ -1,10 +1,13 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+
 import { Country } from '@/entities/Country';
 import { Currency } from '@/entities/Currency';
-import { ProfileCard } from './ProfileCard';
-import { Profile } from '../../model/types/profile';
+
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/shared/const/theme';
+
+import { Profile } from '../../model/types/profile';
+import { ProfileCard } from './ProfileCard';
 
 export default {
 	title: 'entities/ProfileCard',

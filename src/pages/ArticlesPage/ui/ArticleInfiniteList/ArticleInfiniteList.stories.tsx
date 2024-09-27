@@ -1,8 +1,11 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-import { ArticleInfiniteList } from './ArticleInfiniteList';
+
 import { Article, ArticleBlockType, ArticleType } from '@/entities/Article';
+
 import AvatarImage from '@/shared/assets/tests/storybook.jpg';
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+
+import { ArticleInfiniteList } from './ArticleInfiniteList';
 
 export default {
 	title: 'pages/ArticlesPage/ArticleInfiniteList',

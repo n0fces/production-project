@@ -1,6 +1,8 @@
 import { memo, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
+
 import { User, getUserAuthData } from '@/entities/User';
+
 import { NavbarRedesigned } from './NavbarRedesigned';
 
 export interface NavbarComponentProps {

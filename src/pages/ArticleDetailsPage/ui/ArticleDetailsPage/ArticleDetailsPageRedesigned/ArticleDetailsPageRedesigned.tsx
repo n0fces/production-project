@@ -1,14 +1,18 @@
-import { ArticleDetails } from '@/entities/Article';
+import { Page } from '@/widgets/Page';
+
 import { ArticleRating } from '@/features/ArticleRating';
 import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
+
+import { ArticleDetails } from '@/entities/Article';
+
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout/StickyContentLayout';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { VStack } from '@/shared/ui/Stack';
-import { Page } from '@/widgets/Page';
-import { ArticleDetailsComments } from '../../ArticleDetailsComments/ArticleDetailsComments';
-import styles from './ArticleDetailsPageRedesigned.module.scss';
+
 import { AdditionalInfoContainer } from '../../AdditionalInfoContainer/AdditionalInfoContainer';
+import { ArticleDetailsComments } from '../../ArticleDetailsComments/ArticleDetailsComments';
 import { ArticleDetailsPageProps } from '../ArticleDetailsPage';
+import styles from './ArticleDetailsPageRedesigned.module.scss';
 
 interface ArticleDetailsPageRedesignedProps extends ArticleDetailsPageProps {
 	id: string;
@@ -24,8 +28,7 @@ export const ArticleDetailsPageRedesigned = ({
 				<Page
 					className={classNames(styles.ArticleDetailsPageRedesigned, {}, [
 						className,
-					])}
-				>
+					])}>
 					<VStack gap="16" max>
 						<ArticleDetails id={id} />
 						<ArticleRating articleId={id} />

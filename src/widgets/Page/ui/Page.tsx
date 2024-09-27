@@ -1,15 +1,19 @@
+import { MutableRefObject, ReactNode, UIEvent, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { MutableRefObject, ReactNode, UIEvent, useRef } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+
+import { StateScheme } from '@/app/providers/StoreProvider';
+
 import { getScrollSaveByPath, scrollSaveActions } from '@/features/ScrollSave';
+
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
-import { StateScheme } from '@/app/providers/StoreProvider';
-import styles from './Page.module.scss';
 import { TestProps } from '@/shared/types/tests';
+
+import styles from './Page.module.scss';
 
 interface PageProps extends TestProps {
 	className?: string;
@@ -63,8 +67,7 @@ export const Page = (props: PageProps) => {
 			className={classNames(cls, {}, [className])}
 			onScroll={onScroll}
 			id={PAGE_ID}
-			data-testid={dataTestId ?? 'Page'}
-		>
+			data-testid={dataTestId ?? 'Page'}>
 			{children}
 			{/* это будет триггерный элемент, за которым будем следить */}
 			{onScrollEnd ? <div className={styles.trigger} ref={triggerRef} /> : null}

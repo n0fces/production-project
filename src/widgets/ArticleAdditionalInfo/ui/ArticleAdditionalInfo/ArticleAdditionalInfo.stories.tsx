@@ -1,6 +1,8 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { ArticleAdditionalInfo } from './ArticleAdditionalInfo';
+
 import AvatarImg from '@/shared/assets/tests/storybook.jpg';
+
+import { ArticleAdditionalInfo } from './ArticleAdditionalInfo';
 
 export default {
 	title: 'widgets/ArticleAdditionalInfo',

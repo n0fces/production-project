@@ -23,15 +23,15 @@ module.exports = async (layer, sliceName) => {
 			await fs.mkdir(resolveUIPath(componentName));
 			await fs.writeFile(
 				resolveUIPath(componentName, `${componentName}.tsx`),
-				componentTemplate(componentName)
+				componentTemplate(componentName),
 			);
 			await fs.writeFile(
 				resolveUIPath(componentName, `${componentName}.stories.tsx`),
-				storyTemplate(layer, componentName)
+				storyTemplate(layer, componentName),
 			);
 			await fs.writeFile(
 				resolveUIPath(componentName, `${componentName}.module.scss`),
-				styleTemplate(componentName)
+				styleTemplate(componentName),
 			);
 		} catch (e) {
 			console.log('Не удалось создать компонент');

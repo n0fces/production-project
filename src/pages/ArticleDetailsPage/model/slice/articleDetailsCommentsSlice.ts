@@ -3,10 +3,13 @@ import {
 	createEntityAdapter,
 	createSlice,
 } from '@reduxjs/toolkit';
+
 import { StateScheme } from '@/app/providers/StoreProvider';
+
 import { Comment } from '@/entities/Comment';
-import { ArticleDetailsCommentScheme } from '../types/ArticleDetailsCommentScheme';
+
 import { fetchCommentsByArticleId } from '../services/fetchCommentsByArticleId/fetchCommentsByArticleId';
+import { ArticleDetailsCommentScheme } from '../types/ArticleDetailsCommentScheme';
 
 // нормализация стейта позволяет в некоторых случаях не дублировать объекты и выполнять изменение объекта за О(1) (имею в виду, что мы сразу можем обратить к объекту, который нужно поменят). Достигается это за счет того, что используем некоторую структуру данных, надстройку для нашего стейта. Сам стейт представляем из себя объект, ключи которого - определенные индексы, а значения изначальные объекты. Отдельно есть массив с соответствующими индексами для объекта. Эти индексы в массиве позволяет обращаться к конкретному объекту из общего нормализованного стейта
 const commentsAdapter = createEntityAdapter<Comment>({

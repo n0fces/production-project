@@ -1,5 +1,7 @@
-import { HTMLAttributes, memo, ReactNode } from 'react';
+import { HTMLAttributes, ReactNode, memo } from 'react';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
+
 import styles from './Card.module.scss';
 
 type CardVariant = 'normal' | 'outlined' | 'light';
@@ -34,8 +36,7 @@ export const Card = memo((props: CardProps) => {
 				styles[`gap_${padding}`],
 				styles[border],
 			])}
-			{...otherProps}
-		>
+			{...otherProps}>
 			{children}
 		</div>
 	);

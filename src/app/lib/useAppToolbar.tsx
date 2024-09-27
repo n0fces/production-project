@@ -1,7 +1,9 @@
 // в зависимости от страницы будет отрисовываться конкретный контент, который мы укажем
 import { ReactElement } from 'react';
-import { AppRoutes } from '@/shared/const/router';
+
 import { ScrollToolbar } from '@/widgets/ScrollToolbar';
+
+import { AppRoutes } from '@/shared/const/router';
 import { useRouteChange } from '@/shared/lib/router/useRouteChange';
 
 export function useAppToolbar() {

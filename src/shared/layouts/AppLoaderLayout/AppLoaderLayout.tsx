@@ -1,6 +1,8 @@
 import { memo } from 'react';
+
 import { Skeleton } from '@/shared/ui/Skeleton';
 import { HStack, VStack } from '@/shared/ui/Stack';
+
 import { MainLayout } from '../MainLayout/MainLayout';
 import styles from './AppLoaderLayout.module.scss';
 

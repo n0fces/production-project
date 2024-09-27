@@ -1,4 +1,5 @@
 import { FeatureFlags } from '@/shared/types/featureFlags';
+
 import { getFeatureFlag } from './setGetFeatures';
 
 // используется дженерик, чтобы можно было в качестве фичи потом отдавать

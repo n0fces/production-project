@@ -1,20 +1,22 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import styles from './ArticleListItemRedesigned.module.scss';
-import { ArticleListItemProps } from '../ArticleListItem';
-import { Text } from '@/shared/ui/Text';
-import { Icon } from '@/shared/ui/Icon';
+
 import EyeIcon from '@/shared/assets/icons/eye.svg';
-import { Card } from '@/shared/ui/Card';
-import { Avatar } from '@/shared/ui/Avatar';
-import { AppImage } from '@/shared/ui/AppImage';
-import { Skeleton } from '@/shared/ui/Skeleton';
-import { AppLink } from '@/shared/ui/AppLink';
 import { getRouteArticleDetails } from '@/shared/const/router';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { AppImage } from '@/shared/ui/AppImage';
+import { AppLink } from '@/shared/ui/AppLink';
+import { Avatar } from '@/shared/ui/Avatar';
 import { Button } from '@/shared/ui/Button';
+import { Card } from '@/shared/ui/Card';
+import { Icon } from '@/shared/ui/Icon';
+import { Skeleton } from '@/shared/ui/Skeleton';
 import { HStack, VStack } from '@/shared/ui/Stack';
+import { Text } from '@/shared/ui/Text';
+
 import { ArticleBlockType, ArticleView } from '../../../model/consts/consts';
+import { ArticleListItemProps } from '../ArticleListItem';
+import styles from './ArticleListItemRedesigned.module.scss';
 
 export const ArticleListItemRedesigned = memo((props: ArticleListItemProps) => {
 	const { className, article, view, target } = props;
@@ -46,8 +48,7 @@ export const ArticleListItemRedesigned = memo((props: ArticleListItemProps) => {
 				className={classNames(styles.ArticleListItem, {}, [
 					className,
 					styles[view],
-				])}
-			>
+				])}>
 				<VStack max gap="16">
 					<HStack gap="8" max>
 						{userInfo}
@@ -88,8 +89,7 @@ export const ArticleListItemRedesigned = memo((props: ArticleListItemProps) => {
 			className={classNames(styles.ArticleListItem, {}, [
 				className,
 				styles[view],
-			])}
-		>
+			])}>
 			<Card className={styles.card} border="round" padding="0">
 				<AppImage
 					fallback={<Skeleton width="100%" height={200} />}

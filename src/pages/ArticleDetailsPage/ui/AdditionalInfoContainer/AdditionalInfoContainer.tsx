@@ -1,7 +1,11 @@
 import { useSelector } from 'react-redux';
-import { getArticleDetailsData } from '@/entities/Article';
-import { Card } from '@/shared/ui/Card';
+
 import { ArticleAdditionalInfo } from '@/widgets/ArticleAdditionalInfo';
+
+import { getArticleDetailsData } from '@/entities/Article';
+
+import { Card } from '@/shared/ui/Card';
+
 import styles from './AdditionalInfoContainer.module.scss';
 
 // надо написать story под этот компонент

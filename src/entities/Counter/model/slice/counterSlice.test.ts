@@ -1,9 +1,9 @@
+import { CounterScheme } from '../types/counterScheme';
 import {
 	counterDecrement,
 	counterIncrement,
 	counterReducer,
 } from './counterSlice';
-import { CounterScheme } from '../types/counterScheme';
 
 describe('counterSlice.test', () => {
 	test('decrement', () => {

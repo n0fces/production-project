@@ -1,10 +1,12 @@
 import { Menu } from '@headlessui/react';
 import { Fragment, ReactNode } from 'react';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { DropdownDirection } from '@/shared/types/ui';
+
 import { AppLink } from '../../../AppLink/AppLink';
-import styles from './Dropdown.module.scss';
 import stylesPopup from '../../styles/popup.module.scss';
+import styles from './Dropdown.module.scss';
 
 export interface DropdownItem {
 	disabled?: boolean;
@@ -29,15 +31,13 @@ export function Dropdown(props: DropdownProps) {
 			className={classNames(styles.Dropdown, {}, [
 				className,
 				stylesPopup.popup,
-			])}
-		>
+			])}>
 			<Menu.Button className={stylesPopup.trigger}>{trigger}</Menu.Button>
 			<Menu.Items
 				className={classNames(styles.menu, {}, [
 					stylesPopup[direction],
 					stylesPopup.menu,
-				])}
-			>
+				])}>
 				{items.map((item, index) => {
 					const content = ({ active }: { active: boolean }) => (
 						<button
@@ -46,8 +46,7 @@ export function Dropdown(props: DropdownProps) {
 							onClick={item.onClick}
 							className={classNames(styles.item, {
 								[stylesPopup.active]: active,
-							})}
-						>
+							})}>
 							{item.content}
 						</button>
 					);
@@ -58,8 +57,7 @@ export function Dropdown(props: DropdownProps) {
 								as={AppLink}
 								to={item.href}
 								disabled={item.disabled}
-								key={`dropdown-key-${index}`}
-							>
+								key={`dropdown-key-${index}`}>
 								{content}
 							</Menu.Item>
 						);
@@ -69,8 +67,7 @@ export function Dropdown(props: DropdownProps) {
 						<Menu.Item
 							key={`dropdown-key-${index}`}
 							as={Fragment}
-							disabled={item.disabled}
-						>
+							disabled={item.disabled}>
 							{content}
 						</Menu.Item>
 					);

@@ -1,13 +1,15 @@
 import { useCallback, useState } from 'react';
 import { BrowserView, MobileView } from 'react-device-detect';
+
 import { NotificationList } from '@/entities/Notification';
+
 import NotificationIcon from '@/shared/assets/icons/notification.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
-
 import { Drawer } from '@/shared/ui/Drawer';
-import styles from './NotificationButton.module.scss';
 import { Icon } from '@/shared/ui/Icon';
 import { Popover } from '@/shared/ui/Popups';
+
+import styles from './NotificationButton.module.scss';
 
 interface NotificationButtonProps {
 	className?: string;
@@ -34,8 +36,7 @@ export const NotificationButton = ({ className }: NotificationButtonProps) => {
 			<BrowserView>
 				<Popover
 					className={classNames(styles.NotificationButton, {}, [className])}
-					trigger={trigger}
-				>
+					trigger={trigger}>
 					<NotificationList className={styles.notifications} />
 				</Popover>
 			</BrowserView>

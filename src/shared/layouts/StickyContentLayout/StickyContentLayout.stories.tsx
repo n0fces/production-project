@@ -1,4 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+
 import { StickyContentLayout } from './StickyContentLayout';
 
 export default {

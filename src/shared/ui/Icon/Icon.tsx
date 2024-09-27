@@ -1,4 +1,5 @@
 import { classNames } from '@/shared/lib/classNames/classNames';
+
 import styles from './Icon.module.scss';
 
 interface IconProps extends React.SVGProps<SVGSVGElement> {
@@ -35,8 +36,7 @@ export const Icon = ({
 			className={styles.button}
 			data-testid={dataTestid}
 			// чтобы кнопка всегда соответствовала размеру иконки
-			style={{ width, height }}
-		>
+			style={{ width, height }}>
 			{icon}
 		</button>
 	) : (

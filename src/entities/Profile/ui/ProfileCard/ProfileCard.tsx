@@ -1,7 +1,7 @@
-import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
-import { Profile } from '../../model/types/profile';
+import { Currency } from '@/entities/Currency';
 
+import { Profile } from '../../model/types/profile';
 import {
 	ProfileCardRedesigned,
 	ProfileCardRedesignedError,

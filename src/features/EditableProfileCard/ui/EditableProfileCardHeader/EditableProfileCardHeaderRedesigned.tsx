@@ -1,8 +1,10 @@
 import { useTranslation } from 'react-i18next';
+
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
 import { HStack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text';
+
 import { EditableProfileCardHeaderComponent } from './EditableProfileCardHeader';
 
 export const EditableProfileCardHeaderRedesigned = ({
@@ -23,8 +25,7 @@ export const EditableProfileCardHeaderRedesigned = ({
 						{readonly ? (
 							<Button
 								onClick={onEdit}
-								data-testid="EditableProfileCardHeader.EditButton"
-							>
+								data-testid="EditableProfileCardHeader.EditButton">
 								{t('Редактировать')}
 							</Button>
 						) : (
@@ -32,15 +33,13 @@ export const EditableProfileCardHeaderRedesigned = ({
 								<Button
 									onClick={onCancelEdit}
 									data-testid="EditableProfileCardHeader.CancelButton"
-									color="error"
-								>
+									color="error">
 									{t('Отменить')}
 								</Button>
 								<Button
 									onClick={onSave}
 									data-testid="EditableProfileCardHeader.SaveButton"
-									color="success"
-								>
+									color="success">
 									{t('Сохранить')}
 								</Button>
 							</HStack>

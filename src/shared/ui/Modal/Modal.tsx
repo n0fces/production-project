@@ -1,7 +1,9 @@
 import { ReactNode } from 'react';
-import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
+
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
+import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
+
 import { Overlay } from '../Overlay/Overlay';
 import { Portal } from '../Portal/Portal';
 import styles from './Modal.module.scss';
@@ -48,8 +50,7 @@ export const Modal = ({
 					theme,
 					'app_modal',
 					styles.modalNew,
-				])}
-			>
+				])}>
 				<Overlay onClick={close} />
 				<div className={styles.content}>{children}</div>
 			</div>

@@ -4,7 +4,9 @@ import {
 	ReactNode,
 	forwardRef,
 } from 'react';
+
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
+
 import styles from './Button.module.scss';
 
 export type ButtonVariant = 'clear' | 'outline' | 'filled';
@@ -86,8 +88,7 @@ export const Button = forwardRef(
 				])}
 				disabled={disabled}
 				ref={ref}
-				{...otherProps}
-			>
+				{...otherProps}>
 				{addonLeft && <span className={styles.addonLeft}>{addonLeft}</span>}
 				{children}
 				{addonRight && <span className={styles.addonRight}>{addonRight}</span>}

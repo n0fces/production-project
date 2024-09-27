@@ -1,17 +1,21 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './ArticlesFilters.module.scss';
-import { Card } from '@/shared/ui/Card';
+
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
-import { VStack } from '@/shared/ui/Stack';
+
 import { ArticleSortField, ArticleType } from '@/entities/Article';
-import { SortOrder } from '@/shared/types/sort';
-import { Input } from '@/shared/ui/Input';
-import { TabItem } from '@/shared/ui/Tabs';
+
 import SearchIcon from '@/shared/assets/icons/search.svg';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { SortOrder } from '@/shared/types/sort';
+import { Card } from '@/shared/ui/Card';
 import { Icon } from '@/shared/ui/Icon';
+import { Input } from '@/shared/ui/Input';
+import { VStack } from '@/shared/ui/Stack';
+import { TabItem } from '@/shared/ui/Tabs';
+
+import cls from './ArticlesFilters.module.scss';
 
 interface ArticlesFiltersProps {
 	className?: string;
@@ -42,8 +46,7 @@ export const ArticlesFilters = memo((props: ArticlesFiltersProps) => {
 	return (
 		<Card
 			className={classNames(cls.ArticlesFilters, {}, [className])}
-			padding="24"
-		>
+			padding="24">
 			<VStack gap="32">
 				<Input
 					onChange={onChangeSearch}

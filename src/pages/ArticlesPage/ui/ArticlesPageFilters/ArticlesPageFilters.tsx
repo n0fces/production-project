@@ -1,13 +1,16 @@
-import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import styles from './ArticlesPageFilters.module.scss';
+import { useTranslation } from 'react-i18next';
+
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
-import { ArticleViewSelector } from '@/features/ArticleViewSelector';
 import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
-import { useArticleFilters } from '../../lib/hooks/useArticleFilters';
+import { ArticleViewSelector } from '@/features/ArticleViewSelector';
+
+import { classNames } from '@/shared/lib/classNames/classNames';
 import { Card } from '@/shared/ui/Card';
 import { Input } from '@/shared/ui/Input';
+
+import { useArticleFilters } from '../../lib/hooks/useArticleFilters';
+import styles from './ArticlesPageFilters.module.scss';
 
 interface ArticlesPageFiltersProps {
 	className?: string;

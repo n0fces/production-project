@@ -1,16 +1,20 @@
 import { Suspense, memo, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { getUserInited, initAuthData } from '@/entities/User';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
+
 import { Navbar } from '@/widgets/Navbar';
 import { Sidebar } from '@/widgets/Sidebar';
-import { AppRouter } from './providers/router';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { MainLayout } from '@/shared/layouts/MainLayout/MainLayout';
+
+import { getUserInited, initAuthData } from '@/entities/User';
+
 import { AppLoaderLayout } from '@/shared/layouts/AppLoaderLayout/AppLoaderLayout';
+import { MainLayout } from '@/shared/layouts/MainLayout/MainLayout';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
+
 import { useAppToolbar } from './lib/useAppToolbar';
 import { withTheme } from './providers/ThemeProvider/ui/withTheme';
+import { AppRouter } from './providers/router';
 
 const App = memo(() => {
 	const { theme } = useTheme();

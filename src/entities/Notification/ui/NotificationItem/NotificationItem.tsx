@@ -1,8 +1,9 @@
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Notifications } from '../../model/types/notifications';
-import styles from './NotificationItem.module.scss';
 import { Card } from '@/shared/ui/Card';
 import { Text } from '@/shared/ui/Text';
+
+import { Notifications } from '../../model/types/notifications';
+import styles from './NotificationItem.module.scss';
 
 interface NotificationItemProps {
 	className?: string;
@@ -16,8 +17,7 @@ export const NotificationItem = ({
 	const content = (
 		<Card
 			variant="outlined"
-			className={classNames(styles.NotificationItem, {}, [className])}
-		>
+			className={classNames(styles.NotificationItem, {}, [className])}>
 			<Text title={item.title} text={item.description} />
 		</Card>
 	);
@@ -27,8 +27,7 @@ export const NotificationItem = ({
 			href={item.href}
 			target="_blank"
 			rel="noreferrer"
-			className={styles.link}
-		>
+			className={styles.link}>
 			{content}
 		</a>
 	) : (

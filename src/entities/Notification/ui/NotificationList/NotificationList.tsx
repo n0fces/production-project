@@ -1,6 +1,7 @@
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Skeleton as SkeletonRedesigned } from '@/shared/ui/Skeleton';
 import { VStack } from '@/shared/ui/Stack';
+
 import { useGetNotificationsQuery } from '../../api/notificationApi';
 import { NotificationItem } from '../NotificationItem/NotificationItem';
 import styles from './NotificationList.module.scss';
@@ -23,8 +24,7 @@ export const NotificationList = ({ className }: NotificationListProps) => {
 			<VStack
 				gap="16"
 				max
-				className={classNames(styles.NotificationList, {}, [className])}
-			>
+				className={classNames(styles.NotificationList, {}, [className])}>
 				<Skeleton width="100%" border="8px" height="80px" />
 				<Skeleton width="100%" border="8px" height="80px" />
 				<Skeleton width="100%" border="8px" height="80px" />
@@ -35,8 +35,7 @@ export const NotificationList = ({ className }: NotificationListProps) => {
 		<VStack
 			gap="16"
 			max
-			className={classNames(styles.NotificationList, {}, [className])}
-		>
+			className={classNames(styles.NotificationList, {}, [className])}>
 			{notifications?.map((item) => (
 				<NotificationItem key={item.id} item={item} />
 			))}

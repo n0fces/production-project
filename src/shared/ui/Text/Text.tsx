@@ -1,5 +1,7 @@
 import { memo } from 'react';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
+
 import styles from './Text.module.scss';
 
 export type TextVariant = 'primary' | 'error' | 'accent';
@@ -55,13 +57,11 @@ export const Text = memo((props: TextProps) => {
 				styles.Text,
 				{ [styles.bold]: bold },
 				additionalClasses,
-			)}
-		>
+			)}>
 			{title && (
 				<HeaderTag
 					className={styles.title}
-					data-testid={`${dataTestId}.Header`}
-				>
+					data-testid={`${dataTestId}.Header`}>
 					{title}
 				</HeaderTag>
 			)}

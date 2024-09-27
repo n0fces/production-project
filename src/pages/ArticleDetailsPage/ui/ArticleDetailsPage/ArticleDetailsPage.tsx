@@ -1,9 +1,11 @@
 import { memo } from 'react';
 import { useParams } from 'react-router-dom';
+
 import {
 	DynamicModuleLoader,
 	ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader';
+
 import { articleDetailsPageReducer } from '../../model/slice';
 import { ArticleDetailsPageRedesigned } from './ArticleDetailsPageRedesigned/ArticleDetailsPageRedesigned';
 

@@ -1,10 +1,12 @@
 import { CSSProperties, ImgHTMLAttributes, useMemo } from 'react';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './Avatar.module.scss';
+
 import UserIcon from '../../assets/icons/user-filled.svg';
+import { AppImage } from '../AppImage';
 import { Icon } from '../Icon';
 import { Skeleton } from '../Skeleton';
-import { AppImage } from '../AppImage';
+import cls from './Avatar.module.scss';
 
 interface AvatarProps extends ImgHTMLAttributes<HTMLImageElement> {
 	className?: string;

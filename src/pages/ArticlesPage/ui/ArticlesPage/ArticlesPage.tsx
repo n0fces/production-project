@@ -1,5 +1,11 @@
 import { memo, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
+
+import { Page } from '@/widgets/Page';
+
+import { ArticlePageGreeting } from '@/features/ArticlePageGreeting';
+
+import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout/StickyContentLayout';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import {
 	DynamicModuleLoader,
@@ -7,16 +13,14 @@ import {
 } from '@/shared/lib/components/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { Page } from '@/widgets/Page';
+
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 import { articlesPageReducer } from '../../model/slice/articlesPageSlice';
 import { ArticleInfiniteList } from '../ArticleInfiniteList/ArticleInfiniteList';
-import styles from './ArticlesPage.module.scss';
-import { ArticlePageGreeting } from '@/features/ArticlePageGreeting';
-import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout/StickyContentLayout';
-import { ViewSelectorContainer } from '../ViewSelectorContainer/ViewSelectorContainer';
 import { FiltersContainer } from '../FiltersContainer/FiltersContainer';
+import { ViewSelectorContainer } from '../ViewSelectorContainer/ViewSelectorContainer';
+import styles from './ArticlesPage.module.scss';
 
 interface ArticlesPageProps {
 	className?: string;
@@ -46,8 +50,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 				<Page
 					data-testid="ArticlesPage"
 					onScrollEnd={onLoadNextPart}
-					className={classNames(styles.ArticlesPageRedesign, {}, [className])}
-				>
+					className={classNames(styles.ArticlesPageRedesign, {}, [className])}>
 					<ArticleInfiniteList className={styles.list} />
 					<ArticlePageGreeting />
 				</Page>

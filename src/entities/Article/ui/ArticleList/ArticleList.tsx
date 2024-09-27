@@ -1,13 +1,15 @@
 import { HTMLAttributeAnchorTarget } from 'react';
 import { useTranslation } from 'react-i18next';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { HStack } from '@/shared/ui/Stack';
+import { Text } from '@/shared/ui/Text';
+
 import { ArticleView } from '../../model/consts/consts';
 import { Article } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
 import styles from './ArticleList.module.scss';
-import { HStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text';
 
 // в этих компонентах мы также не будем подвязываться на определенный стейт, а будем принимать статьи извне
 // данный компонент списка статей мы можем использовать на других страницах, например, рекомендаций
@@ -46,8 +48,7 @@ export const ArticleList = ({
 				className={classNames(styles.ArticleList, {}, [
 					className,
 					styles[view],
-				])}
-			>
+				])}>
 				<Text size="l" title={t('Статьи не найдены')} />
 			</div>
 		);
@@ -60,8 +61,7 @@ export const ArticleList = ({
 			wrap="wrap"
 			gap="16"
 			className={classNames(styles.ArticleListRedesigned, {}, [])}
-			data-testid="ArticleList"
-		>
+			data-testid="ArticleList">
 			{articles.map((item) => (
 				<ArticleListItem
 					article={item}

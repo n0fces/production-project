@@ -1,26 +1,27 @@
 import { useCallback } from 'react';
-import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { useSelector } from 'react-redux';
 
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { HStack } from '@/shared/ui/Stack';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import {
 	DynamicModuleLoader,
 	ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader';
-import {
-	addCommentFormActions,
-	addCommentFormReducer,
-} from '../../model/slice/addCommentForm';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Button } from '@/shared/ui/Button';
+import { Card } from '@/shared/ui/Card';
+import { Input } from '@/shared/ui/Input';
+import { HStack } from '@/shared/ui/Stack';
+
 import {
 	getAddCommentFormError,
 	getAddCommentFormText,
 } from '../../model/selectors/addCommentFormSelectors';
+import {
+	addCommentFormActions,
+	addCommentFormReducer,
+} from '../../model/slice/addCommentForm';
 import styles from './AddCommentForm.module.scss';
-import { Input } from '@/shared/ui/Input';
-import { Button } from '@/shared/ui/Button';
-import { Card } from '@/shared/ui/Card';
 
 export interface AddCommentFormProps {
 	className?: string;
@@ -60,8 +61,7 @@ const AddCommentForm = ({ className, onSendComment }: AddCommentFormProps) => {
 					gap="16"
 					className={classNames(styles.AddCommentFormRedesigned, {}, [
 						className,
-					])}
-				>
+					])}>
 					<Input
 						data-testid="AddCommentForm.Input"
 						className={styles.input}

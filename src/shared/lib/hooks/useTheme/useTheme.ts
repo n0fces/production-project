@@ -1,6 +1,7 @@
 import { useContext } from 'react';
-import { ThemeContext } from '../../context/ThemeContext';
+
 import { Theme } from '../../../const/theme';
+import { ThemeContext } from '../../context/ThemeContext';
 
 interface UseThemeResult {
 	// место, куда сохраняется тема, определяется не внутри хука, а определяется извне

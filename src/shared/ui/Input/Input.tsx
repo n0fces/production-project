@@ -1,14 +1,16 @@
 import React, {
 	InputHTMLAttributes,
-	memo,
 	ReactNode,
+	memo,
 	useEffect,
 	useRef,
 } from 'react';
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
-import styles from './Input.module.scss';
+
+import { Mods, classNames } from '@/shared/lib/classNames/classNames';
+
 import { HStack } from '../Stack';
 import { Text } from '../Text';
+import styles from './Input.module.scss';
 
 type HTMLInputProps = Omit<
 	InputHTMLAttributes<HTMLInputElement>,
@@ -68,8 +70,7 @@ export const Input = memo((props: InputProps) => {
 			className={classNames(styles.InputWrapper, mods, [
 				className,
 				styles[size],
-			])}
-		>
+			])}>
 			{addonLeft && <div className={styles.addonLeft}>{addonLeft}</div>}
 			<input
 				ref={ref}

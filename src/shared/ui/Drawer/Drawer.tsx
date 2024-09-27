@@ -1,10 +1,12 @@
-import { memo, ReactNode, useCallback, useEffect } from 'react';
-import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
+import { ReactNode, memo, useCallback, useEffect } from 'react';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
 import {
 	AnimationProvider,
 	useAnimationLibs,
 } from '@/shared/lib/components/AnimationProvider';
+import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
+
 import { Overlay } from '../Overlay/Overlay';
 import { Portal } from '../Portal/Portal';
 import styles from './Drawer.module.scss';
@@ -91,8 +93,7 @@ export const DrawerContent = memo((props: DrawerProps) => {
 					theme,
 					'app_drawer',
 					styles.drawerNew,
-				])}
-			>
+				])}>
 				<Overlay onClick={close} />
 				<Spring.a.div
 					className={styles.sheet}
@@ -101,8 +102,7 @@ export const DrawerContent = memo((props: DrawerProps) => {
 						bottom: `calc(-100vh + ${height - 100}px)`,
 						y,
 					}}
-					{...bind()}
-				>
+					{...bind()}>
 					{children}
 				</Spring.a.div>
 			</div>

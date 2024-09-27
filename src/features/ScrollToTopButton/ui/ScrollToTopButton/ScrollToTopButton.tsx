@@ -1,4 +1,5 @@
 import { memo } from 'react';
+
 import CircleIcon from '@/shared/assets/icons/circle-up.svg';
 import { Icon } from '@/shared/ui/Icon';
 

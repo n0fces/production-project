@@ -12,14 +12,7 @@ const files = project.getSourceFiles();
 
 // нам нужно обновить алиас только у абсолютных импортов из fsd
 function isAbsolute(value) {
-	const layers = [
-		'app',
-		'shared',
-		'entities',
-		'features',
-		'widgets',
-		'pages',
-	];
+	const layers = ['app', 'shared', 'entities', 'features', 'widgets', 'pages'];
 	// если хотя бы одно значение из массива подходит, то возвращаем true
 	return layers.some((layer) => value.startsWith(layer));
 }

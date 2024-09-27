@@ -1,9 +1,9 @@
+import { ArticleBlockType } from '../../model/consts/consts';
 import { ArticleBlock } from '../../model/types/article';
 import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
-import styles from './ArticleDetails.module.scss';
 import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
-import { ArticleBlockType } from '../../model/consts/consts';
+import styles from './ArticleDetails.module.scss';
 
 export const renderArticleBlock = (block: ArticleBlock) => {
 	switch (block.type) {

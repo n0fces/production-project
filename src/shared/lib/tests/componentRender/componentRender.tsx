@@ -1,15 +1,18 @@
 // ! надо потом исключить в eslintrc данный файл из рассмотрения
+
 /* eslint-disable path-checker-fsd-trainee/layer-imports */
-import { ReactNode } from 'react';
+import { ReducersMapObject } from '@reduxjs/toolkit';
 import { render } from '@testing-library/react';
+import { ReactNode } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { MemoryRouter } from 'react-router-dom';
-import { ReducersMapObject } from '@reduxjs/toolkit';
-import i18nForTests from '@/shared/config/i18n/i18nForTests';
+
 import { StateScheme, StoreProvider } from '@/app/providers/StoreProvider';
 import { ThemeProvider } from '@/app/providers/ThemeProvider';
-import { Theme } from '@/shared/const/theme';
 import '@/app/styles/index.scss';
+
+import i18nForTests from '@/shared/config/i18n/i18nForTests';
+import { Theme } from '@/shared/const/theme';
 
 export interface ComponentRenderOptions {
 	route?: string;

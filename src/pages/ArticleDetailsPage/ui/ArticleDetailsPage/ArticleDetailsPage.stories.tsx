@@ -1,8 +1,11 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+
 import { ArticleBlockType, ArticleType } from '@/entities/Article';
 // eslint-disable-next-line path-checker-fsd-trainee/public-api-imports
 import { Article } from '@/entities/Article/model/types/article';
+
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+
 import ArticleDetailsPage from './ArticleDetailsPage';
 
 export default {

@@ -1,7 +1,8 @@
 import { ReactNode, useCallback } from 'react';
-import styles from './Tabs.module.scss';
+
 import { Card } from '../Card';
 import { Flex, FlexDirection } from '../Stack/Flex/Flex';
+import styles from './Tabs.module.scss';
 
 export interface TabItem<T extends string> {
 	value: T;
@@ -42,8 +43,7 @@ export const Tabs = <T extends string>({
 						className={styles.tab}
 						key={tab.value}
 						onClick={clickHandle(tab)}
-						border="normal"
-					>
+						border="normal">
 						{tab.content}
 					</Card>
 				);

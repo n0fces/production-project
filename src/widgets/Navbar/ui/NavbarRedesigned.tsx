@@ -1,10 +1,13 @@
 import { useTranslation } from 'react-i18next';
+
 import { LoginModal } from '@/features/AuthByUsername';
 import { AvatarDropdown } from '@/features/AvatarDropdown';
 import { NotificationButton } from '@/features/NotificationButton';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Button } from '@/shared/ui/Button';
 import { HStack } from '@/shared/ui/Stack';
+
 import { NavbarComponentProps } from './Navbar';
 import styles from './Navbar.module.scss';
 

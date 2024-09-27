@@ -1,4 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
+
 import { StateScheme } from '@/app/providers/StoreProvider';
 
 export const getScrollSaveScroll = (state: StateScheme) =>

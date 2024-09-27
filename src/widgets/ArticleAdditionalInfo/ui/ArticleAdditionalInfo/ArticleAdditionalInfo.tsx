@@ -1,7 +1,10 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { User } from '@/entities/User';
+
 import { EditArticleButton } from '@/features/EditArticleButton';
+
+import { User } from '@/entities/User';
+
 import { Avatar } from '@/shared/ui/Avatar';
 import { HStack, VStack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text';

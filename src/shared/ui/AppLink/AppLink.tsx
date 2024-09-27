@@ -1,6 +1,8 @@
+import { ReactNode, memo } from 'react';
 import { LinkProps, NavLink } from 'react-router-dom';
-import { memo, ReactNode } from 'react';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
+
 import styles from './AppLink.module.scss';
 
 export type AppLinkVariant = 'primary' | 'red';
@@ -31,8 +33,7 @@ export const AppLink = memo((props: AppLinkProps) => {
 					styles[variant],
 				])
 			}
-			{...otherProps}
-		>
+			{...otherProps}>
 			{children}
 		</NavLink>
 	);

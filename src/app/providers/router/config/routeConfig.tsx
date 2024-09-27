@@ -1,4 +1,3 @@
-import { UserRole } from '@/entities/User';
 import { AboutPage } from '@/pages/AboutPage';
 import { AdminPanelPage } from '@/pages/AdminPanelPage';
 import { ArticleDetailsPage } from '@/pages/ArticleDetailsPage';
@@ -8,14 +7,17 @@ import { ForbiddenPage } from '@/pages/ForbiddenPage';
 import { MainPage } from '@/pages/MainPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import { ProfilePage } from '@/pages/ProfilePage';
+
+import { UserRole } from '@/entities/User';
+
 import {
 	AppRoutes,
 	getRouteAbout,
 	getRouteAdmin,
 	getRouteArticleCreate,
+	getRouteArticleDetails,
 	getRouteArticleEdit,
 	getRouteArticles,
-	getRouteArticleDetails,
 	getRouteForbidden,
 	getRouteMain,
 	getRouteProfile,

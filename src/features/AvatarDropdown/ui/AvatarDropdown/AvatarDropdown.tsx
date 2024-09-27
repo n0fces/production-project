@@ -1,12 +1,14 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+
 import {
 	getUserAuthData,
 	isUserAdmin,
 	isUserManager,
 	userActions,
 } from '@/entities/User';
+
 import { getRouteAdmin, getRouteProfile } from '@/shared/const/router';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Avatar } from '@/shared/ui/Avatar';
@@ -44,7 +46,7 @@ export const AvatarDropdown = ({ className }: AvatarDropdownProps) => {
 						content: t('Админ панель'),
 						href: getRouteAdmin(),
 					},
-			  ]
+				]
 			: []),
 		{
 			content: t('Профиль'),

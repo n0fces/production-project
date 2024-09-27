@@ -24,7 +24,7 @@ npm run build:dev или npm run build:prod - сборка проекта в dev
 - **[@headlessui/react](https://headlessui.com/)**: v1.6.6 — Полностью нестилированные, полностью доступные компоненты пользовательского интерфейса.
 - **[@react-spring/web](https://www.react-spring.dev/)**: v9.5.2 — React Spring - это библиотека для создания интерактивных, управляемых данными и анимированных компонентов пользовательского интерфейса.
 - **[@reduxjs/toolkit](https://redux-toolkit.js.org/)**: v1.9.0 — Пакет Redux Toolkit предназначен для того, чтобы стать стандартным способом написания логики Redux.
-- **[@use-gesture/react](https://use-gesture.netlify.app/)**: v10.2.19 —  Это библиотека, которая позволяет вам привязывать более сложные события наведения курсора мыши и касания к любому компоненту или виду.
+- **[@use-gesture/react](https://use-gesture.netlify.app/)**: v10.2.19 — Это библиотека, которая позволяет вам привязывать более сложные события наведения курсора мыши и касания к любому компоненту или виду.
 - **[axios](https://axios-http.com/)**: v0.26.1 — HTTP-клиент на основе promise для браузера и node.js.
 - **[concurrently](https://github.com/open-cli-tools/concurrently)**: v7.0.0 — Запуск нескольких команд одновременно.
 - **[i18next](https://www.i18next.com/)**: v21.9.0 — Фреймворк интернационализации для JavaScript.

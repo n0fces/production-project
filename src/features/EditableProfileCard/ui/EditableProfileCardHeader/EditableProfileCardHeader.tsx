@@ -1,7 +1,10 @@
 import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
+
 import { getUserAuthData } from '@/entities/User';
+
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+
 import { getProfileData } from '../../model/selectors/getProfileData/getProfileData';
 import { getProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
 import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData';

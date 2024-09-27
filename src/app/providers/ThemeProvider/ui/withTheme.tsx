@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { useJsonSettings } from '@/entities/User';
+
 import { ThemeProvider } from './ThemeProvider';
 
 // благодаря данному хоку удалось решить проблему того, что в ThemeProvider мы взаимодействовали везде с redux (даже там, где на самом деле нет)

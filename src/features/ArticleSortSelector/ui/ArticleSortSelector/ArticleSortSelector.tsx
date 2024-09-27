@@ -1,12 +1,15 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { ArticleSortField } from '@/entities/Article';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { SortOrder } from '@/shared/types/sort';
-import styles from './ArticleSortSelector.module.scss';
-import { ArticleSortField } from '@/entities/Article';
 import { ListBox, ListBoxItem } from '@/shared/ui/Popups';
 import { VStack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text';
+
+import styles from './ArticleSortSelector.module.scss';
 
 interface ArticleSortSelectorProps {
 	className?: string;
@@ -58,8 +61,7 @@ export const ArticleSortSelector = ({
 		<div
 			className={classNames(styles.ArticleSortSelectorRedesigned, {}, [
 				className,
-			])}
-		>
+			])}>
 			<VStack gap="8">
 				<Text text={t('Сортировать по:')} />
 				{/* можно вот так явно задавать тип для generic component */}

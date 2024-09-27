@@ -1,4 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+
 import { NotificationButton } from './NotificationButton';
 
 export default {

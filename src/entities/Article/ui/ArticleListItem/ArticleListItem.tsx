@@ -1,6 +1,7 @@
 import { HTMLAttributeAnchorTarget, memo } from 'react';
-import { Article } from '../../model/types/article';
+
 import { ArticleView } from '../../model/consts/consts';
+import { Article } from '../../model/types/article';
 import { ArticleListItemRedesigned } from './ArticleListItemRedesigned/ArticleListItemRedesigned';
 
 export interface ArticleListItemProps {

@@ -1,4 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+
 import { MainLayout } from './MainLayout';
 
 export default {
