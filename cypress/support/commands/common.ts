@@ -4,10 +4,7 @@ import { USER_LOCALSTORAGE_KEY } from '../../../src/shared/const/localStorage';
 
 // здесь у нас будут сосредоточены команды, которые мы хотим чтобы выполнялись без привязки какому-то бизнес-кейсу
 
-export const login = (
-	username: string = 'testuser',
-	password: string = '123',
-) => {
+export const login = (username = 'testuser', password = '123') => {
 	cy.request({
 		method: 'POST',
 		url: 'http://localhost:8000/login',

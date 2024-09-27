@@ -49,23 +49,24 @@ export const StarRating = ({
 	return (
 		<div className={classNames(styles.StarRatingRedesigned, {}, [className])}>
 			{stars.map((star) => {
-				const commonProps = {
-					className: classNames(
-						styles.starIcon,
-						{ [styles.selected]: isSelected },
-						[currentStarsCount >= star ? styles.hovered : styles.normal],
-					),
-					Svg: StarIcon,
-					key: star,
-					width: size,
-					height: size,
-					onMouseLeave: onLeave,
-					onMouseEnter: onHover(star),
-					onClick: !isSelected ? onClick(star) : undefined,
-					'data-testid': `StarRating.${star}`,
-					'data-selected': currentStarsCount >= star,
-				};
-				return <Icon {...commonProps} />;
+				return (
+					<Icon
+						Svg={StarIcon}
+						key={star}
+						width={size}
+						height={size}
+						onMouseLeave={onLeave}
+						onMouseEnter={onHover(star)}
+						onClick={!isSelected ? onClick(star) : undefined}
+						data-testid={`StarRating.${star}`}
+						data-selected={currentStarsCount >= star}
+						className={classNames(
+							styles.starIcon,
+							{ [styles.selected]: isSelected },
+							[currentStarsCount >= star ? styles.hovered : styles.normal],
+						)}
+					/>
+				);
 			})}
 		</div>
 	);

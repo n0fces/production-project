@@ -20,7 +20,7 @@ export function createReducerManager(
 	let combinedReducer = combineReducers(reducers);
 
 	// названия редьюсеров, которые хотим удалить
-	let keysToRemove: Array<StateSchemeKey> = [];
+	let keysToRemove: StateSchemeKey[] = [];
 
 	// объект с уже вмонтированными редьюсерами
 	const mountedReducers: MountedReducers = {};

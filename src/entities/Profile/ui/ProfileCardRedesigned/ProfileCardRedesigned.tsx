@@ -73,7 +73,7 @@ export const ProfileCardRedesigned = memo((props: ProfileCardProps) => {
 			<VStack gap="32">
 				{data?.avatar && (
 					<HStack justify="center" max>
-						<Avatar size={128} src={data?.avatar} />
+						<Avatar size={128} src={data.avatar} />
 					</HStack>
 				)}
 				<HStack gap="24" max>

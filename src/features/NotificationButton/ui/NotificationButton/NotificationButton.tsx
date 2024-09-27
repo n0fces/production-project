@@ -20,8 +20,12 @@ export const NotificationButton = ({ className }: NotificationButtonProps) => {
 
 	const [isOpen, setIsOpen] = useState(false);
 
-	const onOpenDrawer = useCallback(() => setIsOpen(true), []);
-	const onCloseDrawer = useCallback(() => setIsOpen(false), []);
+	const onOpenDrawer = useCallback(() => {
+		setIsOpen(true);
+	}, []);
+	const onCloseDrawer = useCallback(() => {
+		setIsOpen(false);
+	}, []);
 
 	const trigger = <Icon Svg={NotificationIcon} onClick={onOpenDrawer} />;
 

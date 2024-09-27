@@ -20,7 +20,9 @@ export const ArticlePageGreeting = memo(() => {
 		}
 	}, [dispatch, isArticlesPageWasOpened]);
 
-	const onClose = () => setIsOpen(false);
+	const onClose = () => {
+		setIsOpen(false);
+	};
 
 	const text = (
 		<Text

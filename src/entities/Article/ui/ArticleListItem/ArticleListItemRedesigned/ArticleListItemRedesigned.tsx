@@ -6,7 +6,6 @@ import { ArticleListItemProps } from '../ArticleListItem';
 import { Text } from '@/shared/ui/Text';
 import { Icon } from '@/shared/ui/Icon';
 import EyeIcon from '@/shared/assets/icons/eye.svg';
-import { ArticleTextBlock } from '../../../model/types/article';
 import { Card } from '@/shared/ui/Card';
 import { Avatar } from '@/shared/ui/Avatar';
 import { AppImage } from '@/shared/ui/AppImage';
@@ -37,7 +36,7 @@ export const ArticleListItemRedesigned = memo((props: ArticleListItemProps) => {
 	if (view === ArticleView.BIG) {
 		const textBlock = article.blocks.find(
 			(block) => block.type === ArticleBlockType.TEXT,
-		) as ArticleTextBlock;
+		)!;
 
 		return (
 			<Card
@@ -62,7 +61,7 @@ export const ArticleListItemRedesigned = memo((props: ArticleListItemProps) => {
 						className={styles.img}
 						alt={article.title}
 					/>
-					{textBlock?.paragraphs && (
+					{textBlock.paragraphs && (
 						// ! при помщи css можно нормально обрезать текст, чтобы везде было одинаково
 						// ! просто высотой скрывать текст неправильно
 						<Text

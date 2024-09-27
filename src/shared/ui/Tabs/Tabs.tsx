@@ -26,7 +26,7 @@ export const Tabs = <T extends string>({
 	const clickHandle = useCallback(
 		(tab: TabItem<T>) => {
 			return () => {
-				onTabClick(tab as TabItem<T>);
+				onTabClick(tab);
 			};
 		},
 		[onTabClick],

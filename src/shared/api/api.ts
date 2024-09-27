@@ -5,7 +5,7 @@ export const $api = axios.create({
 	baseURL: __API__,
 });
 
-// нужно при каждом запросе проверять, является ли пользователь авторизованным, поэтому используем интерсепторы
+// перехватчик для каждого запроса на проверку того, авторизован ли пользователь или нет
 $api.interceptors.request.use((config) => {
 	if (config.headers) {
 		config.headers.Authorization =

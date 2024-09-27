@@ -56,6 +56,6 @@ export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
 	}, []);
 
 	// * не ну это конкретный костылик)
-	// eslint-disable-next-line react/jsx-no-useless-fragment
+
 	return <>{children}</>;
 };

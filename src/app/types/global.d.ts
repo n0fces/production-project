@@ -1,9 +1,7 @@
 // глобальная декларация типов
 // говорил ts, какого вида импортируется объект со стилями из модуля
 declare module '*.scss' {
-	interface IClassNames {
-		[className: string]: string;
-	}
+	type IClassNames = Record<string, string>;
 	const classNames: IClassNames;
 	export = classNames;
 }

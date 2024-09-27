@@ -11,9 +11,9 @@
 		"start:dev:vite": "concurrently \"npm run start:vite\" \"npm run start:dev:server\"",
 		"build:prod": "webpack  --env mode=production",
 		"build:dev": "webpack  --env mode=development",
-		"prettier": "npx prettier --write **/*.{ts,tsx}",
-		"lint:ts": "eslint \"**/*.{ts,tsx}\"",
-		"lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
+		"prettier": "npx prettier --write",
+		"lint:ts": "eslint",
+		"lint:ts:fix": "eslint --fix",
 		"lint:scss": "npx stylelint \"**/*.scss\"",
 		"lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
 		"test:unit": "jest --config ./config/jest/jest.config.ts",
@@ -41,6 +41,7 @@
 		"@babel/preset-env": "^7.16.11",
 		"@babel/preset-react": "^7.16.7",
 		"@babel/preset-typescript": "^7.16.7",
+		"@eslint/js": "^9.11.1",
 		"@pmmmwh/react-refresh-webpack-plugin": "^0.5.5",
 		"@storybook/addon-actions": "^6.5.13",
 		"@storybook/addon-essentials": "^6.5.13",
@@ -63,8 +64,8 @@
 		"@types/webpack": "^5.28.0",
 		"@types/webpack-bundle-analyzer": "^4.4.1",
 		"@types/webpack-dev-server": "^4.7.2",
-		"@typescript-eslint/eslint-plugin": "^5.12.1",
-		"@typescript-eslint/parser": "^5.12.1",
+		"@typescript-eslint/eslint-plugin": "^8.7.0",
+		"@typescript-eslint/parser": "^8.7.0",
 		"@vitejs/plugin-react": "^2.1.0",
 		"babel-loader": "^8.2.3",
 		"babel-plugin-i18next-extract": "^0.8.3",
@@ -72,19 +73,18 @@
 		"copy-webpack-plugin": "^10.2.4",
 		"css-loader": "^6.6.0",
 		"cypress": "^11.0.0",
-		"eslint": "^8.10.0",
-		"eslint-config-airbnb": "^19.0.4",
-		"eslint-config-prettier": "^8.5.0",
-		"eslint-plugin-i18next": "^5.1.2",
-		"eslint-plugin-import": "^2.25.4",
-		"eslint-plugin-jsx-a11y": "^6.5.1",
-		"eslint-plugin-path-checker-fsd-trainee": "^0.0.9",
-		"eslint-plugin-react": "^7.29.2",
-		"eslint-plugin-react-hooks": "^4.3.0",
-		"eslint-plugin-storybook": "^0.6.7",
-		"eslint-plugin-unused-imports": "^2.0.0",
+		"eslint": "^9.11.1",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-i18next": "^6.1.0",
+		"eslint-plugin-jsx-a11y": "^6.10.0",
+		"eslint-plugin-path-checker-fsd-trainee": "^0.0.10",
+		"eslint-plugin-react": "^7.36.1",
+		"eslint-plugin-react-hooks": "^5.1.0-rc-fb9a90fa48-20240614",
+		"eslint-plugin-storybook": "^0.9.0",
+		"eslint-plugin-unused-imports": "^4.1.4",
 		"file-loader": "^6.2.0",
-		"fork-ts-checker-webpack-plugin": "^7.2.13",
+		"fork-ts-checker-webpack-plugin": "^7.3.0",
+		"globals": "^15.9.0",
 		"html-webpack-plugin": "^5.5.0",
 		"husky": "^7.0.0",
 		"identity-obj-proxy": "^3.0.0",
@@ -108,7 +108,8 @@
 		"ts-loader": "^9.2.6",
 		"ts-morph": "^16.0.0",
 		"ts-node": "^10.5.0",
-		"typescript": "^4.5.5",
+		"typescript": "^5.6.2",
+		"typescript-eslint": "^8.7.0",
 		"vite": "^3.1.0",
 		"vite-plugin-svgr": "^2.2.1",
 		"webpack": "^5.69.1",
@@ -135,8 +136,7 @@
 	},
 	"lint-staged": {
 		"**/*.{ts,tsx}": [
-			"prettier --list-different",
-			"eslint"
+			"prettier --write --ignore-unknown"
 		]
 	},
 	"loki": {
@@ -151,5 +151,8 @@
 				"preset": "iPhone 7"
 			}
 		}
+	},
+	"overrides": {
+		"eslint": "^9.11.1"
 	}
 }
