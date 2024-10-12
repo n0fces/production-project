@@ -52,6 +52,7 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 	// };
 
 	// для импорта других файлов
+	// ! file-loader устарел для webpack 5
 	const fileLoader = {
 		test: /\.(png|jpe?g|gif|woff2|woff)$/i,
 		use: [

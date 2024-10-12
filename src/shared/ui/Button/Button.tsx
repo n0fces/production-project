@@ -14,8 +14,7 @@ export type ButtonColor = 'normal' | 'success' | 'error';
 
 export type ButtonSize = 'm' | 'l' | 'xl';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-	className?: string;
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	/**
 	 * Тема кнопки. Отвечает за визуал (в рамке, без стилей, противоположный теме приложения цвет и тд)
 	 */
@@ -28,10 +27,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	 * Размер кнопки в соответствии с дизайн системой
 	 */
 	size?: ButtonSize;
-	/**
-	 * Флаг, отвечающий за работу кнопки
-	 */
-	disabled?: boolean;
 	/**
 	 * Содержимое кнопки
 	 */

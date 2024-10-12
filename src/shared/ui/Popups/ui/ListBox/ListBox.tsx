@@ -5,11 +5,11 @@ import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { DropdownDirection } from '@/shared/types/ui';
 
-import { Button } from '../../../Button/Button';
 import { Icon } from '../../../Icon';
 import { HStack } from '../../../Stack';
 import stylesPopup from '../../styles/popup.module.scss';
 import styles from './ListBox.module.scss';
+import { ListBoxButton } from './ui/ListBoxButton/ListBoxButton';
 
 export interface ListBoxItem<T extends string> {
 	value: T;
@@ -57,15 +57,13 @@ export const ListBox = <T extends string>({
 				])}
 				value={value}
 				onChange={onChange}>
-				{/* Здесь кнопка в кнопке, что обязательно нужно исправить */}
-				<HListBox.Button
-					as={Button}
+				<ListBoxButton
 					variant="filled"
 					disabled={readOnly}
 					addonRight={<Icon Svg={ArrowIcon} />}
 					className={stylesPopup.trigger}>
 					{selectedItem?.content ?? defaultValue}
-				</HListBox.Button>
+				</ListBoxButton>
 				<HListBox.Options
 					className={classNames(styles.options, {}, [
 						stylesPopup[direction],
