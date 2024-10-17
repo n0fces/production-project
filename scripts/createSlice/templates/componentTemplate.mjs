@@ -1,6 +1,6 @@
 const interfaceConst = 'interface';
 
-module.exports = (
+export default (
 	componentName,
 ) => `import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';

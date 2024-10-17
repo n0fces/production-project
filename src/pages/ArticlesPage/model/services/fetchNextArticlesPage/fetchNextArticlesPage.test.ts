@@ -17,7 +17,7 @@ describe('fetchNextArticlesPage.test', () => {
 				hasMore: true,
 			},
 		});
-		await thunk.callThunk();
+		await thunk.callThunk(undefined);
 
 		// проверяем, что отработал pending, fullfilled и два диспатча
 		expect(thunk.dispatch).toBeCalledTimes(4);
@@ -37,7 +37,7 @@ describe('fetchNextArticlesPage.test', () => {
 				hasMore: false,
 			},
 		});
-		await thunk.callThunk();
+		await thunk.callThunk(undefined);
 
 		expect(thunk.dispatch).toBeCalledTimes(2);
 		expect(fetchArticlesList).not.toHaveBeenCalled();

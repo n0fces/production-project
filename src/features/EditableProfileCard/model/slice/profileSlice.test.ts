@@ -82,7 +82,7 @@ describe('profileSlice.test', () => {
 		expect(
 			profileReducer(
 				state as ProfileScheme,
-				updateProfileData.fulfilled(data, ''),
+				updateProfileData.fulfilled(data, '', undefined),
 			),
 		).toEqual({
 			isLoading: false,

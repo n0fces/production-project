@@ -1,17 +1,19 @@
-const fs = require('fs');
-const jsonServer = require('json-server');
-const path = require('path');
-const https = require('https');
-const http = require('http');
+import fs from 'fs';
+import jsonServer from 'json-server';
+import path from 'path';
+import https from 'https';
+import http from 'http';
+
+const dirname = import.meta.dirname;
 
 const options = {
-	key: fs.readFileSync(path.resolve(__dirname, 'key.pem')),
-	cert: fs.readFileSync(path.resolve(__dirname, 'cert.pem')),
+	key: fs.readFileSync(path.resolve(dirname, 'key.pem')),
+	cert: fs.readFileSync(path.resolve(dirname, 'cert.pem')),
 };
 
 const server = jsonServer.create();
 
-const router = jsonServer.router(path.resolve(__dirname, 'db.json'));
+const router = jsonServer.router(path.resolve(dirname, 'db.json'));
 
 server.use(jsonServer.defaults({}));
 server.use(jsonServer.bodyParser);
@@ -29,7 +31,7 @@ server.post('/login', (req, res) => {
 	try {
 		const { username, password } = req.body;
 		const db = JSON.parse(
-			fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'),
+			fs.readFileSync(path.resolve(dirname, 'db.json'), 'UTF-8'),
 		);
 		const { users = [] } = db;
 

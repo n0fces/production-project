@@ -1,9 +1,10 @@
-const fs = require('fs/promises');
-const resolveRoot = require('../resolveRoot');
-const reduxSliceTemplate = require('./reduxSliceTemplate');
-const schemaTypeTemplate = require('./schemaTypeTemplate');
+import fs from 'fs/promises';
 
-module.exports = async (layer, sliceName) => {
+import resolveRoot from '../resolveRoot.mjs';
+import reduxSliceTemplate from './reduxSliceTemplate.mjs';
+import schemaTypeTemplate from './schemaTypeTemplate.mjs';
+
+export default async (layer, sliceName) => {
 	const resolveModelPath = (...segments) =>
 		resolveRoot('src', layer, sliceName, 'model', ...segments);
 

@@ -53,6 +53,7 @@ export interface ReducerManager {
 }
 
 // расширяем интерфейс дефолтного стора нашим менеджером
+// extends ReturnType<typeof configureStore>
 export interface ReduxStoreWithManager extends EnhancedStore<StateScheme> {
 	reducerManager: ReducerManager;
 }

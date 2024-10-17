@@ -30,7 +30,7 @@ export const DrawerContent = memo((props: DrawerProps) => {
 
 	// когда открываем drawer, мы запускаем анимацию
 	const openDrawer = useCallback(() => {
-		api.start({ y: 0, immediate: false });
+		void api.start({ y: 0, immediate: false });
 	}, [api]);
 
 	useEffect(() => {
@@ -42,7 +42,7 @@ export const DrawerContent = memo((props: DrawerProps) => {
 	// когда закрываем drawer, мы тоже запускаем анимацию
 	// onResolve - когда resolve у нас выполнился, то отработает функция onClose (drawer в конечном счете должен закрыться)
 	const close = (velocity = 0) => {
-		api.start({
+		void api.start({
 			y: height,
 			immediate: false,
 			config: { ...Spring.config.stiff, velocity },
@@ -68,7 +68,7 @@ export const DrawerContent = memo((props: DrawerProps) => {
 					openDrawer();
 				}
 			} else {
-				api.start({ y: my, immediate: true });
+				void api.start({ y: my, immediate: true });
 			}
 		},
 		{

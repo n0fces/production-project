@@ -20,15 +20,16 @@ export const loginByUsername = createAsyncThunk<
 			const response = await api.post<User>('/login', authData);
 			// Если с сервера нам вернулся пустой объект, то будем считать это ошибкой. Предполагаем, что сервер обязательно должен нам что-то вернуть
 			if (!response.data) {
-				throw new Error();
+				throw new Error('Нет ответа от сервера');
 			}
 
 			dispatch(userActions.setAuthData(response.data));
 
 			return response.data;
 		} catch (error) {
-			console.log(error);
-			return rejectWithValue('error');
+			return error instanceof Error
+				? rejectWithValue(error.message)
+				: rejectWithValue('error');
 		}
 	},
 );

@@ -1,8 +1,9 @@
-const fs = require('fs/promises');
-const resolveRoot = require('../resolveRoot');
-const firstCharUpperCase = require('../firstCharUpperCase');
+import fs from 'fs/promises';
 
-module.exports = async (layer, sliceName) => {
+import firstCharUpperCase from '../firstCharUpperCase.mjs';
+import resolveRoot from '../resolveRoot.mjs';
+
+export default async (layer, sliceName) => {
 	const componentName = firstCharUpperCase(sliceName);
 	const schemaName = `${sliceName}Schema`;
 
@@ -14,7 +15,7 @@ module.exports = async (layer, sliceName) => {
 							schemaName,
 						)} } from './model/types/${schemaName}';`,
 		);
-	} catch (e) {
+	} catch {
 		console.log('Не удалось создать PUBLIC API');
 	}
 };

@@ -32,6 +32,7 @@ export default tseslint.config(
 			'**/*.md',
 			'.browserslistrc',
 			'.gitignore',
+			'**/global.d.ts'
 		],
 	},
 	{
@@ -39,6 +40,7 @@ export default tseslint.config(
 		languageOptions: {
 			globals: {
 				...globals.browser,
+				...globals.node,
 				...globals.jest,
 				__IS_DEV__: 'readonly',
 				__API__: 'readonly',
@@ -82,6 +84,13 @@ export default tseslint.config(
 		},
 		rules: {
 			...reactHooks.configs.recommended.rules,
+			// Чтобы подобные выражение `StarRating.${star}`, где star - number, были валидными
+			'@typescript-eslint/restrict-template-expressions': [
+				'error',
+				{
+					allowNumber: true,
+				},
+			],
 			// * чтобы unused imports plugin работал
 			'@typescript-eslint/no-unused-vars': 'off',
 			'unused-imports/no-unused-imports': 'error',
@@ -117,6 +126,15 @@ export default tseslint.config(
 		name: 'storybook',
 		files: ['**/src/**/*.{stories}.{ts,tsx}'],
 		extends: [storybookPlugin.configs],
+	},
+	{
+		name: 'cypress',
+		files: ['**/cypress/**/*'],
+		rules: {
+			// работа с глобальными интерфейсами обозначена в документации Cypress
+			// https://docs.cypress.io/guides/tooling/typescript-support#Types-for-Custom-Commands
+			'@typescript-eslint/no-namespace': 'off'
+		}
 	},
 	{
 		name: 'overrides rules for test- and story- files',

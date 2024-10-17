@@ -1,5 +1,5 @@
 import path from 'path';
-import { Configuration, DefinePlugin, RuleSetRule } from 'webpack';
+import { Configuration, DefinePlugin } from 'webpack';
 
 import { buildCssLoader } from '../build/loaders/buildCssLoader';
 import { BuildPaths } from '../build/types/config';
@@ -24,6 +24,9 @@ export default {
 	core: {
 		builder: 'webpack5',
 	},
+	typescript: {
+		reactDocgen: 'react-docgen-typescript-plugin',
+	},
 	webpackFinal: async (config: Configuration) => {
 		const paths: BuildPaths = {
 			build: '',
@@ -36,21 +39,26 @@ export default {
 		config.resolve?.modules?.push(paths.src);
 		config.resolve?.extensions?.push('.ts', '.tsx');
 		// после добавления алиасов в наш проект необходимо также добавить наши новые алиасы в сторибук
-		config.resolve!.alias = {
-			// необходимо развернуть старые алиасы, чтобы, возможно, не забыть встроенные алиасы в конфигурации вебпака сторибука
-			...config.resolve?.alias,
-			'@': paths.src,
-		};
+		if (config.resolve?.alias) {
+			config.resolve.alias = {
+				// необходимо развернуть старые алиасы, чтобы, возможно, не забыть встроенные алиасы в конфигурации вебпака сторибука
+				...config.resolve?.alias,
+				'@': paths.src,
+			};
+		}
 
 		// здесь мы убираем дефолтный лоадер для свг от сторибука, а потом добавляем свой
-		// @ts-ignore
-		config.module!.rules = config.module?.rules?.map((rule: RuleSetRule) => {
-			if (/svg/.test(rule.test as string)) {
-				return { ...rule, exclude: /\.svg$/i };
-			}
+		if (config.module?.rules) {
+			config.module.rules = config.module?.rules?.map((rule) => {
+				if (rule && typeof rule === 'object' && 'test' in rule) {
+					if (/svg/.test(rule.test as string)) {
+						return { ...rule, exclude: /\.svg$/i };
+					}
+				}
 
-			return rule;
-		});
+				return rule;
+			});
+		}
 
 		config.module?.rules?.push({
 			test: /\.svg$/,

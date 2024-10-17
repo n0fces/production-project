@@ -21,7 +21,13 @@ export const Icon = ({
 	// сделали обертку над свг иконками, чтобы размеры сразу подстраивались по соответствующую тему
 	const icon = (
 		<Svg
-			className={classNames(styles.Icon, {}, [className])}
+			className={classNames(
+				styles.Icon,
+				{
+					[`${className}`]: className && !onClick,
+				},
+				[],
+			)}
 			width={width}
 			height={height}
 			data-testid={dataTestid}
@@ -33,7 +39,7 @@ export const Icon = ({
 		<button
 			type="button"
 			onClick={onClick}
-			className={styles.button}
+			className={classNames(styles.button, {}, [className])}
 			data-testid={dataTestid}
 			// чтобы кнопка всегда соответствовала размеру иконки
 			style={{ width, height }}>

@@ -6,7 +6,7 @@ import { Article } from '@/entities/Article';
 
 export const fetchArticleRecommendations = createAsyncThunk<
 	Article[],
-	void,
+	undefined,
 	ThunkConfig<string>
 >(
 	'articleDetailsPage/fetchArticleRecommendations',
@@ -24,7 +24,9 @@ export const fetchArticleRecommendations = createAsyncThunk<
 
 			return response.data;
 		} catch (error) {
-			return rejectWithValue('error');
+			return error instanceof Error
+				? rejectWithValue(error.message)
+				: rejectWithValue('error');
 		}
 	},
 );

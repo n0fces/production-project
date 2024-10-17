@@ -56,7 +56,7 @@ describe('loginByUsername.test', () => {
 		expect(thunk.dispatch).toHaveBeenCalledTimes(2);
 		expect(thunk.api.post).toHaveBeenCalled();
 		expect(result.meta.requestStatus).toBe('rejected');
-		expect(result.payload).toBe('error');
+		expect(result.payload).toBe('Нет ответа от сервера');
 	});
 
 	// * было до введения нами вспомогательного класса

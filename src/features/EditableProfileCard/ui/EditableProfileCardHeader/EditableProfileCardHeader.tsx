@@ -43,7 +43,7 @@ export const EditableProfileCardHeader = ({
 	}, [dispatch]);
 
 	const onSave = useCallback(() => {
-		dispatch(updateProfileData());
+		void dispatch(updateProfileData());
 	}, [dispatch]);
 
 	const props = {

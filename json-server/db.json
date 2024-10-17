@@ -1049,7 +1049,7 @@
         "isAppRedesigned": true
       },
       "jsonSettings": {
-        "theme": "app_light_theme",
+        "theme": "app_dark_theme",
         "isFirstVisit": true,
         "isArticlesPageWasOpened": true
       },
@@ -1113,8 +1113,8 @@
       "id": "1",
       "first": "Ilya",
       "lastname": "Abzalov",
-      "age": 21,
-      "currency": "USD",
+      "age": 22,
+      "currency": "RUB",
       "country": "Russia",
       "city": "Saint-Petersburg",
       "username": "ilyabz07",
@@ -1201,6 +1201,13 @@
       "articleId": "17",
       "rate": 4,
       "id": "JMm0oBE"
+    },
+    {
+      "userId": "1",
+      "articleId": "UxysGhJ",
+      "rate": 4,
+      "feedback": "",
+      "id": "NcZx_Dc"
     }
   ]
 }

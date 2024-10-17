@@ -55,6 +55,6 @@ describe('fetchArticleById.test', () => {
 		thunk.api.get.mockReturnValue(Promise.resolve({ status: 403 }));
 		const result = await thunk.callThunk('');
 		expect(result.meta.requestStatus).toBe('rejected');
-		expect(result.payload).toEqual('error');
+		expect(result.payload).toEqual('Нет id');
 	});
 });

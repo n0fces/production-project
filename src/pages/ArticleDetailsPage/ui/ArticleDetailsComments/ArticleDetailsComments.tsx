@@ -38,13 +38,13 @@ export const ArticleDetailsComments = ({
 
 	const onSendComment = useCallback(
 		(text: string) => {
-			dispatch(addCommentForArticle(text));
+			void dispatch(addCommentForArticle(text));
 		},
 		[dispatch],
 	);
 
 	useInitialEffect(() => {
-		dispatch(fetchCommentsByArticleId(id));
+		void dispatch(fetchCommentsByArticleId(id));
 	});
 
 	return (

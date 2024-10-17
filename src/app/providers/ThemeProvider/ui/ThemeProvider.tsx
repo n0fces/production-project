@@ -12,7 +12,9 @@ interface ThemeProviderProps {
 // ! гениальное решение. сначала все настройки пользователя вынести для хранения в бд, а затем возвращаться к использованию localstorage,
 // ! который работает синхронно, что нам как раз здесь и надо. Короче все, что касается пользовательских настроек насчет отображения
 // ! лучше хранить в localstorage, потому что это логично) другие настройки нужно хранить в базе данных
-const fallbackTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme;
+const fallbackTheme = localStorage.getItem(
+	LOCAL_STORAGE_THEME_KEY,
+) as Theme | null;
 
 export const ThemeProvider = ({
 	children,
@@ -20,7 +22,7 @@ export const ThemeProvider = ({
 }: ThemeProviderProps) => {
 	const [isThemeInited, setIsThemeInited] = useState(false);
 	const [theme, setTheme] = useState<Theme>(
-		initialTheme || fallbackTheme || Theme.LIGHT,
+		initialTheme ?? fallbackTheme ?? Theme.LIGHT,
 	);
 
 	useEffect(() => {

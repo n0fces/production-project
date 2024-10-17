@@ -20,7 +20,7 @@ const additionalInfo = {
 	author: {
 		id: '1',
 		username: 'admin',
-		avatar: AvatarImg,
+		avatar: AvatarImg as string,
 	},
 	createdAt: '22.02.2022',
 	views: 100,

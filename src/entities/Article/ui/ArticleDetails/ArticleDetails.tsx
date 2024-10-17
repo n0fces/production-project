@@ -76,7 +76,7 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
 	const isLoading = useSelector(getArticleDetailsIsLoading);
 	const error = useSelector(getArticleDetailsError);
 
-	useInitialEffect(() => dispatch(fetchArticleById(id)));
+	useInitialEffect(() => void dispatch(fetchArticleById(id)));
 
 	// из-за того, что мы используем DynamicModuleLoader, было логичнее поступить именно так (меняем содержимое самой разметки)
 	let content;

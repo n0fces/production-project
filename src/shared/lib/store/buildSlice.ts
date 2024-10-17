@@ -19,9 +19,9 @@ export function buildSlice<
 		const dispatch = useDispatch();
 		// первыым аргументом передаем сами экшены, а вторым - dispatch
 		// этот dispatch к каждому экшену будет прибинджен
-		// @ts-ignore
+		// @ts-expect-error -- необходимо возвращать CaseReducerActions<CaseReducers, Name>, так как это тип actions, которые отдает slice из createSlice
 		return useMemo(
-			// @ts-ignore
+			// @ts-expect-error -- bindActionCreators ожидает ActionCreatorsMapObject<A = any>, но все равно работает с CaseReducerActions<CaseReducers, Name>
 			() => bindActionCreators(slice.actions, dispatch),
 			[dispatch],
 		);

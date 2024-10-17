@@ -43,7 +43,7 @@ export function createReduxStore(
 	const store = configureStore({
 		// при использовании менеджера редьюсеров мы должны передавать не рут редьюсер, а стейт после выполнения данной функции редьюс
 		// без этого новые редьюсеры не будут добавляться
-		// Тимур сказал, что это можно пофиксить и без as, но пока оставим так, чтобы не задерживаться
+		// Это можно пофиксить и без as, но пока оставим так
 		reducer: reducerManager.reduce as Reducer<CombinedState<StateScheme>>,
 		devTools: __IS_DEV__,
 		preloadedState: initialState,
@@ -55,7 +55,7 @@ export function createReduxStore(
 			}).concat(rtkApi.middleware),
 	});
 
-	// @ts-ignore
+	// @ts-expect-error -- По умолчанию configureStore возвращает EnhancedStore<StateScheme>. По логике приложение необходимо добавить дополнительное поле reducerManager, который отвечает за работу с асинхронным редьюсерами
 	store.reducerManager = reducerManager;
 
 	return store;

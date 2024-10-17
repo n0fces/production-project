@@ -9,7 +9,7 @@ interface UpdateFeatureFlagsOptions {
 
 const featureFlagsApi = rtkApi.injectEndpoints({
 	endpoints: (build) => ({
-		updateFeatureFlags: build.mutation<void, UpdateFeatureFlagsOptions>({
+		updateFeatureFlags: build.mutation<undefined, UpdateFeatureFlagsOptions>({
 			query: ({ userId, features }) => ({
 				url: `/users/${userId}`,
 				method: 'PATCH',

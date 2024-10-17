@@ -18,7 +18,7 @@ export const ThemeSwitcher = memo(({ className }: ThemeSwitcherProps) => {
 	const onToggleHandler = useCallback(() => {
 		toggleTheme((newTheme) => {
 			// перезаписывается именно настройка с темой
-			dispatch(saveJsonSettings({ theme: newTheme }));
+			void dispatch(saveJsonSettings({ theme: newTheme }));
 		});
 	}, [dispatch, toggleTheme]);
 

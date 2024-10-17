@@ -49,7 +49,7 @@ export const StarRating = ({
 	};
 
 	return (
-		<div className={classNames(styles.StarRatingRedesigned, {}, [className])}>
+		<div className={classNames(styles.StarRating, {}, [className])}>
 			{stars.map((star) => {
 				return (
 					<Icon

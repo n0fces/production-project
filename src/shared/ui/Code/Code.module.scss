@@ -1,12 +1,4 @@
 .Code {
-	border: 1px solid var(--primary-color);
-	padding: 20px;
-	position: relative;
-	background: var(--code-bg);
-	overflow: auto;
-}
-
-.CodeRedesigned {
 	padding: 20px;
 	position: relative;
 	background: var(--light-bg-redesigned);
@@ -19,8 +11,17 @@
 	position: absolute;
 	right: 20px;
 	top: 20px;
+
+	&:hover,
+	&:focus {
+		opacity: 0.6;
+	}
 }
 
-.copyIcon path {
-	stroke: var(--primary-color);
+.isCopied path {
+	color: var(--green);
+}
+
+.isFailed path {
+	color: var(--red-dark);
 }

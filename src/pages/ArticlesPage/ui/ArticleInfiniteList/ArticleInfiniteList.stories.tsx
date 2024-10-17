@@ -19,6 +19,8 @@ const Template: ComponentStory<typeof ArticleInfiniteList> = (args) => (
 	<ArticleInfiniteList {...args} />
 );
 
+const avatar = AvatarImage as string;
+
 const articles: Article[] = [
 	{
 		id: '7',
@@ -26,7 +28,7 @@ const articles: Article[] = [
 		user: {
 			id: '1',
 			username: 'admin',
-			avatar: AvatarImage,
+			avatar,
 		},
 		subtitle: 'Что нового в JS за 2022 год?',
 		img: 'https://res.cloudinary.com/practicaldev/image/fetch/s--oqV3akcU--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/pgnw91fs7tpxn0wyeqh2.jpg',
@@ -52,7 +54,7 @@ const articles: Article[] = [
 		user: {
 			id: '1',
 			username: 'admin',
-			avatar: AvatarImage,
+			avatar,
 		},
 		subtitle: 'Что нового в JS за 2022 год?',
 		img: 'https://res.cloudinary.com/practicaldev/image/fetch/s--oqV3akcU--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/pgnw91fs7tpxn0wyeqh2.jpg',
@@ -78,7 +80,7 @@ const articles: Article[] = [
 		user: {
 			id: '1',
 			username: 'admin',
-			avatar: AvatarImage,
+			avatar,
 		},
 		subtitle: 'Что нового в JS за 2022 год?',
 		img: 'https://res.cloudinary.com/practicaldev/image/fetch/s--oqV3akcU--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/pgnw91fs7tpxn0wyeqh2.jpg',

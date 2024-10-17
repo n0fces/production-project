@@ -7,9 +7,11 @@ export const getScrollSaveScroll = (state: StateScheme) =>
 
 // здесь мы уже возвращаем не весь объект с сохраненными значениями скролла, а участок скролла по пути
 export const getScrollSaveByPath = createSelector(
-	getScrollSaveScroll,
-	// сначала передаем путь, по которому мы хотим получить значение скролла
-	(state: StateScheme, path: string) => path,
+	[
+		getScrollSaveScroll,
+		// сначала передаем путь, по которому мы хотим получить значение скролла
+		(state: StateScheme, path: string) => path,
+	],
 	// затем получаем конкретное значение скролла
 	(scroll, path) => scroll[path] || 0,
 );

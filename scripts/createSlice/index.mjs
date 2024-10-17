@@ -1,4 +1,4 @@
-const createTemplate = require('./templates/createTemplate');
+import createTemplate from './templates/createTemplate.mjs';
 
 const layer = process.argv[2];
 const sliceName = process.argv[3];

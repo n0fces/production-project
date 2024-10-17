@@ -36,11 +36,11 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 	const [searchParams] = useSearchParams();
 
 	const onLoadNextPart = useCallback(() => {
-		dispatch(fetchNextArticlesPage());
+		void dispatch(fetchNextArticlesPage());
 	}, [dispatch]);
 
 	useInitialEffect(() => {
-		dispatch(initArticlesPage(searchParams));
+		void dispatch(initArticlesPage(searchParams));
 	});
 
 	const content = (
@@ -49,6 +49,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 			content={
 				<Page
 					data-testid="ArticlesPage"
+					isSaveScroll={false}
 					onScrollEnd={onLoadNextPart}
 					className={classNames(styles.ArticlesPageRedesign, {}, [className])}>
 					<ArticleInfiniteList className={styles.list} />

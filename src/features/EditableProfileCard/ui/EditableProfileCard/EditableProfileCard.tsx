@@ -56,25 +56,27 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 	};
 
 	useInitialEffect(() => {
-		if (id) dispatch(fetchProfileData(id));
+		if (id) {
+			void dispatch(fetchProfileData(id));
+		}
 	});
 
 	// эти функции очень похожи, но на реальных проектах часто бывают различные дополнительны проверки. Поэтому то, что у нас получается так много функций и так много пропсов ничего страшнного
 	const onChangeFirstname = useCallback(
 		(value?: string) => {
-			dispatch(profileActions.updateProfile({ first: value || '' }));
+			dispatch(profileActions.updateProfile({ first: value ?? '' }));
 		},
 		[dispatch],
 	);
 	const onChangeLastname = useCallback(
 		(value?: string) => {
-			dispatch(profileActions.updateProfile({ lastname: value || '' }));
+			dispatch(profileActions.updateProfile({ lastname: value ?? '' }));
 		},
 		[dispatch],
 	);
 	const onChangeCity = useCallback(
 		(value?: string) => {
-			dispatch(profileActions.updateProfile({ city: value || '' }));
+			dispatch(profileActions.updateProfile({ city: value ?? '' }));
 		},
 		[dispatch],
 	);
@@ -82,7 +84,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 		(value?: string) => {
 			dispatch(
 				profileActions.updateProfile({
-					age: Number(value || 1),
+					age: Number(value ?? 1),
 				}),
 			);
 		},
@@ -90,13 +92,13 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 	);
 	const onChangeUsername = useCallback(
 		(value?: string) => {
-			dispatch(profileActions.updateProfile({ username: value || '' }));
+			dispatch(profileActions.updateProfile({ username: value ?? '' }));
 		},
 		[dispatch],
 	);
 	const onChangeAvatar = useCallback(
 		(value?: string) => {
-			dispatch(profileActions.updateProfile({ avatar: value || '' }));
+			dispatch(profileActions.updateProfile({ avatar: value ?? '' }));
 		},
 		[dispatch],
 	);

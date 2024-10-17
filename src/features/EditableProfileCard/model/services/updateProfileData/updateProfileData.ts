@@ -10,7 +10,7 @@ import { validateProfileData } from '../validateProfileData/validateProfileData'
 
 export const updateProfileData = createAsyncThunk<
 	Profile,
-	void,
+	undefined,
 	ThunkConfig<ValidateProfileError[]>
 >(
 	'profile/updateProfileData',
@@ -30,7 +30,7 @@ export const updateProfileData = createAsyncThunk<
 			// предполагаем, что сервер точно должен нам вернуть какие-то данные
 			if (!response.data) throw new Error();
 			return response.data;
-		} catch (error) {
+		} catch {
 			return rejectWithValue([ValidateProfileError.SERVER_ERROR]);
 		}
 	},

@@ -17,16 +17,18 @@ export const Counter = () => {
 	};
 
 	return (
-		<div>
-			<h1 data-testid="value-title">{counterValue}</h1>
+		<div style={{ display: 'flex', alignItems: 'center' }}>
+			<Button onClick={handleDecrement} data-testid="decrement-btn">
+				-
+			</Button>
+			<h1 data-testid="value-title" style={{ margin: '0 1rem' }}>
+				{counterValue}
+			</h1>
 			<Button onClick={handleAdd} data-testid="add-btn">
 				+5
 			</Button>
 			<Button onClick={handleIncrement} data-testid="increment-btn">
 				+
-			</Button>
-			<Button onClick={handleDecrement} data-testid="decrement-btn">
-				-
 			</Button>
 		</div>
 	);

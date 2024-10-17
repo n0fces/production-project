@@ -11,7 +11,7 @@ import { articlesPageActions } from '../../slice/articlesPageSlice';
 import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 
 export const initArticlesPage = createAsyncThunk<
-	void,
+	undefined,
 	URLSearchParams,
 	ThunkConfig<string>
 >(
@@ -41,5 +41,7 @@ export const initArticlesPage = createAsyncThunk<
 			dispatch(articlesPageActions.initState());
 			dispatch(fetchArticlesList({}));
 		}
+
+		return undefined;
 	},
 );

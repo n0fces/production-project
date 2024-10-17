@@ -25,7 +25,7 @@ const App = memo(() => {
 	// при входе в приложение будем проверять, авторизован ли пользователь
 	useEffect(() => {
 		if (!inited) {
-			dispatch(initAuthData());
+			void dispatch(initAuthData());
 		}
 	}, [dispatch, inited]);
 

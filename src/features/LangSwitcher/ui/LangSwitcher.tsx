@@ -12,11 +12,11 @@ export const LangSwitcher = memo(({ className, short }: LangSwitcherProps) => {
 	const { t, i18n } = useTranslation();
 
 	const toggle = async () => {
-		i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
+		await i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
 	};
 
 	return (
-		<Button variant="clear" onClick={toggle}>
+		<Button variant="clear" onClick={() => void toggle()}>
 			{t(short ? 'Короткий язык' : 'Язык')}
 		</Button>
 	);

@@ -1,24 +1,21 @@
-import { MutableRefObject, useCallback, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 
 /**
- * The useDebounce function in TypeScript allows you to debounce a callback function with a specified
- * delay.
- * @param callback - The `callback` parameter is a function that will be called after the debounce
+ * Кастомный хук, который позволяет выполнить действие только тогда, когда пройдет время delay
+ * @param callback - функция, которая должна выполниться после delay
  * delay has passed.
- * @param {number} delay - The `delay` parameter specifies the amount of time in milliseconds to wait
- * before invoking the `callback` function after the last debounced function call.
- * @returns The `useDebounce` function is returning a debounced version of the provided callback
- * function. This debounced function will delay invoking the original callback until a specified amount
- * of time has passed without the function being called again.
+ * @param {number} delay - задержка, которая указывает время в миллисекундах и
+ * только после которой выполнится callback
+ * @returns Возвращает debounced функцию
  */
-export const useDebounce = (
-	callback: (...args: any[]) => void,
+export const useDebounce = <T extends unknown[]>(
+	callback: (...args: T) => void,
 	delay: number,
 ) => {
-	const timer = useRef() as MutableRefObject<any>;
+	const timer = useRef<NodeJS.Timeout>();
 
 	return useCallback(
-		(...args: any[]) => {
+		(...args: T) => {
 			if (timer.current) {
 				clearTimeout(timer.current);
 			}

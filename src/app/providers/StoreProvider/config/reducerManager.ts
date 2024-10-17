@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-dynamic-delete -- данный код взят из документации Redux */
+// * https://redux.js.org/usage/code-splitting#using-a-reducer-manager
 import {
 	AnyAction,
 	Reducer,
@@ -27,7 +29,7 @@ export function createReducerManager(
 	const mountedReducers: MountedReducers = {};
 
 	return {
-		// по сути могли и не  делать getMountedReducers, потому что можно было бы по getReducerMap смотреть, какие редьюсеры уже вмонтированы
+		// по сути могли и не делать getMountedReducers, потому что можно было бы по getReducerMap смотреть, какие редьюсеры уже вмонтированы
 		getReducerMap: () => reducers,
 		getMountedReducers: () => mountedReducers,
 

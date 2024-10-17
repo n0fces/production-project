@@ -30,16 +30,16 @@ const ArticleRating = ({ className, articleId }: ArticleRatingProps) => {
 	const [rateArticleMutation] = useRateArticleMutation();
 	const handleRateArticleMutation = useCallback(
 		(starsCount: number, feedback?: string) => {
-			try {
-				rateArticleMutation({
-					userId: userData?.id ?? '',
-					articleId,
-					rate: starsCount,
-					feedback,
-				});
-			} catch (error) {
-				console.error(error);
-			}
+			rateArticleMutation({
+				userId: userData?.id ?? '',
+				articleId,
+				rate: starsCount,
+				feedback,
+			}).catch((error: unknown) => {
+				if (error instanceof Error) {
+					console.error(error);
+				}
+			});
 		},
 		[articleId, rateArticleMutation, userData?.id],
 	);

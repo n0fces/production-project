@@ -1,4 +1,4 @@
-import { MutableRefObject, ReactNode, UIEvent, useRef } from 'react';
+import { ReactNode, useCallback, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
@@ -18,16 +18,22 @@ import styles from './Page.module.scss';
 interface PageProps extends TestProps {
 	className?: string;
 	children?: ReactNode;
-	// для разных страниц нам понадобится своя логика при работе с интерсекши обсервер
+	isSaveScroll?: boolean;
+	// для разных страниц нам понадобится своя логика при работе с Intersection Observer
 	onScrollEnd?: () => void;
 }
 
 export const PAGE_ID = 'PAGE_ID';
 
-export const Page = (props: PageProps) => {
-	const { className, children, onScrollEnd, 'data-testid': dataTestId } = props;
-	const wrapperRef = useRef() as MutableRefObject<HTMLElement>;
-	const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
+export const Page = ({
+	className,
+	children,
+	isSaveScroll = true,
+	onScrollEnd,
+	'data-testid': dataTestId,
+}: PageProps) => {
+	const wrapperRef = useRef<HTMLElement>(null);
+	const triggerRef = useRef<HTMLDivElement>(null);
 	const dispatch = useAppDispatch();
 	const { pathname } = useLocation();
 	const scrollPosition = useSelector((state: StateScheme) =>
@@ -36,7 +42,6 @@ export const Page = (props: PageProps) => {
 
 	useInfiniteScroll({
 		// в новой версии остался только основной скролл, так что мы бередаем undefined, чтобы внутри присвоилось значение null
-		// согласно документации Intersection Observer, если рут null, то отслеживание будет относительно window
 		wrapperRef: undefined,
 		triggerRef,
 		callback: onScrollEnd,
@@ -44,28 +49,37 @@ export const Page = (props: PageProps) => {
 
 	// так будем инициализировать скролл у страницы
 	useInitialEffect(() => {
-		wrapperRef.current.scrollTop = scrollPosition;
+		if (isSaveScroll) {
+			window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
+		}
 	});
 
-	// не очень понимаю, почему нельзя сохранять скролл только в момент перехода на другую странцу, то есть в момент размонтирования
-	// сейчас мы подписываемся на событие скролл
-	// короче оставлю пока так, а потом по завершении курса переделаю так, как мне нравится
-	const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
-		dispatch(
-			scrollSaveActions.setScrollPosition({
-				position: e.currentTarget.scrollTop,
-				path: pathname,
-			}),
-		);
-	}, 500);
+	// eslint-disable-next-line react-hooks/exhaustive-deps -- Функция колбэк внутри useThrottle никаких аргументов не принимает, поэтому useThrottle по итогу просто отдаст () => void
+	const onScroll = useCallback(
+		useThrottle(() => {
+			dispatch(
+				scrollSaveActions.setScrollPosition({
+					position: window.scrollY,
+					path: pathname,
+				}),
+			);
+		}, 500),
+		[],
+	);
 
-	const cls = styles.PageRedesigned;
+	useEffect(() => {
+		if (isSaveScroll) {
+			window.addEventListener('scroll', onScroll);
+			return () => {
+				window.removeEventListener('scroll', onScroll);
+			};
+		}
+	}, [isSaveScroll, onScroll]);
 
 	return (
 		<main
 			ref={wrapperRef}
-			className={classNames(cls, {}, [className])}
-			onScroll={onScroll}
+			className={classNames(styles.Page, {}, [className])}
 			id={PAGE_ID}
 			data-testid={dataTestId ?? 'Page'}>
 			{children}

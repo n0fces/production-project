@@ -9,7 +9,7 @@ import { Text } from '@/shared/ui/Text';
 import { LoginFormComponentProps } from './LoginForm';
 import styles from './LoginForm.module.scss';
 
-export const LoginFormRedesigned = ({
+export const LoginFormComponent = ({
 	password,
 	className,
 	error,
@@ -43,7 +43,7 @@ export const LoginFormRedesigned = ({
 			/>
 			<Button
 				className={styles.loginBtn}
-				onClick={onLoginClick}
+				onClick={() => void onLoginClick()}
 				disabled={isLoading}>
 				{t('Войти')}
 			</Button>

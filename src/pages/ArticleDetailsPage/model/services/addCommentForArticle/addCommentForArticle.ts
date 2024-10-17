@@ -38,7 +38,9 @@ export const addCommentForArticle = createAsyncThunk<
 
 			return response.data;
 		} catch (error) {
-			return rejectWithValue('error');
+			return error instanceof Error
+				? rejectWithValue(error.message)
+				: rejectWithValue('Unexpected error');
 		}
 	},
 );

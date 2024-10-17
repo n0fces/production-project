@@ -53,10 +53,8 @@ export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
 				});
 			}
 		};
-		// eslint-disable-next-line
+		// eslint-disable-next-line react-hooks/exhaustive-deps -- Необходимо именно при начальном монтировании выполнить логику useEffect
 	}, []);
 
-	// * не ну это конкретный костылик)
-
-	return <>{children}</>;
+	return children;
 };

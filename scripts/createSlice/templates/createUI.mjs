@@ -1,18 +1,19 @@
-const fs = require('fs/promises');
-const resolveRoot = require('../resolveRoot');
-const firstCharUpperCase = require('../firstCharUpperCase');
-const componentTemplate = require('./componentTemplate');
-const storyTemplate = require('./storyTemplate');
-const styleTemplate = require('./styleTemplate');
+import fs from 'fs/promises';
 
-module.exports = async (layer, sliceName) => {
+import firstCharUpperCase from '../firstCharUpperCase.mjs';
+import resolveRoot from '../resolveRoot.mjs';
+import componentTemplate from './componentTemplate.mjs';
+import storyTemplate from './storyTemplate.mjs';
+import styleTemplate from './styleTemplate.mjs';
+
+export default async (layer, sliceName) => {
 	const resolveUIPath = (...segments) =>
 		resolveRoot('src', layer, sliceName, 'ui', ...segments);
 
 	const createUIDir = async () => {
 		try {
 			await fs.mkdir(resolveUIPath());
-		} catch (e) {
+		} catch {
 			console.log('Не удалось создать UI директорию');
 		}
 	};
@@ -33,7 +34,7 @@ module.exports = async (layer, sliceName) => {
 				resolveUIPath(componentName, `${componentName}.module.scss`),
 				styleTemplate(componentName),
 			);
-		} catch (e) {
+		} catch {
 			console.log('Не удалось создать компонент');
 		}
 	};
