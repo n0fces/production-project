@@ -1,5 +1,6 @@
 import path from 'path';
 import { Project } from 'ts-morph';
+import { fileURLToPath } from 'url';
 
 const project = new Project({});
 
@@ -8,11 +9,12 @@ const project = new Project({});
 project.addSourceFilesAtPaths('src/**/*.ts');
 project.addSourceFilesAtPaths('src/**/*.tsx');
 
-const dirname = import.meta.dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // получаем все нужные нам файлы
 const files = project.getSourceFiles();
-const UIPath = path.resolve(dirname, '..', '..', 'src', 'shared', 'ui');
+const UIPath = path.resolve(__dirname, '..', '..', 'src', 'shared', 'ui');
 // получаем папку ui из shared слоя
 const sharedUIDirectory = project.getDirectory(UIPath);
 // получаем все наши ui компоненты из этой папки sharedUIDirectory

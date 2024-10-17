@@ -1,13 +1,15 @@
 import { readdir, writeFile } from 'fs';
-import { join, relative } from 'path';
+import { dirname, join, relative } from 'path';
+import { fileURLToPath } from 'url';
 import { promisify } from 'util';
 
 const asyncReaddir = promisify(readdir);
 const writeFileAsync = promisify(writeFile);
 
-const dirname = import.meta.dirname;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-const lokiDir = join(dirname, '..', '.loki');
+const lokiDir = join(__dirname, '..', '.loki');
 const actualDir = join(lokiDir, 'current');
 const expectedDir = join(lokiDir, 'reference');
 const diffDir = join(lokiDir, 'difference');
